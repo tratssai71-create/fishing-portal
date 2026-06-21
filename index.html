@@ -3,683 +3,727 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>釣りハック | 釣り人のための総合情報メディア</title>
-  <meta name="description" content="バス釣り・エギング・ジギング・ルアーフィッシングなど、釣り人のためのノウハウ・タックルレビュー・釣り場情報を毎日更新。初心者から上級者まで役立つ釣り情報メディア。">
+  <title>TSURI PRESS｜釣り人のための総合メディア</title>
+  <meta name="description" content="バス釣り・エギング・ジギング・シーバス・ショアジギングなど、あらゆる釣りジャンルの最新情報・タックルレビュー・釣り場ガイドを毎日更新。">
   <link rel="stylesheet" href="style.css">
   <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
 </head>
 <body>
 
-<!-- ========== LINE BANNER ========== -->
-<div class="line-banner">
-  <a href="#">
-    <span class="line-icon">🎣</span>
-    <strong>LINE公式アカウント</strong>をフォローして最新の釣り情報をGET！
-    <span class="line-cta">友だち追加 →</span>
-  </a>
-</div>
-
-<!-- ========== HEADER ========== -->
-<header class="site-header">
-  <div class="header-top container">
-    <a href="index.html" class="header-logo">
-      <img src="https://via.placeholder.com/160x44/FF6B1A/FFFFFF?text=TsuriHack" alt="釣りハック" class="logo-img">
-    </a>
-    <div class="header-right">
-      <button class="search-btn" id="searchToggle">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.35-4.35"/></svg>
-        検索
-      </button>
-      <button class="hamburger" id="hamburger">
-        <span></span><span></span><span></span>
-        <small>メニュー</small>
-      </button>
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
     </div>
   </div>
-  <nav class="header-nav">
-    <div class="container">
-      <ul class="nav-list">
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🐟</span>バス釣り
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🦑</span>エギング
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🌊</span>ショアソルト
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">⚓</span>オフショア
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🎿</span>トラウト
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🐠</span>エサ釣り
-        </a></li>
-        <li><a href="#" class="nav-item">
-          <span class="nav-icon">🔧</span>タックル
-        </a></li>
-        <li><a href="#" class="nav-item active">
-          <span class="nav-icon">📍</span>釣り場
-        </a></li>
-      </ul>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
     </div>
-  </nav>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
 </header>
 
-<!-- 検索オーバーレイ -->
-<div class="search-overlay" id="searchOverlay">
-  <div class="search-box">
-    <input type="text" placeholder="キーワードを入力... (例：バス釣り、エギング、ルアー)" autofocus>
-    <button class="search-close" id="searchClose">✕</button>
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="#" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
   </div>
-  <div class="search-suggest">
-    <p>人気のキーワード：</p>
-    <a href="#">バス釣り</a><a href="#">エギング</a><a href="#">シーバス</a>
-    <a href="#">ジギング</a><a href="#">ミノー</a><a href="#">スピナーベイト</a>
-  </div>
-</div>
+</nav>
 
-<!-- モバイルメニュー -->
-<div class="mobile-menu" id="mobileMenu">
-  <div class="mobile-menu-head">
-    <span>メニュー</span>
-    <button id="menuClose">✕</button>
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
   </div>
-  <ul>
-    <li><a href="#">🐟 バス釣り</a></li>
-    <li><a href="#">🦑 エギング</a></li>
-    <li><a href="#">🌊 ショアソルト</a></li>
-    <li><a href="#">⚓ オフショア</a></li>
-    <li><a href="#">🎿 トラウト</a></li>
-    <li><a href="#">🐠 エサ釣り</a></li>
-    <li><a href="#">🔧 タックル・ギア</a></li>
-    <li><a href="#">📍 釣り場情報</a></li>
-    <li><a href="#">🏆 大会・イベント</a></li>
-    <li><a href="#">📚 初心者ガイド</a></li>
+  <ul class="sp-drawer-nav">
+    <li><a href="#">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
   </ul>
 </div>
-<div class="menu-overlay" id="menuOverlay"></div>
 
-<!-- ========== HERO PICKUP ========== -->
-<section class="hero-pickup">
+<!-- ===== HERO ===== -->
+<section class="hero">
   <div class="container">
     <div class="hero-grid">
-      <!-- メイン記事 -->
       <article class="hero-main">
-        <a href="#" class="hero-main-link">
-          <div class="hero-main-img">
-            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=800&q=80" alt="バス釣り">
-            <div class="hero-main-overlay">
-              <span class="cat-badge cat-bass">バス釣り</span>
-              <h1>スポーニング後のアフタースポーンバス攻略 梅雨シーズンに釣果を上げる最強フィネスリグ</h1>
-              <div class="article-meta-sm">
-                <span>2026.06.21</span>
-                <span>👁 12,430</span>
-              </div>
-            </div>
-          </div>
+        <a href="#">
+          <figure>
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=900&q=80" alt="">
+            <figcaption>
+              <span class="badge badge-bass">バス釣り</span>
+              <h2>アフタースポーン攻略の全て ── プロ5人が明かす梅雨バスの獲り方</h2>
+              <p>体力が落ちたバスにどうアプローチするか。トーナメンター5名の実釣パターンを完全収録。</p>
+              <time>2026.06.21</time>
+            </figcaption>
+          </figure>
         </a>
       </article>
-
-      <!-- サブ記事リスト -->
-      <div class="hero-sub-list">
-        <a href="#" class="hero-sub-item">
-          <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=300&q=80" alt="">
-          <div>
-            <span class="cat-badge cat-lure">ルアー</span>
-            <p>シマノ新作ミノー「エクスセンス AR-C」実釣インプレ！シーバスゲームが変わる</p>
-            <small>2026.06.20</small>
-          </div>
-        </a>
-        <a href="#" class="hero-sub-item">
-          <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=300&q=80" alt="">
-          <div>
-            <span class="cat-badge cat-eging">エギング</span>
-            <p>夏イカ攻略の鍵はカラーにあり！濁り潮でのエギカラーローテーション完全版</p>
-            <small>2026.06.20</small>
-          </div>
-        </a>
-        <a href="#" class="hero-sub-item">
-          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&q=80" alt="">
-          <div>
-            <span class="cat-badge cat-jigging">ジギング</span>
-            <p>玄界灘ジギング釣行レポ！80kgオーバーのキハダマグロをキャッチ</p>
-            <small>2026.06.19</small>
-          </div>
-        </a>
-        <a href="#" class="hero-sub-item">
-          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&q=80" alt="">
-          <div>
-            <span class="cat-badge cat-tackle">タックル</span>
-            <p>ダイワ「23 セルテート」vs シマノ「23 ヴァンキッシュ」徹底比較レビュー</p>
-            <small>2026.06.18</small>
-          </div>
-        </a>
+      <div class="hero-side">
+        <article class="hero-side-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=460&q=80" alt="">
+            <div class="hero-side-body">
+              <span class="badge badge-offshore">オフショア</span>
+              <h3>玄界灘で82kgのキハダ ── タックルセッティングと当日のパターン</h3>
+              <time>2026.06.20</time>
+            </div>
+          </a>
+        </article>
+        <article class="hero-side-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=460&q=80" alt="">
+            <div class="hero-side-body">
+              <span class="badge badge-lure">ルアー</span>
+              <h3>エクスセンス AR-C 実釣インプレ ── 飛距離と泳ぎのバランスを検証</h3>
+              <time>2026.06.19</time>
+            </div>
+          </a>
+        </article>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ========== MAIN + SIDEBAR ========== -->
-<div class="page-body container">
-  <main class="main-col">
-
-    <!-- 編集部おすすめ -->
-    <section class="editorial-section">
-      <div class="section-label">
-        <span class="label-bar"></span>
-        <h2>編集部のオススメ</h2>
-        <a href="#" class="see-all-link">もっと見る</a>
-      </div>
-      <div class="card-grid-3">
-        <article class="art-card">
-          <a href="#" class="art-card-img">
-            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80" alt="">
-            <span class="cat-badge cat-bass">バス釣り</span>
-          </a>
-          <div class="art-card-body">
-            <h3><a href="#">結局コレが最強！春バスに効くワーム厳選5つ【2026年版】</a></h3>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=24&q=80" alt="著者" class="author-avatar">
-              <span class="author-name">田中 健太</span>
-              <span class="art-date">2026.06.21</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="art-card">
-          <a href="#" class="art-card-img">
-            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400&q=80" alt="">
-            <span class="cat-badge cat-eging">エギング</span>
-          </a>
-          <div class="art-card-body">
-            <h3><a href="#">【2026年】エギングロッドおすすめ10選！初心者から上級者まで完全網羅</a></h3>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=24&q=80" alt="著者" class="author-avatar">
-              <span class="author-name">鈴木 あおい</span>
-              <span class="art-date">2026.06.20</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="art-card">
-          <a href="#" class="art-card-img">
-            <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=400&q=80" alt="">
-            <span class="cat-badge cat-shore">シーバス</span>
-          </a>
-          <div class="art-card-body">
-            <h3><a href="#">梅雨シーバス攻略法！濁りと増水を味方につけるデイゲーム戦術まとめ</a></h3>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=24&q=80" alt="著者" class="author-avatar">
-              <span class="author-name">伊藤 誠</span>
-              <span class="art-date">2026.06.19</span>
-            </div>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <!-- カテゴリ別ボタン -->
-    <section class="cat-buttons-section">
-      <div class="cat-buttons">
-        <a href="#" class="cat-btn"><span>🐟</span><br>バス釣り</a>
-        <a href="#" class="cat-btn"><span>🦑</span><br>エギング</a>
-        <a href="#" class="cat-btn"><span>🌊</span><br>シーバス</a>
-        <a href="#" class="cat-btn"><span>⚓</span><br>ジギング</a>
-        <a href="#" class="cat-btn"><span>🎿</span><br>トラウト</a>
-        <a href="#" class="cat-btn"><span>🐠</span><br>エサ釣り</a>
-        <a href="#" class="cat-btn"><span>🔧</span><br>タックル</a>
-        <a href="#" class="cat-btn"><span>📍</span><br>釣り場</a>
-      </div>
-    </section>
-
-    <!-- 新着記事 -->
-    <section class="new-articles-section">
-      <div class="section-label">
-        <span class="label-bar"></span>
-        <h2>新着記事</h2>
-        <a href="#" class="see-all-link">もっと見る</a>
-      </div>
-      <div class="new-articles-list">
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=240&q=80" alt="">
-            <span class="cat-badge cat-lure">ルアー</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">シマノ新作ミノー「エクスセンス AR-C」実釣インプレ！シーバスゲームが変わると話題に</a></h3>
-            <p class="list-card-excerpt">飛距離・泳ぎ・レンジキープ能力の全てが一新された最新ミノーを実際にフィールドで使用してレポート。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">田中 健太</span>
-              <span class="art-date">2026.06.20</span>
-              <span class="art-views">👁 8,210</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=240&q=80" alt="">
-            <span class="cat-badge cat-jigging">ジギング</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">玄界灘ジギング釣行レポ！80kgオーバーのキハダマグロをキャッチした全記録</a></h3>
-            <p class="list-card-excerpt">ジグセレクトからファイトまで、大型魚を獲るための全戦略を公開。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">伊藤 誠</span>
-              <span class="art-date">2026.06.19</span>
-              <span class="art-views">👁 5,442</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=240&q=80" alt="">
-            <span class="cat-badge cat-tackle">タックル</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">ダイワ「23 セルテート」vs シマノ「23 ヴァンキッシュ」徹底比較レビュー2026</a></h3>
-            <p class="list-card-excerpt">実際に両機種を使い込んだプロアングラーが忖度なしで評価。どちらを買うべきか。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">鈴木 あおい</span>
-              <span class="art-date">2026.06.18</span>
-              <span class="art-views">👁 9,310</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=240&q=80" alt="">
-            <span class="cat-badge cat-trout">トラウト</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">北海道ニジマスフライフィッシング釣行記 〜十勝川系を満喫した3日間〜</a></h3>
-            <p class="list-card-excerpt">雄大な自然の中でのフライフィッシング体験をフォト多数で紹介。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">田中 健太</span>
-              <span class="art-date">2026.06.18</span>
-              <span class="art-views">👁 3,210</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=240&q=80" alt="">
-            <span class="cat-badge cat-bass">バス釣り</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">琵琶湖バス釣り最前線！南湖のウィードを攻略するヘビキャロ術を徹底解説</a></h3>
-            <p class="list-card-excerpt">広大なウィードフラットを効率よく探るためのリグとアクションを解説。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">伊藤 誠</span>
-              <span class="art-date">2026.06.17</span>
-              <span class="art-views">👁 7,660</span>
-            </div>
-          </div>
-        </article>
-
-        <article class="list-card">
-          <a href="#" class="list-card-img">
-            <img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=240&q=80" alt="">
-            <span class="cat-badge cat-shore">シーバス</span>
-          </a>
-          <div class="list-card-body">
-            <h3><a href="#">梅雨ナイトシーバス完全攻略！雨後の増水ポイントを狙い撃ちする方法</a></h3>
-            <p class="list-card-excerpt">増水時のポイント選びとルアーカラーの秘訣を現役ガイドが伝授。</p>
-            <div class="art-meta">
-              <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=24&q=80" alt="" class="author-avatar">
-              <span class="author-name">鈴木 あおい</span>
-              <span class="art-date">2026.06.16</span>
-              <span class="art-views">👁 6,100</span>
-            </div>
-          </div>
-        </article>
-      </div>
-
-      <div class="load-more-wrap">
-        <button class="btn-more">記事をもっと見る <span>▼</span></button>
-      </div>
-    </section>
-
-    <!-- 特集 -->
-    <section class="feature-section">
-      <div class="section-label">
-        <span class="label-bar"></span>
-        <h2>特集・ガイド</h2>
-        <a href="#" class="see-all-link">もっと見る</a>
-      </div>
-      <div class="feature-grid">
-        <a href="#" class="feature-big-card">
-          <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=600&q=80" alt="">
-          <div class="feature-big-info">
-            <span class="feature-label">入門ガイド</span>
-            <h3>ルアー釣り完全入門2026<br>道具選びから釣り方まで</h3>
+<!-- ===== PICKUP SLIDER ===== -->
+<section class="pickup-section">
+  <div class="container">
+    <h2 class="sec-title"><span>PICK UP</span>今週の注目記事</h2>
+    <div class="pickup-track">
+      <article class="pickup-card">
+        <a href="#">
+          <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=360&q=80" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-eging">エギング</span>
+            <p>濁り潮でアオリイカを獲る。カラーローテーションの「正解」を考える</p>
           </div>
         </a>
-        <div class="feature-small-list">
-          <a href="#" class="feature-small-card">
-            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=200&q=80" alt="">
-            <div>
-              <span class="feature-label">入門</span>
-              <p>エギング入門 タックルから釣り方まで</p>
-            </div>
-          </a>
-          <a href="#" class="feature-small-card">
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=200&q=80" alt="">
-            <div>
-              <span class="feature-label">テクニック</span>
-              <p>スロージギング完全マスター講座</p>
-            </div>
-          </a>
-          <a href="#" class="feature-small-card">
-            <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=200&q=80" alt="">
-            <div>
-              <span class="feature-label">釣り場</span>
-              <p>霞ヶ浦バス釣り 最新ポイントマップ</p>
-            </div>
-          </a>
-          <a href="#" class="feature-small-card">
-            <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=200&q=80" alt="">
-            <div>
-              <span class="feature-label">入門</span>
-              <p>フライフィッシング はじめの一歩</p>
-            </div>
-          </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=360&q=80" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-tackle">タックル</span>
+            <p>23セルテート vs 23ヴァンキッシュ ── 忖度なしのガチンコ比較</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=360&q=80" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-seabass">シーバス</span>
+            <p>増水＋濁りの梅雨シーバス。デイゲームで結果を出すための3つの鉄則</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=360&q=80" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-trout">トラウト</span>
+            <p>十勝川水系 ── 3日間の北海道ニジマス遠征で見えたこと</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=360&q=80" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-bass">バス釣り</span>
+            <p>琵琶湖南湖のウィード攻略。ヘビキャロで探る夏パターンの入口</p>
+          </div>
+        </a>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ===== MAIN + SIDEBAR ===== -->
+<div class="content-wrap container">
+  <main class="main-col">
+
+    <!-- 新着記事 -->
+    <section class="sec">
+      <h2 class="sec-title"><span>NEW</span>新着記事</h2>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-bass">バス釣り</span>
+          <h3><a href="#">「結局、ネコリグが最強だった」── 霞ヶ浦のタフコンディションで導いた答え</a></h3>
+          <p>水温18℃、低活性、クリアウォーター。何を投げても反応がない状況で、唯一答えを出してくれたリグとワームの組み合わせを振り返る。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">山本 大輔</span>
+            <time>2026.06.21</time>
+          </div>
         </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-offshore">オフショア</span>
+          <h3><a href="#">ライトジギングで狙うマダイ ── 水深40mラインの底物ゲームが熱い</a></h3>
+          <p>タイラバ全盛の時代にあえてジグで狙う理由。60g前後のジグで真鯛を掛ける実践テクニック。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">佐藤 翔太</span>
+            <time>2026.06.21</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-lure">ルアー</span>
+          <h3><a href="#">メガバス新作「VISION ONETEN LBO II」──初代からの進化点と使い分け方を解説</a></h3>
+          <p>20年以上愛され続けるジャークベイトの最新モデル。LBO IIがもたらす飛距離とレスポンスの変化を実釣で確かめた。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">田中 健一</span>
+            <time>2026.06.20</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-eging">エギング</span>
+          <h3><a href="#">ティップランのPEライン選び ── 0.4号と0.6号、どっちが正解？</a></h3>
+          <p>船からのティップランエギングで悩みがちなPEラインの太さ問題。感度・操作性・強度のバランスから最適解を探る。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">中村 裕子</span>
+            <time>2026.06.20</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-tackle">タックル</span>
+          <h3><a href="#">スピニングリール「5000番」のススメ ── ショアジギングからサーフまで万能な一台</a></h3>
+          <p>3000番では心もとない、6000番では重すぎる。5000番クラスが最適解になるシーンとおすすめモデル3選。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">高橋 龍平</span>
+            <time>2026.06.19</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-seabass">シーバス</span>
+          <h3><a href="#">バチ抜けパターンが終わった後のシーバス ── 6月に効くルアー5選</a></h3>
+          <p>春のバチパターンが終わり、多くのアングラーが迷う「6月問題」。マイクロベイトとイナッコの使い分けがカギ。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">小林 真弓</span>
+            <time>2026.06.19</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-bass">バス釣り</span>
+          <h3><a href="#">琵琶湖ウェーディング完全ガイド ── 安全装備・ポイント選び・季節別パターン</a></h3>
+          <p>おかっぱりとボートの中間にある「ウェーディング」という選択肢。琵琶湖で始めるための基礎知識をまとめた。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">山本 大輔</span>
+            <time>2026.06.18</time>
+          </div>
+        </div>
+      </article>
+
+      <article class="article-row">
+        <a href="#" class="article-row-img">
+          <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=340&q=80" alt="">
+        </a>
+        <div class="article-row-body">
+          <span class="badge badge-trout">トラウト</span>
+          <h3><a href="#">管理釣り場でスプーンの色を迷ったら ── 「光量」だけで選ぶシンプルな法則</a></h3>
+          <p>カラーが多すぎて選べない問題を解決。曇天・晴天・朝夕で使い分ける3色だけの運用法。</p>
+          <div class="article-row-meta">
+            <span class="meta-author">渡辺 美咲</span>
+            <time>2026.06.18</time>
+          </div>
+        </div>
+      </article>
+
+      <div class="load-more"><button class="btn-more">記事をもっと見る</button></div>
+    </section>
+
+    <!-- PR帯 -->
+    <section class="pr-banner">
+      <span class="pr-label">PR</span>
+      <a href="#">
+        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=760&q=80" alt="">
+        <div class="pr-text">
+          <p class="pr-brand">タックルベリー</p>
+          <p class="pr-copy">中古タックル最大80%OFF ── 全国120店舗 ＋ オンラインショップ</p>
+        </div>
+      </a>
+    </section>
+
+    <!-- 特集・ガイド -->
+    <section class="sec">
+      <h2 class="sec-title"><span>FEATURE</span>特集・入門ガイド</h2>
+      <div class="feature-mosaic">
+        <article class="fm-large">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=600&q=80" alt="">
+            <div class="fm-overlay">
+              <span class="fm-tag">入門ガイド</span>
+              <h3>ルアー釣り完全入門 ── 道具選びの基礎からキャストの練習法まで</h3>
+            </div>
+          </a>
+        </article>
+        <article class="fm-small">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=300&q=80" alt="">
+            <div class="fm-overlay">
+              <span class="fm-tag">入門</span>
+              <h3>エギング入門</h3>
+            </div>
+          </a>
+        </article>
+        <article class="fm-small">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=300&q=80" alt="">
+            <div class="fm-overlay">
+              <span class="fm-tag">テクニック</span>
+              <h3>ジギング基本講座</h3>
+            </div>
+          </a>
+        </article>
+        <article class="fm-small">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=300&q=80" alt="">
+            <div class="fm-overlay">
+              <span class="fm-tag">釣り場</span>
+              <h3>霞ヶ浦ポイントMAP</h3>
+            </div>
+          </a>
+        </article>
+        <article class="fm-small">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=300&q=80" alt="">
+            <div class="fm-overlay">
+              <span class="fm-tag">入門</span>
+              <h3>フライフィッシング入門</h3>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- 人気記事 -->
+    <section class="sec">
+      <h2 class="sec-title"><span>POPULAR</span>よく読まれている記事</h2>
+      <div class="popular-grid">
+        <article class="pop-card">
+          <a href="#">
+            <div class="pop-rank">1</div>
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=380&q=80" alt="">
+            <div class="pop-body">
+              <span class="badge badge-bass">バス釣り</span>
+              <h3>ネコリグの全て ── リグり方・ワーム選び・アクション・狙いどころ</h3>
+            </div>
+          </a>
+        </article>
+        <article class="pop-card">
+          <a href="#">
+            <div class="pop-rank">2</div>
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=380&q=80" alt="">
+            <div class="pop-body">
+              <span class="badge badge-tackle">タックル</span>
+              <h3>2026年版 スピニングリール おすすめランキングTOP15</h3>
+            </div>
+          </a>
+        </article>
+        <article class="pop-card">
+          <a href="#">
+            <div class="pop-rank">3</div>
+            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=380&q=80" alt="">
+            <div class="pop-body">
+              <span class="badge badge-lure">ルアー</span>
+              <h3>シーバス用ミノー ── 本当に釣れるルアー厳選12本</h3>
+            </div>
+          </a>
+        </article>
+        <article class="pop-card">
+          <a href="#">
+            <div class="pop-rank">4</div>
+            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=380&q=80" alt="">
+            <div class="pop-body">
+              <span class="badge badge-eging">エギング</span>
+              <h3>エギの選び方 ── 色・サイズ・重さの基本をプロが解説</h3>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- コラム -->
+    <section class="sec">
+      <h2 class="sec-title"><span>COLUMN</span>コラム・読み物</h2>
+      <div class="column-list">
+        <article class="column-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=320&q=80" alt="">
+            <div class="column-body">
+              <h3>釣り人の朝は早い ── 4時起きを20年続けて気づいたこと</h3>
+              <p>山本 大輔</p>
+            </div>
+          </a>
+        </article>
+        <article class="column-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=320&q=80" alt="">
+            <div class="column-body">
+              <h3>「釣れなかった日」の話をしよう ── ボウズが教えてくれること</h3>
+              <p>中村 裕子</p>
+            </div>
+          </a>
+        </article>
+        <article class="column-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=320&q=80" alt="">
+            <div class="column-body">
+              <h3>子供と釣りに行く前に読んでほしい ── 安全・道具・心構えの話</h3>
+              <p>渡辺 美咲</p>
+            </div>
+          </a>
+        </article>
       </div>
     </section>
 
     <!-- 動画 -->
-    <section class="video-section">
-      <div class="section-label">
-        <span class="label-bar orange"></span>
-        <h2>🎬 動画で学ぶ</h2>
-        <a href="#" class="see-all-link">YouTube →</a>
+    <section class="sec">
+      <h2 class="sec-title"><span>VIDEO</span>動画コンテンツ</h2>
+      <div class="video-grid">
+        <article class="vid-card">
+          <a href="#">
+            <div class="vid-thumb">
+              <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=420&q=80" alt="">
+              <span class="vid-play">&#9654;</span>
+              <span class="vid-time">14:32</span>
+            </div>
+            <h3>霞ヶ浦おかっぱり実釣 ── カバー撃ちで50アップを捕獲</h3>
+            <div class="vid-meta">34,200回再生</div>
+          </a>
+        </article>
+        <article class="vid-card">
+          <a href="#">
+            <div class="vid-thumb">
+              <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=420&q=80" alt="">
+              <span class="vid-play">&#9654;</span>
+              <span class="vid-time">9:48</span>
+            </div>
+            <h3>エギング実釣解説 ── ボトムステイの間を極める</h3>
+            <div class="vid-meta">21,500回再生</div>
+          </a>
+        </article>
+        <article class="vid-card">
+          <a href="#">
+            <div class="vid-thumb">
+              <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=420&q=80" alt="">
+              <span class="vid-play">&#9654;</span>
+              <span class="vid-time">18:15</span>
+            </div>
+            <h3>ブリジギング ── ワンピッチの基本と応用を船上で解説</h3>
+            <div class="vid-meta">18,900回再生</div>
+          </a>
+        </article>
+        <article class="vid-card">
+          <a href="#">
+            <div class="vid-thumb">
+              <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=420&q=80" alt="">
+              <span class="vid-play">&#9654;</span>
+              <span class="vid-time">11:22</span>
+            </div>
+            <h3>シーバス ナイトゲーム ── 都市河川で80cmオーバー</h3>
+            <div class="vid-meta">15,300回再生</div>
+          </a>
+        </article>
       </div>
-      <div class="card-grid-3">
-        <a href="#" class="video-card">
-          <div class="video-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=400&q=80" alt="">
-            <div class="play-icon">▶</div>
-            <span class="vduration">12:34</span>
-          </div>
-          <p>【バス釣り】霞ヶ浦エリアで春バスを追う！フィネスフィッシング実釣解説</p>
-          <small class="vviews">再生 34,200回</small>
+    </section>
+
+    <!-- 釣り場ガイド -->
+    <section class="sec">
+      <h2 class="sec-title"><span>FIELD</span>釣り場ガイド</h2>
+      <div class="field-grid">
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=500&q=80" alt="">
+          <div class="field-info"><span>滋賀県</span><h3>琵琶湖</h3><p>バス / ウナギ / ヘラブナ</p></div>
         </a>
-        <a href="#" class="video-card">
-          <div class="video-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=400&q=80" alt="">
-            <div class="play-icon">▶</div>
-            <span class="vduration">8:21</span>
-          </div>
-          <p>夏イカエギング爆釣！ポイント選びから釣り方まで完全解説</p>
-          <small class="vviews">再生 21,500回</small>
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=500&q=80" alt="">
+          <div class="field-info"><span>茨城県</span><h3>霞ヶ浦水系</h3><p>バス / ナマズ / ヘラブナ</p></div>
         </a>
-        <a href="#" class="video-card">
-          <div class="video-thumb-wrap">
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=400&q=80" alt="">
-            <div class="play-icon">▶</div>
-            <span class="vduration">15:08</span>
-          </div>
-          <p>青物ジギング！ブリ・カンパチを釣る最強ジグセレクト術</p>
-          <small class="vviews">再生 18,900回</small>
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&q=80" alt="">
+          <div class="field-info"><span>福岡県</span><h3>玄界灘</h3><p>ブリ / ヒラマサ / マダイ</p></div>
         </a>
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=500&q=80" alt="">
+          <div class="field-info"><span>北海道</span><h3>十勝川水系</h3><p>ニジマス / アメマス / イトウ</p></div>
+        </a>
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=500&q=80" alt="">
+          <div class="field-info"><span>千葉県</span><h3>東京湾奥</h3><p>シーバス / クロダイ / ハゼ</p></div>
+        </a>
+        <a href="#" class="field-card">
+          <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=500&q=80" alt="">
+          <div class="field-info"><span>三重県</span><h3>熊野灘</h3><p>マグロ / カツオ / アオリイカ</p></div>
+        </a>
+      </div>
+    </section>
+
+    <!-- タックルレビュー -->
+    <section class="sec">
+      <h2 class="sec-title"><span>REVIEW</span>タックルレビュー</h2>
+      <div class="review-grid">
+        <article class="review-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=300&q=80" alt="">
+            <div class="review-body">
+              <span class="review-cat">リール</span>
+              <h3>シマノ 23ヴァンキッシュ C3000MHG</h3>
+              <div class="review-star">★★★★★ <span>4.8</span></div>
+              <p>軽さと巻き感度の両立。ストッパーレスのダイレクト感がたまらない一台。</p>
+            </div>
+          </a>
+        </article>
+        <article class="review-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=300&q=80" alt="">
+            <div class="review-body">
+              <span class="review-cat">ロッド</span>
+              <h3>ダイワ エメラルダス STOIST RT IL 86M</h3>
+              <div class="review-star">★★★★☆ <span>4.5</span></div>
+              <p>インターラインとは思えない飛距離。エギングロッドの概念を変える完成度。</p>
+            </div>
+          </a>
+        </article>
+        <article class="review-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=300&q=80" alt="">
+            <div class="review-body">
+              <span class="review-cat">ルアー</span>
+              <h3>メガバス VISION ONETEN LBO II</h3>
+              <div class="review-star">★★★★★ <span>4.9</span></div>
+              <p>飛距離アップとレスポンスの向上。初代ファンも納得の正統進化。</p>
+            </div>
+          </a>
+        </article>
+        <article class="review-card">
+          <a href="#">
+            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=300&q=80" alt="">
+            <div class="review-body">
+              <span class="review-cat">ライン</span>
+              <h3>VARIVAS アバニ エギング PE マックスパワー X8</h3>
+              <div class="review-star">★★★★☆ <span>4.3</span></div>
+              <p>コスパと性能のバランスが秀逸。エギングだけでなくライトゲーム全般に。</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <!-- メーカー・ブランド -->
+    <section class="sec">
+      <h2 class="sec-title"><span>BRAND</span>メーカー・ブランド</h2>
+      <div class="brand-grid">
+        <a href="#" class="brand-item"><strong>SHIMANO</strong></a>
+        <a href="#" class="brand-item"><strong>DAIWA</strong></a>
+        <a href="#" class="brand-item"><strong>MEGABASS</strong></a>
+        <a href="#" class="brand-item"><strong>JACKALL</strong></a>
+        <a href="#" class="brand-item"><strong>DEPS</strong></a>
+        <a href="#" class="brand-item"><strong>EVERGREEN</strong></a>
+        <a href="#" class="brand-item"><strong>YAMASHITA</strong></a>
+        <a href="#" class="brand-item"><strong>VARIVAS</strong></a>
+        <a href="#" class="brand-item"><strong>ECOGEAR</strong></a>
+        <a href="#" class="brand-item"><strong>GAMAKATSU</strong></a>
+        <a href="#" class="brand-item"><strong>SUNLINE</strong></a>
+        <a href="#" class="brand-item"><strong>Abu Garcia</strong></a>
       </div>
     </section>
 
   </main>
 
-  <!-- ========== SIDEBAR ========== -->
+  <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
 
-    <!-- アクセスランキング -->
     <div class="widget">
-      <div class="widget-title-wrap">
-        <h3 class="widget-title">アクセスランキング</h3>
-        <div class="rank-tabs">
-          <button class="rtab active">本日</button>
-          <button class="rtab">週間</button>
-          <button class="rtab">月間</button>
-        </div>
+      <h3 class="widget-title">アクセスランキング</h3>
+      <div class="rank-tabs-wrap">
+        <button class="rtab active">本日</button>
+        <button class="rtab">週間</button>
+        <button class="rtab">月間</button>
       </div>
       <ol class="rank-list">
-        <li class="rank-item">
-          <span class="rnum gold">1</span>
-          <a href="#" class="rank-link">
-            <img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=60&q=80" alt="">
-            <div>
-              <span class="rcat cat-bass">バス釣り</span>
-              <p>スポーニング後のアフタースポーンバスを狙う梅雨シーズン最強リグ</p>
-            </div>
-          </a>
-        </li>
-        <li class="rank-item">
-          <span class="rnum silver">2</span>
-          <a href="#" class="rank-link">
-            <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=60&q=80" alt="">
-            <div>
-              <span class="rcat cat-tackle">タックル</span>
-              <p>ダイワvsシマノ スピニングリール2026年モデル完全比較</p>
-            </div>
-          </a>
-        </li>
-        <li class="rank-item">
-          <span class="rnum bronze">3</span>
-          <a href="#" class="rank-link">
-            <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=60&q=80" alt="">
-            <div>
-              <span class="rcat cat-lure">ルアー</span>
-              <p>シーバスルアー厳選20選！プロが認めるおすすめミノー</p>
-            </div>
-          </a>
-        </li>
-        <li class="rank-item">
-          <span class="rnum">4</span>
-          <a href="#" class="rank-link">
-            <img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=60&q=80" alt="">
-            <div>
-              <span class="rcat cat-eging">エギング</span>
-              <p>エギングロッドおすすめ10選！2026最新モデル</p>
-            </div>
-          </a>
-        </li>
-        <li class="rank-item">
-          <span class="rnum">5</span>
-          <a href="#" class="rank-link">
-            <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=60&q=80" alt="">
-            <div>
-              <span class="rcat cat-jigging">ジギング</span>
-              <p>ジギングでブリ・ヒラマサを釣る！タックルと基礎知識</p>
-            </div>
-          </a>
-        </li>
+        <li><span class="rn rn1">1</span><a href="#"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=64&q=80" alt=""><p>ネコリグの全て ── リグり方・ワーム選び・アクション</p></a></li>
+        <li><span class="rn rn2">2</span><a href="#"><img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=64&q=80" alt=""><p>2026年版 スピニングリール おすすめTOP15</p></a></li>
+        <li><span class="rn rn3">3</span><a href="#"><img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=64&q=80" alt=""><p>シーバスルアー ── 本当に釣れるミノー12本</p></a></li>
+        <li><span class="rn">4</span><a href="#"><img src="https://images.unsplash.com/photo-1533738363-b7f9aef128ce?w=64&q=80" alt=""><p>エギの選び方 ── 色・サイズの基本</p></a></li>
+        <li><span class="rn">5</span><a href="#"><img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=64&q=80" alt=""><p>ジギングタックルの基礎知識まとめ</p></a></li>
+        <li><span class="rn">6</span><a href="#"><img src="https://images.unsplash.com/photo-1561484930-998b6a7b22e8?w=64&q=80" alt=""><p>シーバスロッド おすすめ10選</p></a></li>
+        <li><span class="rn">7</span><a href="#"><img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=64&q=80" alt=""><p>琵琶湖バス釣り おかっぱりポイント</p></a></li>
+        <li><span class="rn">8</span><a href="#"><img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=64&q=80" alt=""><p>管釣りスプーン カラーの選び方</p></a></li>
+        <li><span class="rn">9</span><a href="#"><img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=64&q=80" alt=""><p>バチ抜け後のシーバスパターン</p></a></li>
+        <li><span class="rn">10</span><a href="#"><img src="https://images.unsplash.com/photo-1544551763-46a013bb70d5?w=64&q=80" alt=""><p>フロロカーボンライン おすすめ5選</p></a></li>
       </ol>
     </div>
 
-    <!-- SNS -->
-    <div class="widget widget-sns">
-      <h3 class="widget-title">SNSでフォロー</h3>
-      <div class="sns-grid">
-        <a href="#" class="sns-card sns-x">
-          <span class="sns-logo">𝕏</span>
-          <span>フォロー</span>
-          <strong>18,400</strong>
-        </a>
-        <a href="#" class="sns-card sns-insta">
-          <span class="sns-logo">📸</span>
-          <span>フォロー</span>
-          <strong>24,100</strong>
-        </a>
-        <a href="#" class="sns-card sns-youtube">
-          <span class="sns-logo">▶</span>
-          <span>登録</span>
-          <strong>31,000</strong>
-        </a>
-        <a href="#" class="sns-card sns-line">
-          <span class="sns-logo">💬</span>
-          <span>友だち追加</span>
-          <strong>12,800</strong>
-        </a>
-      </div>
-    </div>
-
-    <!-- カテゴリ -->
     <div class="widget">
       <h3 class="widget-title">カテゴリ</h3>
-      <ul class="cat-list">
-        <li><a href="#"><span>🐟 バス釣り</span><em>348</em></a></li>
-        <li><a href="#"><span>🎣 ルアーフィッシング</span><em>512</em></a></li>
-        <li><a href="#"><span>🦑 エギング</span><em>203</em></a></li>
-        <li><a href="#"><span>⚓ ジギング</span><em>178</em></a></li>
-        <li><a href="#"><span>🌊 シーバス</span><em>261</em></a></li>
-        <li><a href="#"><span>🎿 トラウト・フライ</span><em>89</em></a></li>
-        <li><a href="#"><span>🔧 タックル・ギア</span><em>420</em></a></li>
-        <li><a href="#"><span>📍 釣り場情報</span><em>134</em></a></li>
-        <li><a href="#"><span>🏆 大会・イベント</span><em>67</em></a></li>
-        <li><a href="#"><span>📚 初心者ガイド</span><em>95</em></a></li>
+      <ul class="side-cat-list">
+        <li><a href="#">バス釣り<em>348</em></a></li>
+        <li><a href="#">シーバス<em>261</em></a></li>
+        <li><a href="#">エギング<em>203</em></a></li>
+        <li><a href="#">ジギング・オフショア<em>178</em></a></li>
+        <li><a href="#">ショアソルト<em>155</em></a></li>
+        <li><a href="#">トラウト・フライ<em>89</em></a></li>
+        <li><a href="#">エサ釣り<em>124</em></a></li>
+        <li><a href="#">タックル・ギア<em>420</em></a></li>
+        <li><a href="#">釣り場情報<em>134</em></a></li>
+        <li><a href="#">大会・イベント<em>67</em></a></li>
+        <li><a href="#">初心者ガイド<em>95</em></a></li>
+        <li><a href="#">コラム<em>42</em></a></li>
       </ul>
     </div>
 
-    <!-- タグ -->
     <div class="widget">
       <h3 class="widget-title">キーワード</h3>
-      <div class="tags">
+      <div class="side-tags">
         <a href="#">バス釣り</a><a href="#">シーバス</a><a href="#">エギング</a>
-        <a href="#">ルアー</a><a href="#">スピナーベイト</a><a href="#">ジグヘッド</a>
-        <a href="#">ミノー</a><a href="#">バイブレーション</a><a href="#">スピニング</a>
-        <a href="#">ベイトリール</a><a href="#">PEライン</a><a href="#">霞ヶ浦</a>
-        <a href="#">琵琶湖</a><a href="#">玄界灘</a><a href="#">オフショア</a>
-        <a href="#">サーフ</a><a href="#">ワーム</a><a href="#">テキサスリグ</a>
+        <a href="#">ジギング</a><a href="#">ルアー</a><a href="#">ワーム</a>
+        <a href="#">ミノー</a><a href="#">バイブレーション</a><a href="#">スピナーベイト</a>
+        <a href="#">ジグヘッド</a><a href="#">テキサスリグ</a><a href="#">ネコリグ</a>
+        <a href="#">PEライン</a><a href="#">フロロ</a><a href="#">スピニング</a>
+        <a href="#">ベイトリール</a><a href="#">霞ヶ浦</a><a href="#">琵琶湖</a>
+        <a href="#">サーフ</a><a href="#">オフショア</a>
       </div>
     </div>
 
-    <!-- 広告 -->
-    <div class="widget widget-ad">
-      <p class="ad-label">PR</p>
-      <a href="#" class="ad-banner">
-        <img src="https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?w=320&q=80" alt="タックルベリー">
-        <div class="ad-text">
-          <strong>タックルベリー</strong>
-          <p>中古タックル最大80%OFF<br>全国送料無料キャンペーン中</p>
+    <div class="widget widget-ad-side">
+      <span class="ad-label">PR</span>
+      <a href="#" class="side-ad">
+        <img src="https://images.unsplash.com/photo-1606820854416-439b3305ff39?w=300&q=80" alt="">
+        <div>
+          <strong>ナチュラム</strong>
+          <p>アウトドア＆フィッシング専門店<br>ポイント10倍キャンペーン中</p>
         </div>
       </a>
+    </div>
+
+    <div class="widget">
+      <h3 class="widget-title">SNS</h3>
+      <div class="side-sns">
+        <a href="#" class="sns-btn sns-x">X (Twitter) をフォロー</a>
+        <a href="#" class="sns-btn sns-ig">Instagram をフォロー</a>
+        <a href="#" class="sns-btn sns-yt">YouTube チャンネル登録</a>
+        <a href="#" class="sns-btn sns-ln">LINE 友だち追加</a>
+      </div>
     </div>
 
   </aside>
 </div>
 
-<!-- ========== FISHING SPOTS ========== -->
-<section class="spots-section">
-  <div class="container">
-    <div class="section-label">
-      <span class="label-bar"></span>
-      <h2>人気の釣り場</h2>
-      <a href="#" class="see-all-link">釣り場を探す</a>
-    </div>
-    <div class="spots-grid">
-      <a href="#" class="spot-card">
-        <img src="https://images.unsplash.com/photo-1516825295-19f3041f7ced?w=500&q=80" alt="琵琶湖">
-        <div class="spot-info">
-          <span class="spot-pref">滋賀県</span>
-          <h3>琵琶湖</h3>
-          <p>バス・ウナギ・ヘラブナ</p>
-        </div>
-      </a>
-      <a href="#" class="spot-card">
-        <img src="https://images.unsplash.com/photo-1544551763-92ab472cad5d?w=500&q=80" alt="霞ヶ浦">
-        <div class="spot-info">
-          <span class="spot-pref">茨城県</span>
-          <h3>霞ヶ浦水系</h3>
-          <p>バス・ヘラブナ</p>
-        </div>
-      </a>
-      <a href="#" class="spot-card">
-        <img src="https://images.unsplash.com/photo-1559827260-dc66d52bef19?w=500&q=80" alt="玄界灘">
-        <div class="spot-info">
-          <span class="spot-pref">福岡県</span>
-          <h3>玄界灘</h3>
-          <p>青物・マダイ・イカ</p>
-        </div>
-      </a>
-      <a href="#" class="spot-card">
-        <img src="https://images.unsplash.com/photo-1538766017398-415434a31a5b?w=500&q=80" alt="十勝川">
-        <div class="spot-info">
-          <span class="spot-pref">北海道</span>
-          <h3>十勝川</h3>
-          <p>ニジマス・アメマス</p>
-        </div>
-      </a>
-    </div>
-  </div>
-</section>
-
-<!-- ========== FOOTER ========== -->
+<!-- ===== FOOTER ===== -->
 <footer class="site-footer">
-  <div class="footer-inner container">
-    <div class="footer-logo-wrap">
-      <a href="#" class="footer-logo">🎣 釣りハック</a>
-      <p>釣り人のための総合情報メディア。バス釣り・エギング・ジギング・ルアーフィッシングなど最新の釣り情報を毎日更新。</p>
-      <div class="footer-sns">
-        <a href="#">𝕏</a><a href="#">📸</a><a href="#">▶</a><a href="#">💬</a>
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
       </div>
     </div>
-    <div class="footer-links">
+    <div class="footer-nav">
       <div>
         <h4>ジャンル</h4>
-        <ul>
-          <li><a href="#">バス釣り</a></li>
-          <li><a href="#">エギング</a></li>
-          <li><a href="#">ジギング</a></li>
-          <li><a href="#">シーバス</a></li>
-          <li><a href="#">トラウト</a></li>
-        </ul>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
       </div>
       <div>
         <h4>コンテンツ</h4>
-        <ul>
-          <li><a href="#">最新記事</a></li>
-          <li><a href="#">動画</a></li>
-          <li><a href="#">特集</a></li>
-          <li><a href="#">釣り場情報</a></li>
-          <li><a href="#">タックルレビュー</a></li>
-        </ul>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
       </div>
       <div>
-        <h4>関連サービス</h4>
-        <ul>
-          <li><a href="#">CAMP HACK</a></li>
-          <li><a href="#">YAMA HACK</a></li>
-          <li><a href="#">OUTDOOR HACK</a></li>
-        </ul>
-      </div>
-      <div>
+        <h4>関連メディア</h4>
+        <ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul>
         <h4>サイト情報</h4>
-        <ul>
-          <li><a href="#">運営会社</a></li>
-          <li><a href="#">広告掲載</a></li>
-          <li><a href="#">プライバシーポリシー</a></li>
-          <li><a href="#">利用規約</a></li>
-          <li><a href="#">お問い合わせ</a></li>
-        </ul>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
       </div>
     </div>
   </div>
   <div class="footer-bottom">
-    <div class="container">
-      <p>&copy; 2026 釣りハック All rights reserved.</p>
-    </div>
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
   </div>
 </footer>
 
