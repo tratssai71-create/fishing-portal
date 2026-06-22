@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>単位換算ツール｜TSURI PRESS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span></a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">トップ</a> &gt; 単位換算ツール
+    </div>
+    <h1>単位換算ツール</h1>
+    <p class="page-hero-desc">釣りでよく使われる単位をかんたんに換算できます。ライン強度、ルアー重量、ロッド長さなど、数値を入力するとリアルタイムで変換されます。</p>
+  </div>
+</section>
+
+<main class="guide-content">
+  <div class="container">
+
+    <div class="converter-grid">
+
+      <div class="conv-card">
+        <h3>ライン強度</h3>
+        <div class="conv-row">
+          <div class="conv-input">
+            <label for="line-lb">lb（ポンド）</label>
+            <input type="number" id="line-lb" min="0" step="any" placeholder="0">
+          </div>
+          <div class="conv-arrow">&hArr;</div>
+          <div class="conv-input">
+            <label for="line-gou">号</label>
+            <input type="number" id="line-gou" min="0" step="any" placeholder="0">
+          </div>
+        </div>
+        <p class="conv-note">※ ナイロン・フロロカーボンの目安値です。PEラインは号数あたりの強度が異なります。</p>
+      </div>
+
+      <div class="conv-card">
+        <h3>ルアー重量</h3>
+        <div class="conv-row">
+          <div class="conv-input">
+            <label for="lure-oz">oz（オンス）</label>
+            <input type="number" id="lure-oz" min="0" step="any" placeholder="0">
+          </div>
+          <div class="conv-arrow">&hArr;</div>
+          <div class="conv-input">
+            <label for="lure-g">g（グラム）</label>
+            <input type="number" id="lure-g" min="0" step="any" placeholder="0">
+          </div>
+        </div>
+        <p class="conv-note">※ 1oz = 28.35g で計算</p>
+      </div>
+
+      <div class="conv-card">
+        <h3>ロッド長さ</h3>
+        <div class="conv-row">
+          <div class="conv-input">
+            <label for="rod-ft">ft（フィート）</label>
+            <input type="number" id="rod-ft" min="0" step="any" placeholder="0">
+          </div>
+          <div class="conv-arrow">&hArr;</div>
+          <div class="conv-input">
+            <label for="rod-cm">cm（センチメートル）</label>
+            <input type="number" id="rod-cm" min="0" step="any" placeholder="0">
+          </div>
+        </div>
+        <p class="conv-note">※ 1ft = 30.48cm / 1inch = 2.54cm</p>
+      </div>
+
+      <div class="conv-card">
+        <h3>魚のサイズ</h3>
+        <div class="conv-row">
+          <div class="conv-input">
+            <label for="fish-inch">inch（インチ）</label>
+            <input type="number" id="fish-inch" min="0" step="any" placeholder="0">
+          </div>
+          <div class="conv-arrow">&hArr;</div>
+          <div class="conv-input">
+            <label for="fish-cm">cm（センチメートル）</label>
+            <input type="number" id="fish-cm" min="0" step="any" placeholder="0">
+          </div>
+        </div>
+        <p class="conv-note">※ 1inch = 2.54cm</p>
+      </div>
+
+      <div class="conv-card">
+        <h3>水深</h3>
+        <div class="conv-row">
+          <div class="conv-input">
+            <label for="depth-fathom">fathom（ファゾム）</label>
+            <input type="number" id="depth-fathom" min="0" step="any" placeholder="0">
+          </div>
+          <div class="conv-arrow">&hArr;</div>
+          <div class="conv-input">
+            <label for="depth-m">m（メートル）</label>
+            <input type="number" id="depth-m" min="0" step="any" placeholder="0">
+          </div>
+        </div>
+        <p class="conv-note">※ 1fathom = 1.8288m（6フィート）</p>
+      </div>
+
+    </div>
+
+    <div class="ref-table-wrap">
+      <h2>ライン号数・ポンド換算表</h2>
+      <table>
+        <thead>
+          <tr><th>号数</th><th>ナイロン(lb)</th><th>フロロ(lb)</th><th>PE(lb)</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>0.6</td><td>2</td><td>2</td><td>10</td></tr>
+          <tr><td>0.8</td><td>3</td><td>3</td><td>14</td></tr>
+          <tr><td>1</td><td>4</td><td>4</td><td>18</td></tr>
+          <tr><td>1.5</td><td>6</td><td>6</td><td>25</td></tr>
+          <tr><td>2</td><td>8</td><td>8</td><td>32</td></tr>
+          <tr><td>2.5</td><td>10</td><td>10</td><td>40</td></tr>
+          <tr><td>3</td><td>12</td><td>12</td><td>50</td></tr>
+          <tr><td>4</td><td>16</td><td>16</td><td>60</td></tr>
+          <tr><td>5</td><td>20</td><td>20</td><td>75</td></tr>
+          <tr><td>6</td><td>22</td><td>22</td><td>90</td></tr>
+          <tr><td>8</td><td>30</td><td>30</td><td>120</td></tr>
+          <tr><td>10</td><td>35</td><td>35</td><td>150</td></tr>
+          <tr><td>12</td><td>40</td><td>40</td><td>-</td></tr>
+          <tr><td>14</td><td>50</td><td>50</td><td>-</td></tr>
+          <tr><td>16</td><td>55</td><td>55</td><td>-</td></tr>
+          <tr><td>20</td><td>70</td><td>70</td><td>-</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ref-table-wrap">
+      <h2>ルアー重量換算表</h2>
+      <table>
+        <thead>
+          <tr><th>oz</th><th>g</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1/64</td><td>0.44</td></tr>
+          <tr><td>1/32</td><td>0.89</td></tr>
+          <tr><td>1/16</td><td>1.77</td></tr>
+          <tr><td>3/32</td><td>2.65</td></tr>
+          <tr><td>1/8</td><td>3.54</td></tr>
+          <tr><td>3/16</td><td>5.32</td></tr>
+          <tr><td>1/4</td><td>7.09</td></tr>
+          <tr><td>3/8</td><td>10.63</td></tr>
+          <tr><td>1/2</td><td>14.17</td></tr>
+          <tr><td>5/8</td><td>17.72</td></tr>
+          <tr><td>3/4</td><td>21.26</td></tr>
+          <tr><td>1</td><td>28.35</td></tr>
+          <tr><td>1.5</td><td>42.52</td></tr>
+          <tr><td>2</td><td>56.70</td></tr>
+          <tr><td>3</td><td>85.05</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+    <div class="ref-table-wrap">
+      <h2>ロッド長さ換算表</h2>
+      <table>
+        <thead>
+          <tr><th>ft表記</th><th>ft'in"</th><th>cm</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>5.0ft</td><td>5'0"</td><td>152.4</td></tr>
+          <tr><td>5.5ft</td><td>5'6"</td><td>167.6</td></tr>
+          <tr><td>6.0ft</td><td>6'0"</td><td>182.9</td></tr>
+          <tr><td>6.3ft</td><td>6'3"</td><td>190.5</td></tr>
+          <tr><td>6.5ft</td><td>6'6"</td><td>198.1</td></tr>
+          <tr><td>6.8ft</td><td>6'9"</td><td>205.7</td></tr>
+          <tr><td>6.8ft</td><td>6'10"</td><td>208.3</td></tr>
+          <tr><td>7.0ft</td><td>7'0"</td><td>213.4</td></tr>
+          <tr><td>7.2ft</td><td>7'2"</td><td>218.4</td></tr>
+          <tr><td>7.5ft</td><td>7'6"</td><td>228.6</td></tr>
+          <tr><td>8.0ft</td><td>8'0"</td><td>243.8</td></tr>
+          <tr><td>8.5ft</td><td>8'6"</td><td>259.1</td></tr>
+          <tr><td>9.0ft</td><td>9'0"</td><td>274.3</td></tr>
+          <tr><td>9.5ft</td><td>9'6"</td><td>289.6</td></tr>
+          <tr><td>10.0ft</td><td>10'0"</td><td>304.8</td></tr>
+        </tbody>
+      </table>
+    </div>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  function setupConverter(idA, idB, factor, decimals) {
+    var elA = document.getElementById(idA);
+    var elB = document.getElementById(idB);
+    elA.addEventListener('input', function() {
+      var v = parseFloat(elA.value);
+      if (isNaN(v) || elA.value === '') { elB.value = ''; return; }
+      elB.value = (v * factor).toFixed(decimals);
+    });
+    elB.addEventListener('input', function() {
+      var v = parseFloat(elB.value);
+      if (isNaN(v) || elB.value === '') { elA.value = ''; return; }
+      elA.value = (v / factor).toFixed(decimals);
+    });
+  }
+
+  // lb -> 号: 1号 = 4lb, so lb * (1/4) = 号, factor from lb to 号 = 0.25
+  setupConverter('line-lb', 'line-gou', 0.25, 1);
+  // oz -> g: factor 28.3495
+  setupConverter('lure-oz', 'lure-g', 28.3495, 2);
+  // ft -> cm: factor 30.48
+  setupConverter('rod-ft', 'rod-cm', 30.48, 2);
+  // inch -> cm: factor 2.54
+  setupConverter('fish-inch', 'fish-cm', 2.54, 2);
+  // fathom -> m: factor 1.8288
+  setupConverter('depth-fathom', 'depth-m', 1.8288, 2);
+})();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,97 @@
+/* ============================================================
+   ZUKAN — Shared styles for 図鑑 pages
+   (uozukan.html, lure-zukan.html, rig-guide.html)
+   ============================================================ */
+
+/* Page hero banner */
+.zukan-hero{position:relative;overflow:hidden;height:260px;display:flex;align-items:flex-end;background:var(--black)}
+.zukan-hero img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;opacity:.45}
+.zukan-hero-inner{position:relative;z-index:2;padding:28px 0;width:100%}
+.zukan-hero h1{color:#fff;font-size:1.6rem;font-weight:900;letter-spacing:.02em;margin-bottom:6px}
+.zukan-hero p{color:rgba(255,255,255,.65);font-size:.82rem;line-height:1.7;max-width:640px}
+
+/* Breadcrumb */
+.breadcrumb{padding:10px 0;font-size:.72rem;color:var(--light)}
+.breadcrumb a{color:var(--mid)}
+.breadcrumb a:hover{color:var(--accent)}
+.breadcrumb span{margin:0 6px;color:var(--pale)}
+
+/* Filter buttons */
+.filter-bar{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:20px}
+.filter-btn{padding:7px 18px;font-size:.78rem;font-weight:700;border:1.5px solid var(--border);border-radius:3px;color:var(--mid);background:var(--white);transition:all .15s;cursor:pointer}
+.filter-btn:hover{border-color:var(--black);color:var(--black)}
+.filter-btn.active{background:var(--black);border-color:var(--black);color:#fff}
+
+/* Card grid */
+.zukan-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:36px}
+
+/* Zukan card */
+.zukan-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .15s,box-shadow .15s}
+.zukan-card:hover{border-color:var(--black);box-shadow:0 2px 12px rgba(0,0,0,.08)}
+.zukan-card-img{width:100%;height:170px;object-fit:cover;display:block}
+.zukan-card-body{padding:12px 14px 14px}
+.zukan-card-body h3{font-size:.88rem;font-weight:800;margin-bottom:2px;line-height:1.4}
+.zukan-card-body .sci-name{font-family:var(--ff-en);font-size:.68rem;color:var(--light);font-style:italic;margin-bottom:8px;display:block}
+.zukan-card-body .card-badge{display:inline-block;font-size:.58rem;font-weight:700;padding:2px 7px;border-radius:2px;color:#fff;background:var(--black);margin-bottom:8px}
+.card-badge-salt{background:var(--dark)}
+.card-badge-fresh{background:var(--accent)}
+.card-badge-brackish{background:var(--mid)}
+
+/* Detail table inside card */
+.card-detail{font-size:.72rem;line-height:1.6;color:var(--dark)}
+.card-detail dt{font-weight:700;color:var(--black);float:left;clear:left;width:60px}
+.card-detail dd{margin-left:64px;margin-bottom:3px;color:var(--mid)}
+
+/* Section divider inside page */
+.zukan-sec{margin-bottom:32px}
+.zukan-sec-title{font-size:1rem;font-weight:800;padding-bottom:8px;border-bottom:2px solid var(--black);margin-bottom:16px;display:flex;align-items:center;gap:8px}
+.zukan-sec-title span{display:inline-block;background:var(--accent);color:#fff;font-family:var(--ff-en);font-size:.55rem;font-weight:800;padding:3px 8px;border-radius:2px;letter-spacing:.1em}
+
+/* Lure card additions */
+.lure-action{display:inline-block;font-size:.62rem;font-weight:700;padding:2px 6px;border:1px solid var(--border);border-radius:2px;color:var(--mid);margin-bottom:6px}
+.lure-products{font-size:.7rem;color:var(--mid);line-height:1.6;margin-top:6px;padding-top:6px;border-top:1px solid var(--border)}
+.lure-products strong{color:var(--black);font-weight:700}
+
+/* Rig card */
+.rig-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;transition:border-color .15s}
+.rig-card:hover{border-color:var(--black)}
+.rig-card-header{background:var(--black);color:#fff;padding:12px 16px;display:flex;align-items:center;gap:10px}
+.rig-card-header h3{font-size:.9rem;font-weight:800}
+.rig-card-header span{font-family:var(--ff-en);font-size:.6rem;font-weight:700;background:var(--accent);padding:2px 7px;border-radius:2px}
+.rig-card-body{padding:16px}
+.rig-card-body p{font-size:.78rem;color:var(--dark);line-height:1.8;margin-bottom:10px}
+.rig-components{margin-bottom:10px}
+.rig-components h4{font-size:.75rem;font-weight:700;margin-bottom:4px}
+.rig-components ul{display:flex;flex-wrap:wrap;gap:5px}
+.rig-components ul li{font-size:.68rem;padding:3px 8px;background:var(--bg);border:1px solid var(--border);border-radius:2px;color:var(--dark)}
+.rig-situation{margin-bottom:10px}
+.rig-situation h4{font-size:.75rem;font-weight:700;margin-bottom:4px}
+.rig-situation p{font-size:.72rem;color:var(--mid);line-height:1.7}
+.rig-steps{counter-reset:rig-step}
+.rig-steps h4{font-size:.75rem;font-weight:700;margin-bottom:6px}
+.rig-steps ol{list-style:none;counter-reset:rig-step}
+.rig-steps ol li{counter-increment:rig-step;font-size:.72rem;color:var(--dark);line-height:1.7;padding:4px 0 4px 28px;position:relative;border-bottom:1px solid var(--border)}
+.rig-steps ol li:last-child{border-bottom:none}
+.rig-steps ol li::before{content:counter(rig-step);position:absolute;left:0;top:4px;width:20px;height:20px;background:var(--black);color:#fff;font-size:.62rem;font-weight:800;border-radius:50%;display:flex;align-items:center;justify-content:center}
+
+/* Rig grid: 2 columns */
+.rig-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px;margin-bottom:36px}
+
+/* Description paragraph */
+.zukan-desc{font-size:.78rem;color:var(--dark);line-height:1.8;margin-bottom:6px}
+
+/* Responsive */
+@media(max-width:1024px){
+  .zukan-grid{grid-template-columns:repeat(3,1fr)}
+  .rig-grid{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:768px){
+  .zukan-hero{height:200px}
+  .zukan-hero h1{font-size:1.2rem}
+  .zukan-grid{grid-template-columns:repeat(2,1fr)}
+  .rig-grid{grid-template-columns:1fr}
+}
+@media(max-width:480px){
+  .zukan-grid{grid-template-columns:1fr}
+  .zukan-hero{height:160px}
+}

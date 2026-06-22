@@ -1,0 +1,428 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>運営会社・サイトについて | TSURI PRESS</title>
+  <meta name="description" content="TSURI PRESSの運営会社情報、編集チーム紹介、サイトの沿革についてご紹介します。釣り人のための総合メディア。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== About page styles ===== */
+    .about-hero {
+      background: var(--black);
+      color: var(--white);
+      padding: 48px 0 40px;
+    }
+    .about-hero h1 {
+      font-size: 28px;
+      font-weight: 800;
+      letter-spacing: .02em;
+    }
+    .about-hero h1 span {
+      color: var(--accent);
+    }
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--light);
+      margin-bottom: 12px;
+    }
+    .breadcrumb a {
+      color: var(--pale);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--white);
+    }
+
+    .about-section {
+      padding: 56px 0;
+    }
+    .about-section + .about-section {
+      border-top: 1px solid var(--border);
+    }
+    .about-section-title {
+      font-size: 22px;
+      font-weight: 800;
+      margin-bottom: 24px;
+      padding-left: 14px;
+      border-left: 4px solid var(--accent);
+      line-height: 1.3;
+    }
+    .about-text p {
+      font-size: 15px;
+      line-height: 1.9;
+      color: var(--dark);
+      margin-bottom: 16px;
+    }
+
+    /* Editorial team */
+    .team-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      margin-top: 32px;
+    }
+    .team-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 20px;
+      text-align: center;
+    }
+    .team-card img {
+      width: 96px;
+      height: 96px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 16px;
+    }
+    .team-card .team-name {
+      font-size: 16px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .team-card .team-role {
+      font-size: 13px;
+      color: var(--accent);
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    .team-card .team-specialty {
+      font-size: 13px;
+      color: var(--mid);
+    }
+
+    /* Company table */
+    .company-table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 24px;
+    }
+    .company-table th,
+    .company-table td {
+      padding: 14px 16px;
+      font-size: 14px;
+      border-bottom: 1px solid var(--border);
+      text-align: left;
+      line-height: 1.6;
+    }
+    .company-table th {
+      width: 140px;
+      background: #fafafa;
+      font-weight: 700;
+      color: var(--black);
+      white-space: nowrap;
+    }
+    .company-table td {
+      color: var(--dark);
+    }
+
+    /* Timeline */
+    .timeline {
+      margin-top: 32px;
+      padding-left: 28px;
+      border-left: 3px solid var(--accent);
+    }
+    .timeline-item {
+      position: relative;
+      padding-bottom: 32px;
+    }
+    .timeline-item:last-child {
+      padding-bottom: 0;
+    }
+    .timeline-item::before {
+      content: '';
+      position: absolute;
+      left: -34px;
+      top: 4px;
+      width: 12px;
+      height: 12px;
+      background: var(--accent);
+      border-radius: 50%;
+    }
+    .timeline-year {
+      font-size: 14px;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 4px;
+    }
+    .timeline-title {
+      font-size: 15px;
+      font-weight: 700;
+      color: var(--black);
+      margin-bottom: 4px;
+    }
+    .timeline-desc {
+      font-size: 14px;
+      color: var(--mid);
+      line-height: 1.6;
+    }
+
+    /* Bottom links */
+    .about-links {
+      display: flex;
+      gap: 16px;
+      margin-top: 40px;
+      padding-top: 32px;
+      border-top: 1px solid var(--border);
+    }
+    .about-links a {
+      display: inline-block;
+      padding: 12px 28px;
+      font-size: 14px;
+      font-weight: 600;
+      border: 2px solid var(--black);
+      color: var(--black);
+      text-decoration: none;
+      border-radius: var(--radius);
+      transition: all .2s;
+    }
+    .about-links a:hover {
+      background: var(--black);
+      color: var(--white);
+    }
+
+    @media (max-width: 768px) {
+      .team-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 16px;
+      }
+      .about-hero h1 {
+        font-size: 22px;
+      }
+      .about-section {
+        padding: 40px 0;
+      }
+      .about-links {
+        flex-direction: column;
+      }
+      .about-links a {
+        text-align: center;
+      }
+      .company-table th {
+        width: 110px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
+  </ul>
+</div>
+
+<!-- ===== ABOUT HERO ===== -->
+<div class="about-hero">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">トップ</a> &gt; 運営会社・サイトについて</p>
+    <h1>運営会社・サイトについて<span> | TSURI PRESS</span></h1>
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+
+  <!-- TSURI PRESSについて -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">TSURI PRESSについて</h2>
+      <div class="about-text">
+        <p>TSURI PRESSは、すべての釣り人に信頼される情報を届けることを使命とする釣り総合メディアです。バス釣り、シーバス、エギング、ジギング、ショアソルト、トラウト、エサ釣りなど、あらゆるジャンルの釣り情報を毎日更新し、初心者からベテランまで幅広い読者に役立つコンテンツを提供しています。</p>
+        <p>私たちの編集チームは全員が現役の釣り人であり、フィールドでの実体験に基づいた記事制作を徹底しています。タックルレビューは実際に使用したうえで執筆し、釣り場ガイドは現地取材を行い、テクニック解説はプロアングラーや経験豊富なフィールドスタッフの知見を反映しています。</p>
+        <p>読者の皆様の釣りがもっと楽しく、もっと豊かになるよう、正確で実用的な情報発信を追求し続けます。釣りを通じて自然の素晴らしさを感じ、人と人とがつながる場をつくること。それがTSURI PRESSの目指す姿です。</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- 編集チーム -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">編集チーム</h2>
+      <div class="team-grid">
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&q=80" alt="山本 大輔" loading="lazy">
+          <div class="team-name">山本 大輔</div>
+          <div class="team-role">編集長</div>
+          <div class="team-specialty">バス釣り担当</div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=120&q=80" alt="田中 健一" loading="lazy">
+          <div class="team-name">田中 健一</div>
+          <div class="team-role">副編集長</div>
+          <div class="team-specialty">ソルト全般担当</div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=120&q=80" alt="佐藤 翔太" loading="lazy">
+          <div class="team-name">佐藤 翔太</div>
+          <div class="team-role">シニアライター</div>
+          <div class="team-specialty">エギング・ジギング担当</div>
+        </div>
+        <div class="team-card">
+          <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&q=80" alt="鈴木 誠" loading="lazy">
+          <div class="team-name">鈴木 誠</div>
+          <div class="team-role">ライター</div>
+          <div class="team-specialty">トラウト・渓流担当</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 運営会社 -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">運営会社</h2>
+      <table class="company-table">
+        <tr><th>会社名</th><td>株式会社TSURI PRESS</td></tr>
+        <tr><th>設立</th><td>2020年4月</td></tr>
+        <tr><th>所在地</th><td>東京都渋谷区神宮前3-15-8 釣りメディアビル5F</td></tr>
+        <tr><th>代表</th><td>山本 大輔</td></tr>
+        <tr><th>事業内容</th><td>釣り情報メディアの企画・運営、広告事業、イベント企画・運営、釣り関連コンテンツの制作</td></tr>
+        <tr><th>URL</th><td><a href="index.html">https://tsuripress.com</a></td></tr>
+      </table>
+    </div>
+  </section>
+
+  <!-- 沿革 -->
+  <section class="about-section">
+    <div class="container">
+      <h2 class="about-section-title">沿革</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-year">2020年4月</div>
+          <div class="timeline-title">TSURI PRESS サイト開設</div>
+          <div class="timeline-desc">バス釣りとソルトルアーを中心とした釣り情報メディアとして運営開始。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2021年3月</div>
+          <div class="timeline-title">月間100万PV達成</div>
+          <div class="timeline-desc">エギング特集がSNSで大きな反響を呼び、月間アクセスが100万PVを突破。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2022年8月</div>
+          <div class="timeline-title">動画コンテンツ事業を開始</div>
+          <div class="timeline-desc">YouTubeチャンネルを開設し、実釣動画・タックルインプレッション動画の配信を開始。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2023年11月</div>
+          <div class="timeline-title">サイト大規模リニューアル</div>
+          <div class="timeline-desc">UI/UXを全面刷新。魚図鑑・釣り場ガイド・コミュニティ機能を追加。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2025年1月</div>
+          <div class="timeline-title">月間500万PV達成</div>
+          <div class="timeline-desc">国内最大級の釣りメディアに成長。ショアジギング・オフショアカテゴリが特に人気を獲得。</div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-year">2026年4月</div>
+          <div class="timeline-title">関連メディア「CAMP PRESS」始動</div>
+          <div class="timeline-desc">アウトドア領域への事業拡大として、キャンプ情報メディアを新たに立ち上げ。</div>
+        </div>
+      </div>
+
+      <!-- Bottom links -->
+      <div class="about-links">
+        <a href="#">プライバシーポリシー</a>
+        <a href="#">利用規約</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row"><a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a></div>
+    </div>
+    <div class="footer-nav">
+      <div><h4>ジャンル</h4><ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul></div>
+      <div><h4>コンテンツ</h4><ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul></div>
+      <div><h4>関連メディア</h4><ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul><h4>サイト情報</h4><ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

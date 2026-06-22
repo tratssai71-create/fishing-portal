@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>釣り場天気予報｜TSURI PRESS</title>
+  <meta name="description" content="全国の人気釣り場の5日間天気予報。気温・風速・波高・気圧から釣りやすさを判定。服装・持ち物アドバイスも。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .page-header{padding:40px 0 24px;border-bottom:1px solid var(--border)}
+    .page-header h1{font-size:1.75rem;font-weight:800;color:var(--black);margin:0 0 8px}
+    .breadcrumb{font-size:.8rem;color:var(--mid)}
+    .breadcrumb a{color:var(--mid);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 6px}
+
+    .spot-selector{padding:24px 0;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+    .spot-selector label{font-weight:700;font-size:.95rem;color:var(--dark)}
+    .spot-select{appearance:none;-webkit-appearance:none;background:var(--white) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='8' viewBox='0 0 12 8'%3E%3Cpath d='M1 1l5 5 5-5' stroke='%23666' stroke-width='1.5' fill='none'/%3E%3C/svg%3E") no-repeat right 14px center;border:1px solid var(--border);border-radius:var(--radius);padding:10px 40px 10px 14px;font-size:.95rem;font-family:var(--ff);color:var(--dark);cursor:pointer;min-width:240px}
+    .spot-select:focus{outline:none;border-color:var(--accent)}
+
+    .forecast-grid{display:grid;grid-template-columns:repeat(5,1fr);gap:12px;padding:0 0 32px}
+    .forecast-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:20px 16px;text-align:center;box-shadow:var(--shadow)}
+    .forecast-card .fc-date{font-family:var(--ff-en);font-weight:700;font-size:1rem;color:var(--dark);margin-bottom:4px}
+    .forecast-card .fc-day{font-size:.75rem;color:var(--mid);margin-bottom:12px}
+    .forecast-card .fc-icon{margin:0 auto 8px;width:48px;height:48px}
+    .forecast-card .fc-icon svg{width:48px;height:48px}
+    .forecast-card .fc-weather{font-size:.85rem;font-weight:600;color:var(--dark);margin-bottom:12px}
+    .forecast-card .fc-temp{font-family:var(--ff-en);font-size:1.1rem;font-weight:700;margin-bottom:8px}
+    .forecast-card .fc-temp .hi{color:var(--accent)}
+    .forecast-card .fc-temp .lo{color:#2563eb}
+    .forecast-card .fc-temp .sep{color:var(--pale);margin:0 2px}
+    .fc-detail{font-size:.78rem;color:var(--mid);line-height:1.8}
+    .fc-detail dt{display:inline;font-weight:500}
+    .fc-detail dd{display:inline;margin:0 0 0 2px}
+    .fc-fishability{margin-top:12px;font-size:1.3rem;font-weight:800;line-height:1}
+    .fish-excellent{color:var(--accent)}
+    .fish-good{color:var(--black)}
+    .fish-fair{color:var(--mid)}
+    .fish-poor{color:var(--pale)}
+
+    .advice-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:28px 24px;margin-bottom:32px;box-shadow:var(--shadow)}
+    .advice-panel h2{font-size:1.15rem;font-weight:800;color:var(--black);margin:0 0 20px;padding-bottom:12px;border-bottom:2px solid var(--black)}
+    .advice-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .advice-section h3{font-size:.9rem;font-weight:700;color:var(--dark);margin:0 0 8px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+    .advice-section ul{list-style:none;padding:0;margin:0}
+    .advice-section li{font-size:.82rem;color:var(--mid);padding:4px 0;line-height:1.5}
+    .advice-section li::before{content:"- ";color:var(--pale)}
+
+    .legend-section{background:var(--bg);border-radius:var(--radius);padding:24px;margin-bottom:40px}
+    .legend-section h2{font-size:1rem;font-weight:700;color:var(--dark);margin:0 0 14px}
+    .legend-grid{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+    .legend-indicators{display:flex;flex-direction:column;gap:6px}
+    .legend-indicators .li-row{display:flex;align-items:center;gap:8px;font-size:.82rem;color:var(--mid)}
+    .legend-indicators .li-mark{width:24px;text-align:center;font-weight:800;font-size:1rem}
+    .legend-tips ul{list-style:none;padding:0;margin:0}
+    .legend-tips li{font-size:.82rem;color:var(--mid);padding:3px 0;line-height:1.5}
+    .legend-tips li::before{content:"- ";color:var(--pale)}
+
+    @media(max-width:900px){
+      .forecast-grid{grid-template-columns:repeat(3,1fr)}
+      .advice-grid{grid-template-columns:1fr}
+      .legend-grid{grid-template-columns:1fr}
+    }
+    @media(max-width:600px){
+      .forecast-grid{grid-template-columns:repeat(2,1fr)}
+      .page-header h1{font-size:1.35rem}
+      .advice-panel{padding:20px 16px}
+    }
+    @media(max-width:420px){
+      .forecast-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="#" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="#">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
+  </ul>
+</div>
+
+<!-- ===== PAGE CONTENT ===== -->
+<div class="container" style="padding-bottom:40px">
+
+  <!-- Page Header -->
+  <div class="page-header">
+    <h1>釣り場天気予報</h1>
+    <div class="breadcrumb"><a href="/">トップ</a><span>&gt;</span><a href="#">ツール</a><span>&gt;</span>釣り場天気予報</div>
+  </div>
+
+  <!-- Spot Selector -->
+  <div class="spot-selector">
+    <label for="spotSelect">釣り場を選択</label>
+    <select id="spotSelect" class="spot-select">
+      <option value="biwako">琵琶湖(滋賀)</option>
+      <option value="kasumigaura">霞ヶ浦(茨城)</option>
+      <option value="tokyowan">東京湾奥(千葉)</option>
+      <option value="sagamiwan">相模湾(神奈川)</option>
+      <option value="genkainda">玄界灘(福岡)</option>
+      <option value="shikotsu">支笏湖(北海道)</option>
+      <option value="hamanako">浜名湖(静岡)</option>
+      <option value="setonaikai">瀬戸内海(広島)</option>
+      <option value="shimanto">四万十川(高知)</option>
+      <option value="kiisuido">紀伊水道(和歌山)</option>
+    </select>
+  </div>
+
+  <!-- 5-Day Forecast -->
+  <div class="forecast-grid" id="forecastGrid"></div>
+
+  <!-- Clothing/Gear Advice -->
+  <div class="advice-panel" id="advicePanel">
+    <h2>服装・持ち物アドバイス</h2>
+    <div class="advice-grid" id="adviceGrid"></div>
+  </div>
+
+  <!-- Legend / Tips -->
+  <div class="legend-section">
+    <h2>釣りやすさ指標について</h2>
+    <div class="legend-grid">
+      <div class="legend-indicators">
+        <div class="li-row"><span class="li-mark fish-excellent">&loz;</span> 絶好の釣り日和。気圧安定・微風・適水温</div>
+        <div class="li-row"><span class="li-mark fish-good">&cir;</span> 概ね良好。多少の風や曇りは問題なし</div>
+        <div class="li-row"><span class="li-mark fish-fair">&triangle;</span> やや条件が悪い。風や気圧変動に注意</div>
+        <div class="li-row"><span class="li-mark fish-poor">&times;</span> 釣行は非推奨。荒天・強風・高波の恐れ</div>
+      </div>
+      <div class="legend-tips">
+        <ul>
+          <li>気圧が下がり始めるタイミングは魚の活性が上がりやすい</li>
+          <li>風速5m/s以上ではキャスト精度が落ち、ライントラブルが増える</li>
+          <li>急激な水温変化(前日比3度以上)は食い渋りの原因になる</li>
+          <li>雨の降り始めはチャンス。濁りが入ると反応が良くなることが多い</li>
+          <li>波高1.5m以上の沖磯・サーフは安全面から釣行を控える</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>関連メディア</h4>
+        <ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  // SVG weather icons
+  var icons = {
+    sunny: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="24" cy="24" r="10" fill="#f59e0b"/><g stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round"><line x1="24" y1="2" x2="24" y2="8"/><line x1="24" y1="40" x2="24" y2="46"/><line x1="2" y1="24" x2="8" y2="24"/><line x1="40" y1="24" x2="46" y2="24"/><line x1="8.3" y1="8.3" x2="12.6" y2="12.6"/><line x1="35.4" y1="35.4" x2="39.7" y2="39.7"/><line x1="8.3" y1="39.7" x2="12.6" y2="35.4"/><line x1="35.4" y1="12.6" x2="39.7" y2="8.3"/></g></svg>',
+    cloudy: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M13 36a9 9 0 01-1.1-17.9A12 12 0 0135.8 16 8 8 0 0138 32H13z" fill="#9ca3af"/></svg>',
+    rainy: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><path d="M13 28a9 9 0 01-1.1-17.9A12 12 0 0135.8 8 8 8 0 0138 24H13z" fill="#9ca3af"/><g stroke="#3b82f6" stroke-width="2" stroke-linecap="round"><line x1="14" y1="33" x2="12" y2="39"/><line x1="22" y1="33" x2="20" y2="39"/><line x1="30" y1="33" x2="28" y2="39"/></g></svg>',
+    partly: '<svg viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg"><circle cx="18" cy="16" r="8" fill="#f59e0b"/><g stroke="#f59e0b" stroke-width="2" stroke-linecap="round"><line x1="18" y1="2" x2="18" y2="6"/><line x1="18" y1="26" x2="18" y2="30"/><line x1="4" y1="16" x2="8" y2="16"/><line x1="28" y1="16" x2="32" y2="16"/><line x1="9" y1="7" x2="11.8" y2="9.8"/><line x1="24.2" y1="22.2" x2="27" y2="25"/><line x1="9" y1="25" x2="11.8" y2="22.2"/><line x1="24.2" y1="9.8" x2="27" y2="7"/></g><path d="M18 38a8 8 0 01-1-15.9 10.5 10.5 0 0120.7-1.6A7 7 0 0140 34H18z" fill="#9ca3af"/></svg>'
+  };
+
+  var weatherIconMap = {
+    '晴れ': 'sunny',
+    '曇り': 'cloudy',
+    '雨': 'rainy',
+    '晴れ時々曇り': 'partly',
+    '曇り時々雨': 'rainy',
+    '曇り時々晴れ': 'partly'
+  };
+
+  var dayNames = ['日','月','火','水','木','金','土'];
+
+  // Mock data: 10 spots x 5 days
+  var data = {
+    biwako: {
+      name:'琵琶湖(滋賀)', type:'lake',
+      days:[
+        {weather:'晴れ',hi:28,lo:21,wind:2.5,dir:'南',wave:null,pressure:1015,fish:'good'},
+        {weather:'曇り',hi:26,lo:20,wind:3.0,dir:'南東',wave:null,pressure:1012,fish:'excellent'},
+        {weather:'晴れ時々曇り',hi:27,lo:21,wind:2.0,dir:'東',wave:null,pressure:1010,fish:'fair'},
+        {weather:'雨',hi:24,lo:19,wind:4.5,dir:'北東',wave:null,pressure:1005,fish:'poor'},
+        {weather:'曇り',hi:25,lo:20,wind:3.5,dir:'北',wave:null,pressure:1008,fish:'good'}
+      ]
+    },
+    kasumigaura: {
+      name:'霞ヶ浦(茨城)', type:'lake',
+      days:[
+        {weather:'曇り時々晴れ',hi:27,lo:20,wind:3.0,dir:'南',wave:null,pressure:1013,fish:'good'},
+        {weather:'晴れ',hi:29,lo:21,wind:2.0,dir:'南西',wave:null,pressure:1016,fish:'excellent'},
+        {weather:'曇り',hi:26,lo:20,wind:4.0,dir:'東',wave:null,pressure:1010,fish:'fair'},
+        {weather:'雨',hi:23,lo:18,wind:5.0,dir:'北東',wave:null,pressure:1004,fish:'poor'},
+        {weather:'晴れ時々曇り',hi:27,lo:20,wind:2.5,dir:'南',wave:null,pressure:1012,fish:'good'}
+      ]
+    },
+    tokyowan: {
+      name:'東京湾奥(千葉)', type:'coastal',
+      days:[
+        {weather:'曇り',hi:26,lo:21,wind:3.5,dir:'南',wave:0.5,pressure:1014,fish:'good'},
+        {weather:'晴れ',hi:28,lo:22,wind:2.0,dir:'南西',wave:0.3,pressure:1017,fish:'excellent'},
+        {weather:'曇り時々雨',hi:25,lo:21,wind:4.0,dir:'東',wave:0.8,pressure:1008,fish:'fair'},
+        {weather:'雨',hi:23,lo:20,wind:5.5,dir:'北東',wave:1.2,pressure:1003,fish:'poor'},
+        {weather:'晴れ時々曇り',hi:27,lo:21,wind:3.0,dir:'南',wave:0.4,pressure:1013,fish:'good'}
+      ]
+    },
+    sagamiwan: {
+      name:'相模湾(神奈川)', type:'coastal',
+      days:[
+        {weather:'晴れ',hi:27,lo:21,wind:3.0,dir:'南西',wave:1.0,pressure:1015,fish:'excellent'},
+        {weather:'晴れ時々曇り',hi:26,lo:21,wind:3.5,dir:'南',wave:1.2,pressure:1012,fish:'good'},
+        {weather:'曇り',hi:25,lo:20,wind:4.5,dir:'南東',wave:1.5,pressure:1008,fish:'fair'},
+        {weather:'雨',hi:23,lo:19,wind:6.0,dir:'東',wave:2.0,pressure:1002,fish:'poor'},
+        {weather:'曇り時々晴れ',hi:26,lo:20,wind:3.0,dir:'南西',wave:1.0,pressure:1011,fish:'good'}
+      ]
+    },
+    genkainda: {
+      name:'玄界灘(福岡)', type:'coastal',
+      days:[
+        {weather:'晴れ',hi:27,lo:22,wind:3.0,dir:'南',wave:1.5,pressure:1014,fish:'excellent'},
+        {weather:'晴れ時々曇り',hi:26,lo:21,wind:3.5,dir:'南西',wave:1.8,pressure:1011,fish:'good'},
+        {weather:'曇り',hi:25,lo:21,wind:5.0,dir:'西',wave:2.0,pressure:1007,fish:'fair'},
+        {weather:'雨',hi:23,lo:20,wind:7.0,dir:'北西',wave:2.5,pressure:1001,fish:'poor'},
+        {weather:'晴れ',hi:28,lo:22,wind:2.5,dir:'南',wave:1.2,pressure:1013,fish:'excellent'}
+      ]
+    },
+    shikotsu: {
+      name:'支笏湖(北海道)', type:'lake',
+      days:[
+        {weather:'曇り',hi:18,lo:12,wind:2.5,dir:'西',wave:null,pressure:1016,fish:'good'},
+        {weather:'晴れ',hi:20,lo:13,wind:1.5,dir:'南',wave:null,pressure:1019,fish:'excellent'},
+        {weather:'晴れ',hi:19,lo:12,wind:2.0,dir:'南西',wave:null,pressure:1017,fish:'excellent'},
+        {weather:'曇り時々雨',hi:17,lo:11,wind:4.0,dir:'北',wave:null,pressure:1009,fish:'fair'},
+        {weather:'晴れ',hi:21,lo:13,wind:2.0,dir:'南',wave:null,pressure:1018,fish:'good'}
+      ]
+    },
+    hamanako: {
+      name:'浜名湖(静岡)', type:'coastal',
+      days:[
+        {weather:'晴れ時々曇り',hi:27,lo:21,wind:3.0,dir:'南',wave:0.5,pressure:1014,fish:'good'},
+        {weather:'晴れ',hi:29,lo:22,wind:2.0,dir:'南西',wave:0.3,pressure:1016,fish:'excellent'},
+        {weather:'曇り',hi:26,lo:21,wind:3.5,dir:'東',wave:0.8,pressure:1010,fish:'fair'},
+        {weather:'雨',hi:24,lo:20,wind:5.0,dir:'北東',wave:1.0,pressure:1005,fish:'poor'},
+        {weather:'曇り時々晴れ',hi:27,lo:21,wind:2.5,dir:'南',wave:0.4,pressure:1012,fish:'good'}
+      ]
+    },
+    setonaikai: {
+      name:'瀬戸内海(広島)', type:'coastal',
+      days:[
+        {weather:'晴れ',hi:28,lo:22,wind:2.0,dir:'南',wave:0.5,pressure:1015,fish:'excellent'},
+        {weather:'曇り',hi:27,lo:21,wind:3.0,dir:'南西',wave:0.8,pressure:1012,fish:'good'},
+        {weather:'曇り時々雨',hi:25,lo:21,wind:3.5,dir:'西',wave:1.0,pressure:1008,fish:'fair'},
+        {weather:'雨',hi:24,lo:20,wind:4.5,dir:'北西',wave:1.2,pressure:1004,fish:'poor'},
+        {weather:'晴れ時々曇り',hi:27,lo:21,wind:2.5,dir:'南',wave:0.5,pressure:1013,fish:'good'}
+      ]
+    },
+    shimanto: {
+      name:'四万十川(高知)', type:'river',
+      days:[
+        {weather:'曇り時々晴れ',hi:27,lo:21,wind:2.0,dir:'南',wave:null,pressure:1013,fish:'good'},
+        {weather:'晴れ',hi:29,lo:22,wind:1.5,dir:'南西',wave:null,pressure:1016,fish:'excellent'},
+        {weather:'雨',hi:25,lo:20,wind:3.5,dir:'東',wave:null,pressure:1006,fish:'fair'},
+        {weather:'雨',hi:23,lo:19,wind:5.0,dir:'東',wave:null,pressure:1002,fish:'poor'},
+        {weather:'曇り',hi:26,lo:20,wind:2.5,dir:'南',wave:null,pressure:1010,fish:'good'}
+      ]
+    },
+    kiisuido: {
+      name:'紀伊水道(和歌山)', type:'coastal',
+      days:[
+        {weather:'晴れ',hi:28,lo:22,wind:3.0,dir:'南西',wave:1.0,pressure:1014,fish:'excellent'},
+        {weather:'晴れ時々曇り',hi:27,lo:21,wind:3.5,dir:'南',wave:1.2,pressure:1011,fish:'good'},
+        {weather:'曇り',hi:26,lo:21,wind:4.0,dir:'西',wave:1.5,pressure:1007,fish:'fair'},
+        {weather:'雨',hi:24,lo:20,wind:6.0,dir:'北西',wave:2.0,pressure:1002,fish:'poor'},
+        {weather:'晴れ',hi:28,lo:22,wind:2.5,dir:'南',wave:0.8,pressure:1014,fish:'good'}
+      ]
+    }
+  };
+
+  var fishLabels = {excellent:'◎',good:'○',fair:'△',poor:'×'};
+  var fishClass = {excellent:'fish-excellent',good:'fish-good',fair:'fish-fair',poor:'fish-poor'};
+
+  var baseDate = new Date(2026,5,22); // 2026-06-22
+
+  function getDateStr(i){
+    var d = new Date(baseDate);
+    d.setDate(d.getDate()+i);
+    return (d.getMonth()+1)+'/'+d.getDate();
+  }
+  function getDayStr(i){
+    var d = new Date(baseDate);
+    d.setDate(d.getDate()+i);
+    return '('+dayNames[d.getDay()]+')';
+  }
+
+  function render(spotKey){
+    var spot = data[spotKey];
+    var grid = document.getElementById('forecastGrid');
+    var html = '';
+    for(var i=0;i<5;i++){
+      var day = spot.days[i];
+      var iconKey = weatherIconMap[day.weather]||'cloudy';
+      var waveStr = day.wave!==null ? day.wave.toFixed(1)+'m' : '—';
+      html += '<div class="forecast-card">'
+        +'<div class="fc-date">'+getDateStr(i)+'</div>'
+        +'<div class="fc-day">'+getDayStr(i)+'</div>'
+        +'<div class="fc-icon">'+icons[iconKey]+'</div>'
+        +'<div class="fc-weather">'+day.weather+'</div>'
+        +'<div class="fc-temp"><span class="hi">'+day.hi+'</span><span class="sep">/</span><span class="lo">'+day.lo+'</span></div>'
+        +'<dl class="fc-detail">'
+        +'<div><dt>風</dt><dd>'+day.dir+' '+day.wind.toFixed(1)+'m/s</dd></div>'
+        +'<div><dt>波</dt><dd>'+waveStr+'</dd></div>'
+        +'<div><dt>気圧</dt><dd>'+day.pressure+'hPa</dd></div>'
+        +'</dl>'
+        +'<div class="fc-fishability '+fishClass[day.fish]+'">'+fishLabels[day.fish]+'</div>'
+        +'</div>';
+    }
+    grid.innerHTML = html;
+    renderAdvice(spotKey);
+  }
+
+  function renderAdvice(spotKey){
+    var spot = data[spotKey];
+    var today = spot.days[0];
+    var clothing = [];
+    var gear = [];
+    var cautions = [];
+
+    // Clothing based on temp
+    if(today.hi >= 28){
+      clothing.push('速乾性のある半袖シャツ');
+      clothing.push('短パンまたは薄手の長ズボン');
+      clothing.push('帽子(つば広推奨)');
+      clothing.push('サングラス');
+    } else if(today.hi >= 22){
+      clothing.push('長袖の薄手シャツ');
+      clothing.push('動きやすい長ズボン');
+      clothing.push('帽子');
+    } else {
+      clothing.push('長袖シャツ+フリースまたはウインドブレーカー');
+      clothing.push('厚手の長ズボン');
+      clothing.push('ニット帽または防寒キャップ');
+    }
+
+    // Rain gear
+    if(today.weather.indexOf('雨')!==-1){
+      clothing.push('レインウェア上下');
+      gear.push('防水バッグ');
+      cautions.push('足元が滑りやすいため注意');
+    }
+
+    // Wind
+    if(today.wind >= 5){
+      clothing.push('防風ジャケット');
+      cautions.push('風速'+today.wind.toFixed(1)+'m/s予報 -- ライントラブルに注意');
+      cautions.push('軽量ルアーは使いにくい状況');
+    }
+
+    // Standard gear
+    gear.push('飲料水(最低1L)');
+    if(today.hi >= 26) gear.push('日焼け止め');
+    gear.push('偏光サングラス');
+    gear.push('プライヤー・フィッシュグリップ');
+    if(spot.type==='coastal'){
+      gear.push('ライフジャケット(必須)');
+      if(today.wave!==null && today.wave>=1.5) cautions.push('波高'+today.wave.toFixed(1)+'m予報 -- 足場の安全確認を');
+    }
+    if(spot.type==='river'){
+      gear.push('ウェーダーまたは長靴');
+      if(today.weather.indexOf('雨')!==-1) cautions.push('増水の可能性あり -- 河川情報を確認');
+    }
+
+    // Default cautions
+    if(cautions.length===0) cautions.push('特記事項なし。快適な釣行が見込めます');
+
+    var html = '<div class="advice-section"><h3>服装</h3><ul>';
+    clothing.forEach(function(c){html+='<li>'+c+'</li>';});
+    html += '</ul></div><div class="advice-section"><h3>持ち物</h3><ul>';
+    gear.forEach(function(g){html+='<li>'+g+'</li>';});
+    html += '</ul></div><div class="advice-section"><h3>注意点</h3><ul>';
+    cautions.forEach(function(c){html+='<li>'+c+'</li>';});
+    html += '</ul></div>';
+
+    document.getElementById('adviceGrid').innerHTML = html;
+  }
+
+  // Init
+  var select = document.getElementById('spotSelect');
+  select.addEventListener('change',function(){render(this.value);});
+  render(select.value);
+})();
+</script>
+</body>
+</html>

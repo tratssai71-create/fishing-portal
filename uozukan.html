@@ -1,0 +1,563 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>魚図鑑｜TSURI PRESS</title>
+  <meta name="description" content="淡水魚・海水魚・汽水域の魚を網羅した釣り人のための魚図鑑。サイズ・シーズン・生息域・釣り方まで詳しく解説。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="zukan.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+  </ul>
+</div>
+
+<!-- ===== HERO ===== -->
+<div class="zukan-hero">
+  <img src="https://images.unsplash.com/photo-1566014727723-20aa739a7b11?w=1200&q=80" alt="">
+  <div class="container zukan-hero-inner">
+    <h1>魚図鑑</h1>
+    <p>釣りのターゲットとなる淡水魚・海水魚・汽水域の魚を網羅。サイズ感、旬の時期、生息域、有効な釣り方まで、フィールドで役立つ情報を凝縮した。</p>
+  </div>
+</div>
+
+<!-- Breadcrumb -->
+<div class="container">
+  <div class="breadcrumb">
+    <a href="index.html">トップ</a><span>/</span>魚図鑑
+  </div>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<div class="container" style="padding-bottom:48px">
+
+  <!-- Filter -->
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="fresh">淡水</button>
+    <button class="filter-btn" data-filter="salt">海水</button>
+    <button class="filter-btn" data-filter="brackish">汽水</button>
+  </div>
+
+  <!-- ========== 淡水魚 ========== -->
+  <section class="zukan-sec">
+    <h2 class="zukan-sec-title"><span>FRESHWATER</span>淡水魚</h2>
+    <div class="zukan-grid">
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1601248981876-29b78bd607df?w=400&q=80" alt="ラージマウスバス">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ラージマウスバス</h3>
+          <span class="sci-name">Micropterus salmoides</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>30 - 60cm</dd>
+            <dt>時期</dt><dd>3月 - 11月（盛期: 5 - 6月）</dd>
+            <dt>生息域</dt><dd>湖沼・河川・ため池</dd>
+            <dt>釣法</dt><dd>ルアー全般 / ワーム / トップウォーター</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1548109858-3d7763d13618?w=400&q=80" alt="スモールマウスバス">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>スモールマウスバス</h3>
+          <span class="sci-name">Micropterus dolomieu</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>25 - 50cm</dd>
+            <dt>時期</dt><dd>4月 - 10月（盛期: 6 - 7月）</dd>
+            <dt>生息域</dt><dd>清流・ダム湖・砂礫底の河川</dd>
+            <dt>釣法</dt><dd>ライトリグ / スモールクランク / スピナー</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1505850557988-b858c0aec076?w=400&q=80" alt="ニジマス">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ニジマス</h3>
+          <span class="sci-name">Oncorhynchus mykiss</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>25 - 60cm（降海型は90cm超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 4 - 6月, 9 - 11月）</dd>
+            <dt>生息域</dt><dd>渓流・本流・管理釣り場</dd>
+            <dt>釣法</dt><dd>フライ / スプーン / ミノー / エサ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1537872384762-e785271d14f8?w=400&q=80" alt="ヤマメ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ヤマメ</h3>
+          <span class="sci-name">Oncorhynchus masou masou</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>18 - 30cm</dd>
+            <dt>時期</dt><dd>3月 - 9月（解禁期間による）</dd>
+            <dt>生息域</dt><dd>上流域の渓流・源流</dd>
+            <dt>釣法</dt><dd>フライ / ルアー / エサ（川虫・ブドウ虫）</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1532985686121-69cd16c17471?w=400&q=80" alt="イワナ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>イワナ</h3>
+          <span class="sci-name">Salvelinus leucomaenis</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>20 - 35cm（尺イワナで30cm超）</dd>
+            <dt>時期</dt><dd>3月 - 9月</dd>
+            <dt>生息域</dt><dd>源流域・高山渓流</dd>
+            <dt>釣法</dt><dd>エサ釣り / テンカラ / ルアー</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1508249158087-3043aa7893f4?w=400&q=80" alt="ヘラブナ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ヘラブナ</h3>
+          <span class="sci-name">Carassius cuvieri</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>25 - 45cm</dd>
+            <dt>時期</dt><dd>通年（盛期: 4 - 5月, 10 - 11月）</dd>
+            <dt>生息域</dt><dd>湖沼・河川・管理釣り場</dd>
+            <dt>釣法</dt><dd>へら竿によるウキ釣り（底釣り・宙釣り）</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1566014727723-20aa739a7b11?w=400&q=80" alt="ナマズ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ナマズ</h3>
+          <span class="sci-name">Silurus asotus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>40 - 70cm</dd>
+            <dt>時期</dt><dd>5月 - 9月（盛期: 6 - 7月）</dd>
+            <dt>生息域</dt><dd>河川中下流域・用水路・水田周辺</dd>
+            <dt>釣法</dt><dd>トップウォーター / ノイジー系ルアー / ぶっこみ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="fresh">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1583249598754-b7a2f59651fb?w=400&q=80" alt="ライギョ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-fresh">淡水</span>
+          <h3>ライギョ（カムルチー）</h3>
+          <span class="sci-name">Channa argus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>50 - 80cm（最大1m超）</dd>
+            <dt>時期</dt><dd>6月 - 9月</dd>
+            <dt>生息域</dt><dd>蓮池・水草の繁茂する池沼</dd>
+            <dt>釣法</dt><dd>フロッグ / バズベイト / パンチング</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== 海水魚 ========== -->
+  <section class="zukan-sec">
+    <h2 class="zukan-sec-title"><span>SALTWATER</span>海水魚</h2>
+    <div class="zukan-grid">
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1622713486130-aa0177e64542?w=400&q=80" alt="ブリ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>ブリ</h3>
+          <span class="sci-name">Seriola quinqueradiata</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>60 - 120cm</dd>
+            <dt>時期</dt><dd>通年（盛期: 11 - 2月の寒ブリ）</dd>
+            <dt>生息域</dt><dd>外洋・沿岸域の回遊路</dd>
+            <dt>釣法</dt><dd>ジギング / ショアジギング / 泳がせ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1592132886027-b7bbc39a22e5?w=400&q=80" alt="マダイ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>マダイ</h3>
+          <span class="sci-name">Pagrus major</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>30 - 80cm（最大1m超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 4 - 6月の乗っ込み）</dd>
+            <dt>生息域</dt><dd>岩礁帯・砂泥底・水深20-150m</dd>
+            <dt>釣法</dt><dd>タイラバ / ジギング / コマセ釣り / フカセ</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1529230117010-b6c436154f25?w=400&q=80" alt="ヒラスズキ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>ヒラスズキ</h3>
+          <span class="sci-name">Lateolabrax latus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>50 - 80cm（最大90cm超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 10 - 3月）</dd>
+            <dt>生息域</dt><dd>磯・サラシの出る岩礁帯</dd>
+            <dt>釣法</dt><dd>ミノー / シンキングペンシル / バイブレーション</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1601776945824-880c978dd931?w=400&q=80" alt="アオリイカ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>アオリイカ</h3>
+          <span class="sci-name">Sepioteuthis lessoniana</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>胴長15 - 45cm（2kg超の大型も）</dd>
+            <dt>時期</dt><dd>春（3 - 6月）/ 秋（9 - 12月）</dd>
+            <dt>生息域</dt><dd>沿岸の藻場・岩礁帯周辺</dd>
+            <dt>釣法</dt><dd>エギング / ティップラン / ヤエン釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1603719816786-3b783c7e34ce?w=400&q=80" alt="ヒラマサ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>ヒラマサ</h3>
+          <span class="sci-name">Seriola lalandi</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>70 - 150cm</dd>
+            <dt>時期</dt><dd>通年（盛期: 5 - 7月, 10 - 12月）</dd>
+            <dt>生息域</dt><dd>沿岸の潮通しのよい岩礁帯</dd>
+            <dt>釣法</dt><dd>ジギング / キャスティング / 泳がせ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1541742425281-c1d3fc8aff96?w=400&q=80" alt="マアジ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>マアジ</h3>
+          <span class="sci-name">Trachurus japonicus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>15 - 40cm</dd>
+            <dt>時期</dt><dd>通年（盛期: 5 - 10月）</dd>
+            <dt>生息域</dt><dd>沿岸域・堤防周辺・回遊路</dd>
+            <dt>釣法</dt><dd>アジング / サビキ / カゴ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1667743894865-e7ade98cc674?w=400&q=80" alt="メバル">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>メバル</h3>
+          <span class="sci-name">Sebastes inermis</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>15 - 30cm</dd>
+            <dt>時期</dt><dd>11月 - 5月（盛期: 2 - 4月）</dd>
+            <dt>生息域</dt><dd>岩礁帯・テトラ周辺・藻場</dd>
+            <dt>釣法</dt><dd>メバリング / フロートリグ / エサ釣り（探り）</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1695918432235-ff769e8233c2?w=400&q=80" alt="カサゴ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>カサゴ（ガシラ）</h3>
+          <span class="sci-name">Sebastiscus marmoratus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>15 - 30cm</dd>
+            <dt>時期</dt><dd>通年（盛期: 11 - 3月）</dd>
+            <dt>生息域</dt><dd>岩礁帯・テトラ・堤防の際</dd>
+            <dt>釣法</dt><dd>穴釣り / ブラクリ / ジグヘッドワーム</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1586920917141-71ffe0798441?w=400&q=80" alt="キジハタ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>キジハタ（アコウ）</h3>
+          <span class="sci-name">Epinephelus akaara</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>25 - 45cm</dd>
+            <dt>時期</dt><dd>6月 - 10月（盛期: 7 - 9月）</dd>
+            <dt>生息域</dt><dd>岩礁帯・ゴロタ場・水深5-30m</dd>
+            <dt>釣法</dt><dd>テキサスリグ / フリーリグ / スイミング</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1624218656926-da680b8127c9?w=400&q=80" alt="ヒラメ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>ヒラメ</h3>
+          <span class="sci-name">Paralichthys olivaceus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>40 - 70cm（座布団で80cm超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 10 - 2月）</dd>
+            <dt>生息域</dt><dd>砂浜・サーフ・砂泥底</dd>
+            <dt>釣法</dt><dd>サーフルアー / 泳がせ釣り / ジグヘッドワーム</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1508249158087-3043aa7893f4?w=400&q=80" alt="マゴチ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>マゴチ</h3>
+          <span class="sci-name">Platycephalus sp.2</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>40 - 60cm</dd>
+            <dt>時期</dt><dd>5月 - 10月（盛期: 6 - 8月）</dd>
+            <dt>生息域</dt><dd>砂浜・河口域・砂泥底</dd>
+            <dt>釣法</dt><dd>ワーム（ジグヘッド）/ メタルジグ / 泳がせ</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="salt">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1537872384762-e785271d14f8?w=400&q=80" alt="カンパチ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-salt">海水</span>
+          <h3>カンパチ</h3>
+          <span class="sci-name">Seriola dumerili</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>50 - 120cm（最大180cm）</dd>
+            <dt>時期</dt><dd>7月 - 11月（盛期: 8 - 10月）</dd>
+            <dt>生息域</dt><dd>黒潮の影響を受ける外洋岩礁</dd>
+            <dt>釣法</dt><dd>ジギング / キャスティング / 泳がせ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+  <!-- ========== 汽水魚 ========== -->
+  <section class="zukan-sec">
+    <h2 class="zukan-sec-title"><span>BRACKISH</span>汽水域の魚</h2>
+    <div class="zukan-grid">
+
+      <article class="zukan-card" data-cat="brackish">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1529230117010-b6c436154f25?w=400&q=80" alt="シーバス">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-brackish">汽水</span>
+          <h3>シーバス（マルスズキ）</h3>
+          <span class="sci-name">Lateolabrax japonicus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>40 - 90cm（ランカーで80cm超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 4 - 6月, 9 - 12月）</dd>
+            <dt>生息域</dt><dd>河口・港湾・運河・河川中流域</dd>
+            <dt>釣法</dt><dd>ミノー / バイブレーション / ワーム / トップ</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="brackish">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1592132886027-b7bbc39a22e5?w=400&q=80" alt="クロダイ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-brackish">汽水</span>
+          <h3>クロダイ（チヌ）</h3>
+          <span class="sci-name">Acanthopagrus schlegelii</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>30 - 50cm（年無しで50cm超）</dd>
+            <dt>時期</dt><dd>通年（盛期: 3 - 6月の乗っ込み）</dd>
+            <dt>生息域</dt><dd>河口・港湾・堤防・干潟</dd>
+            <dt>釣法</dt><dd>フカセ / 落とし込み / チニング（ルアー）</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="brackish">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1566014727723-20aa739a7b11?w=400&q=80" alt="キビレ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-brackish">汽水</span>
+          <h3>キビレ（キチヌ）</h3>
+          <span class="sci-name">Acanthopagrus latus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>25 - 45cm</dd>
+            <dt>時期</dt><dd>5月 - 11月（盛期: 7 - 9月）</dd>
+            <dt>生息域</dt><dd>河口・干潟・浅瀬の砂泥底</dd>
+            <dt>釣法</dt><dd>チニング（ボトムゲーム）/ フリーリグ / エサ</dd>
+          </dl>
+        </div>
+      </article>
+
+      <article class="zukan-card" data-cat="brackish">
+        <img class="zukan-card-img" src="https://images.unsplash.com/photo-1583249598754-b7a2f59651fb?w=400&q=80" alt="ハゼ">
+        <div class="zukan-card-body">
+          <span class="card-badge card-badge-brackish">汽水</span>
+          <h3>マハゼ</h3>
+          <span class="sci-name">Acanthogobius flavimanus</span>
+          <dl class="card-detail">
+            <dt>体長</dt><dd>10 - 25cm</dd>
+            <dt>時期</dt><dd>7月 - 12月（盛期: 9 - 11月）</dd>
+            <dt>生息域</dt><dd>河口・運河・干潟・港内</dd>
+            <dt>釣法</dt><dd>ちょい投げ / ミャク釣り / ウキ釣り</dd>
+          </dl>
+        </div>
+      </article>
+
+    </div>
+  </section>
+
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>図鑑</h4>
+        <ul><li><a href="uozukan.html">魚図鑑</a></li><li><a href="lure-zukan.html">ルアー図鑑</a></li><li><a href="rig-guide.html">リグ図鑑</a></li></ul>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// Filter
+document.querySelectorAll('.filter-btn').forEach(function(btn){
+  btn.addEventListener('click',function(){
+    document.querySelectorAll('.filter-btn').forEach(function(b){b.classList.remove('active')});
+    btn.classList.add('active');
+    var f=btn.getAttribute('data-filter');
+    document.querySelectorAll('.zukan-card').forEach(function(card){
+      if(f==='all'||card.getAttribute('data-cat')===f){card.style.display=''}
+      else{card.style.display='none'}
+    });
+    document.querySelectorAll('.zukan-sec').forEach(function(sec){
+      var visible=sec.querySelectorAll('.zukan-card[style=""], .zukan-card:not([style])');
+      var allCards=sec.querySelectorAll('.zukan-card');
+      var anyVisible=false;
+      allCards.forEach(function(c){if(c.style.display!=='none')anyVisible=true});
+      sec.style.display=anyVisible?'':'none';
+    });
+  });
+});
+// SP menu
+var spBtn=document.getElementById('spMenuBtn'),spOverlay=document.getElementById('spOverlay'),spDrawer=document.getElementById('spDrawer'),spClose=document.getElementById('spClose');
+if(spBtn){spBtn.addEventListener('click',function(){spOverlay.classList.add('open');spDrawer.classList.add('open')})}
+if(spClose){spClose.addEventListener('click',function(){spOverlay.classList.remove('open');spDrawer.classList.remove('open')})}
+if(spOverlay){spOverlay.addEventListener('click',function(){spOverlay.classList.remove('open');spDrawer.classList.remove('open')})}
+</script>
+</body>
+</html>

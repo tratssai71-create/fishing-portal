@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>マイページ｜TSURI PRESS</title>
+  <meta name="description" content="TSURI PRESSのマイページ。釣果記録・ブックマーク・タックルボックスを管理できます。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root{--black:#111;--accent:#c8102e;--bg:#f7f7f7;--white:#fff;--border:#e5e5e5;--dark:#333;--mid:#666;--light:#999;--pale:#ccc;--radius:5px}
+
+    .profile-header{background:var(--white);border-bottom:1px solid var(--border);padding:48px 0 32px}
+    .profile-header-inner{display:flex;align-items:center;gap:32px}
+    .profile-avatar{width:120px;height:120px;border-radius:50%;object-fit:cover;border:3px solid var(--border)}
+    .profile-info{flex:1}
+    .profile-name{font-size:1.6rem;font-weight:800;color:var(--black);margin:0 0 6px}
+    .profile-bio{color:var(--mid);font-size:.9rem;line-height:1.7;margin:0 0 12px}
+    .profile-meta{display:flex;gap:24px;font-size:.82rem;color:var(--light)}
+    .profile-meta strong{color:var(--black);font-weight:700}
+    .profile-meta-item{display:flex;align-items:center;gap:4px}
+    .profile-follow{display:flex;gap:20px;margin-top:10px}
+    .profile-follow span{font-size:.85rem;color:var(--mid)}
+    .profile-follow strong{color:var(--black);font-weight:700;font-size:1.05rem}
+    .profile-edit-btn{margin-left:auto;align-self:flex-start;padding:8px 24px;border:2px solid var(--black);background:transparent;color:var(--black);font-weight:700;font-size:.85rem;border-radius:var(--radius);cursor:pointer;transition:all .2s}
+    .profile-edit-btn:hover{background:var(--black);color:var(--white)}
+
+    .profile-tabs{background:var(--white);border-bottom:1px solid var(--border);position:sticky;top:0;z-index:50}
+    .profile-tabs ul{display:flex;gap:0;list-style:none;margin:0;padding:0}
+    .profile-tabs li a{display:block;padding:14px 28px;font-size:.9rem;font-weight:600;color:var(--light);text-decoration:none;border-bottom:3px solid transparent;transition:all .2s}
+    .profile-tabs li a:hover{color:var(--black)}
+    .profile-tabs li a.active{color:var(--black);border-bottom-color:var(--accent)}
+
+    .profile-content{padding:40px 0 60px}
+
+    .catch-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:20px}
+    .catch-card{background:var(--white);border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);transition:box-shadow .2s}
+    .catch-card:hover{box-shadow:0 4px 16px rgba(0,0,0,.08)}
+    .catch-card img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block}
+    .catch-card-body{padding:14px 16px}
+    .catch-fish{font-weight:700;font-size:.95rem;color:var(--black);margin:0 0 4px}
+    .catch-size{font-size:.82rem;color:var(--accent);font-weight:700;margin:0 0 6px}
+    .catch-detail{font-size:.78rem;color:var(--light);margin:0;line-height:1.6}
+
+    .stats-section{margin-top:48px}
+    .section-title{font-size:1.15rem;font-weight:800;color:var(--black);margin:0 0 20px;padding-bottom:10px;border-bottom:2px solid var(--black)}
+    .stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:16px}
+    .stat-card{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px 20px;text-align:center}
+    .stat-value{font-size:1.5rem;font-weight:800;color:var(--black);margin:0 0 4px}
+    .stat-value.accent{color:var(--accent)}
+    .stat-label{font-size:.78rem;color:var(--light);margin:0}
+    .stat-sub{font-size:.82rem;color:var(--mid);margin:4px 0 0;font-weight:500}
+
+    .tackle-section{margin-top:48px}
+    .tackle-list{display:flex;flex-direction:column;gap:12px}
+    .tackle-item{display:flex;align-items:center;gap:20px;background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px 24px}
+    .tackle-cat{font-size:.72rem;font-weight:700;color:var(--white);background:var(--black);padding:3px 10px;border-radius:3px;text-transform:uppercase;white-space:nowrap}
+    .tackle-name{font-weight:700;font-size:.95rem;color:var(--black);margin:0}
+    .tackle-spec{font-size:.82rem;color:var(--light);margin:2px 0 0}
+
+    @media(max-width:768px){
+      .profile-header-inner{flex-direction:column;text-align:center;gap:16px}
+      .profile-avatar{width:88px;height:88px}
+      .profile-meta{justify-content:center;flex-wrap:wrap;gap:12px}
+      .profile-follow{justify-content:center}
+      .profile-edit-btn{margin:12px auto 0;align-self:center}
+      .catch-grid{grid-template-columns:repeat(2,1fr);gap:12px}
+      .stats-grid{grid-template-columns:repeat(2,1fr)}
+      .profile-tabs ul{overflow-x:auto;-webkit-overflow-scrolling:touch}
+      .profile-tabs li a{padding:12px 18px;font-size:.82rem;white-space:nowrap}
+      .tackle-item{flex-direction:column;align-items:flex-start;gap:8px}
+    }
+    @media(max-width:480px){
+      .catch-grid{grid-template-columns:1fr}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="#" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="#">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
+  </ul>
+</div>
+
+<!-- ===== PROFILE HEADER ===== -->
+<section class="profile-header">
+  <div class="container">
+    <div class="profile-header-inner">
+      <img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=120&q=80" alt="山本 大輔" class="profile-avatar">
+      <div class="profile-info">
+        <h1 class="profile-name">山本 大輔</h1>
+        <p class="profile-bio">琵琶湖をホームに週末バス釣りを楽しんでいます。おかっぱりメインですが、たまにレンタルボートも。ネコリグとスモラバが得意です。釣果記録をコツコツ残していきます。</p>
+        <div class="profile-meta">
+          <span class="profile-meta-item">登録: <strong>2024年3月</strong></span>
+        </div>
+        <div class="profile-follow">
+          <span><strong>234</strong> フォロワー</span>
+          <span><strong>89</strong> フォロー中</span>
+        </div>
+      </div>
+      <button class="profile-edit-btn">プロフィール編集</button>
+    </div>
+  </div>
+</section>
+
+<!-- ===== TABS ===== -->
+<div class="profile-tabs">
+  <div class="container">
+    <ul>
+      <li><a href="#" class="active">釣果</a></li>
+      <li><a href="#">ブックマーク</a></li>
+      <li><a href="#">レビュー</a></li>
+      <li><a href="#">設定</a></li>
+    </ul>
+  </div>
+</div>
+
+<!-- ===== PROFILE CONTENT ===== -->
+<div class="profile-content">
+  <div class="container">
+
+    <!-- Catch Grid -->
+    <div class="catch-grid">
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1601248981876-29b78bd607df?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">ラージマウスバス</p>
+          <p class="catch-size">48cm / 1,820g</p>
+          <p class="catch-detail">琵琶湖 南湖 / 2026.06.15</p>
+        </div>
+      </div>
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1586920917141-71ffe0798441?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">スモールマウスバス</p>
+          <p class="catch-size">38cm / 980g</p>
+          <p class="catch-detail">桧原湖 / 2026.05.28</p>
+        </div>
+      </div>
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1541742425281-c1d3fc8aff96?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">ラージマウスバス</p>
+          <p class="catch-size">52cm / 2,340g</p>
+          <p class="catch-detail">琵琶湖 北湖 / 2026.05.12</p>
+        </div>
+      </div>
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1548109858-3d7763d13618?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">シーバス</p>
+          <p class="catch-size">65cm / 2,800g</p>
+          <p class="catch-detail">大阪南港 / 2026.04.20</p>
+        </div>
+      </div>
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1622713486130-aa0177e64542?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">ラージマウスバス</p>
+          <p class="catch-size">58cm / 3,120g</p>
+          <p class="catch-detail">琵琶湖 南湖 / 2026.03.30</p>
+        </div>
+      </div>
+      <div class="catch-card">
+        <img src="https://images.unsplash.com/photo-1592132886027-b7bbc39a22e5?w=400&q=80" alt="">
+        <div class="catch-card-body">
+          <p class="catch-fish">ニジマス</p>
+          <p class="catch-size">42cm / 1,100g</p>
+          <p class="catch-detail">養老川 / 2026.03.10</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Stats -->
+    <div class="stats-section">
+      <h2 class="section-title">釣果データ</h2>
+      <div class="stats-grid">
+        <div class="stat-card">
+          <p class="stat-value accent">156</p>
+          <p class="stat-label">累計釣果数</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">58cm</p>
+          <p class="stat-label">最大サイズ</p>
+          <p class="stat-sub">ラージマウスバス</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">琵琶湖</p>
+          <p class="stat-label">お気に入りスポット</p>
+        </div>
+        <div class="stat-card">
+          <p class="stat-value">ネコリグ</p>
+          <p class="stat-label">お気に入りルアー</p>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tackle Box -->
+    <div class="tackle-section">
+      <h2 class="section-title">タックルボックス</h2>
+      <div class="tackle-list">
+        <div class="tackle-item">
+          <span class="tackle-cat">Rod</span>
+          <div>
+            <p class="tackle-name">シマノ エクスプライド 264SUL-S</p>
+            <p class="tackle-spec">スピニング / ソリッドティップ / ライトリグ全般に対応</p>
+          </div>
+        </div>
+        <div class="tackle-item">
+          <span class="tackle-cat">Reel</span>
+          <div>
+            <p class="tackle-name">シマノ ヴァンキッシュ C2500SHG</p>
+            <p class="tackle-spec">自重150g / ギア比6.1 / 巻き心地に定評あり</p>
+          </div>
+        </div>
+        <div class="tackle-item">
+          <span class="tackle-cat">Line</span>
+          <div>
+            <p class="tackle-name">東レ バウオ スーパーハードプレミアム 4lb</p>
+            <p class="tackle-spec">フロロカーボン / 感度と強度のバランス型</p>
+          </div>
+        </div>
+        <div class="tackle-item">
+          <span class="tackle-cat">Lure</span>
+          <div>
+            <p class="tackle-name">ZBC スワンプクローラー 5.5inch</p>
+            <p class="tackle-spec">ネコリグ定番ワーム / グリーンパンプキン</p>
+          </div>
+        </div>
+        <div class="tackle-item">
+          <span class="tackle-cat">Lure</span>
+          <div>
+            <p class="tackle-name">OSP ドライブスティック 3.5inch</p>
+            <p class="tackle-spec">ノーシンカー / バックスライドセッティング</p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row"><a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a></div>
+    </div>
+    <div class="footer-nav">
+      <div><h4>ジャンル</h4><ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul></div>
+      <div><h4>コンテンツ</h4><ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul></div>
+      <div><h4>関連メディア</h4><ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul><h4>サイト情報</h4><ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

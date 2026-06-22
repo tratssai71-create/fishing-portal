@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>お問い合わせ | TSURI PRESS</title>
+  <meta name="description" content="TSURI PRESSへのお問い合わせはこちら。取材依頼・広告掲載・不具合報告など、お気軽にご連絡ください。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --black: #111;
+      --accent: #c8102e;
+      --bg: #f7f7f7;
+      --white: #fff;
+      --border: #e5e5e5;
+      --dark: #333;
+      --mid: #666;
+      --light: #999;
+      --pale: #ccc;
+      --radius: 5px;
+    }
+
+    .page-header {
+      background: var(--white);
+      border-bottom: 1px solid var(--border);
+      padding: 24px 0;
+    }
+    .breadcrumb {
+      font-size: 13px;
+      color: var(--light);
+      margin-bottom: 8px;
+    }
+    .breadcrumb a {
+      color: var(--mid);
+      text-decoration: none;
+    }
+    .breadcrumb a:hover {
+      color: var(--accent);
+    }
+    .page-title {
+      font-size: 28px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 0;
+    }
+
+    .contact-section {
+      padding: 48px 0;
+    }
+    .contact-card {
+      background: var(--white);
+      border-radius: var(--radius);
+      border: 1px solid var(--border);
+      padding: 40px;
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .contact-card h2 {
+      font-size: 20px;
+      font-weight: 700;
+      color: var(--black);
+      margin: 0 0 24px;
+    }
+    .form-group {
+      margin-bottom: 20px;
+    }
+    .form-group label {
+      display: block;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--dark);
+      margin-bottom: 6px;
+    }
+    .form-group label .required {
+      color: var(--accent);
+      font-size: 12px;
+      margin-left: 4px;
+    }
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+      width: 100%;
+      padding: 10px 12px;
+      font-size: 15px;
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      background: var(--bg);
+      color: var(--black);
+      transition: border-color .2s;
+      box-sizing: border-box;
+    }
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+      outline: none;
+      border-color: var(--accent);
+    }
+    .form-group textarea {
+      height: 180px;
+      resize: vertical;
+    }
+    .form-submit {
+      display: block;
+      width: 100%;
+      padding: 14px;
+      font-size: 16px;
+      font-weight: 700;
+      font-family: 'Noto Sans JP', 'Inter', sans-serif;
+      color: var(--white);
+      background: var(--accent);
+      border: none;
+      border-radius: var(--radius);
+      cursor: pointer;
+      transition: opacity .2s;
+      margin-top: 8px;
+    }
+    .form-submit:hover {
+      opacity: .85;
+    }
+
+    /* FAQ */
+    .faq-section {
+      padding: 0 0 48px;
+    }
+    .faq-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--black);
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .faq-list {
+      max-width: 640px;
+      margin: 0 auto;
+    }
+    .faq-list details {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      margin-bottom: 8px;
+      overflow: hidden;
+    }
+    .faq-list details + details {
+      margin-top: 0;
+    }
+    .faq-list summary {
+      padding: 14px 18px;
+      font-size: 15px;
+      font-weight: 600;
+      color: var(--dark);
+      cursor: pointer;
+      list-style: none;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .faq-list summary::-webkit-details-marker {
+      display: none;
+    }
+    .faq-list summary::after {
+      content: '+';
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--light);
+      flex-shrink: 0;
+      margin-left: 12px;
+      transition: transform .2s;
+    }
+    .faq-list details[open] summary::after {
+      content: '-';
+    }
+    .faq-list .faq-answer {
+      padding: 0 18px 16px;
+      font-size: 14px;
+      line-height: 1.8;
+      color: var(--mid);
+    }
+
+    /* Company info */
+    .company-section {
+      padding: 0 0 64px;
+    }
+    .company-heading {
+      font-size: 22px;
+      font-weight: 700;
+      color: var(--black);
+      text-align: center;
+      margin: 0 0 28px;
+    }
+    .company-card {
+      background: var(--white);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      max-width: 640px;
+      margin: 0 auto;
+      overflow: hidden;
+    }
+    .company-card table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+    .company-card th,
+    .company-card td {
+      padding: 14px 18px;
+      font-size: 14px;
+      text-align: left;
+      border-bottom: 1px solid var(--border);
+    }
+    .company-card tr:last-child th,
+    .company-card tr:last-child td {
+      border-bottom: none;
+    }
+    .company-card th {
+      width: 140px;
+      font-weight: 600;
+      color: var(--dark);
+      background: var(--bg);
+    }
+    .company-card td {
+      color: var(--mid);
+    }
+
+    @media (max-width: 768px) {
+      .contact-card {
+        padding: 24px 18px;
+      }
+      .page-title {
+        font-size: 22px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="contact.html">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+  </ul>
+</div>
+
+<!-- ===== PAGE HEADER ===== -->
+<div class="page-header">
+  <div class="container">
+    <p class="breadcrumb"><a href="index.html">トップ</a> &gt; お問い合わせ</p>
+    <h1 class="page-title">お問い合わせ</h1>
+  </div>
+</div>
+
+<!-- ===== CONTACT FORM ===== -->
+<section class="contact-section">
+  <div class="container">
+    <div class="contact-card">
+      <h2>お問い合わせフォーム</h2>
+      <form action="#" method="post">
+        <div class="form-group">
+          <label>お名前<span class="required">*必須</span></label>
+          <input type="text" name="name" placeholder="山田 太郎" required>
+        </div>
+        <div class="form-group">
+          <label>メールアドレス<span class="required">*必須</span></label>
+          <input type="email" name="email" placeholder="example@email.com" required>
+        </div>
+        <div class="form-group">
+          <label>お問い合わせカテゴリ<span class="required">*必須</span></label>
+          <select name="category" required>
+            <option value="" disabled selected>選択してください</option>
+            <option value="interview">取材依頼</option>
+            <option value="advertising">広告掲載</option>
+            <option value="bug">不具合報告</option>
+            <option value="other">その他</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label>お問い合わせ内容<span class="required">*必須</span></label>
+          <textarea name="message" placeholder="お問い合わせ内容をご記入ください" required></textarea>
+        </div>
+        <button type="submit" class="form-submit">送信する</button>
+      </form>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FAQ ===== -->
+<section class="faq-section">
+  <div class="container">
+    <h2 class="faq-heading">よくあるご質問</h2>
+    <div class="faq-list">
+      <details>
+        <summary>会員登録は必要ですか？</summary>
+        <div class="faq-answer">記事の閲覧に会員登録は不要です。ただし、コメントの投稿やお気に入り機能をご利用いただく場合は、無料の会員登録が必要となります。</div>
+      </details>
+      <details>
+        <summary>記事の転載・引用は可能ですか？</summary>
+        <div class="faq-answer">記事の無断転載はお断りしております。引用につきましては、出典元としてTSURI PRESSの記事URLを明記いただければ、常識的な範囲で引用いただけます。詳しくは利用規約をご確認ください。</div>
+      </details>
+      <details>
+        <summary>広告掲載の費用を教えてください。</summary>
+        <div class="faq-answer">広告掲載の料金は、掲載位置・期間・形式によって異なります。詳細はお問い合わせフォームより「広告掲載」カテゴリを選択のうえ、ご連絡ください。担当者より折り返しご案内いたします。</div>
+      </details>
+      <details>
+        <summary>取材・タイアップ記事の依頼はできますか？</summary>
+        <div class="faq-answer">はい、釣り関連の製品・サービス・イベントなどの取材やタイアップ記事のご依頼を承っております。お問い合わせフォームより「取材依頼」カテゴリでご連絡ください。</div>
+      </details>
+      <details>
+        <summary>個人情報の取り扱いについて教えてください。</summary>
+        <div class="faq-answer">お問い合わせフォームでいただいた個人情報は、お問い合わせへの回答にのみ使用いたします。第三者への提供は行いません。詳しくはプライバシーポリシーをご覧ください。</div>
+      </details>
+      <details>
+        <summary>記事の内容に誤りを見つけた場合はどうすればよいですか？</summary>
+        <div class="faq-answer">記事の誤りにお気づきの場合は、お問い合わせフォームより「不具合報告」カテゴリを選択し、該当記事のURLと誤りの内容をお知らせください。確認のうえ、速やかに修正対応いたします。</div>
+      </details>
+      <details>
+        <summary>お問い合わせの返信にはどのくらいかかりますか？</summary>
+        <div class="faq-answer">通常、3営業日以内にご返信いたします。お問い合わせ内容や時期によっては、お時間をいただく場合がございます。あらかじめご了承ください。</div>
+      </details>
+      <details>
+        <summary>ライターとして記事を書くことはできますか？</summary>
+        <div class="faq-answer">外部ライターの募集は不定期で行っております。釣りに関する専門知識や執筆経験をお持ちの方は、お問い合わせフォームより「その他」カテゴリでご連絡ください。</div>
+      </details>
+    </div>
+  </div>
+</section>
+
+<!-- ===== COMPANY INFO ===== -->
+<section class="company-section">
+  <div class="container">
+    <h2 class="company-heading">運営会社情報</h2>
+    <div class="company-card">
+      <table>
+        <tr><th>会社名</th><td>株式会社TSURI PRESS</td></tr>
+        <tr><th>所在地</th><td>〒150-0001 東京都渋谷区神宮前1-1-1</td></tr>
+        <tr><th>メールアドレス</th><td>info@tsuripress.jp</td></tr>
+        <tr><th>設立</th><td>2020年4月</td></tr>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row"><a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a></div>
+    </div>
+    <div class="footer-nav">
+      <div><h4>ジャンル</h4><ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul></div>
+      <div><h4>コンテンツ</h4><ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul></div>
+      <div><h4>関連メディア</h4><ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul><h4>サイト情報</h4><ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="contact.html">お問い合わせ</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div></div>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

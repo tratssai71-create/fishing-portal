@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>釣り用語辞典｜TSURI PRESS</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Noto+Sans+JP:wght@400;500;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="guide.css">
+</head>
+<body>
+
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo"><span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span></a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn"><span></span><span></span><span></span></button>
+  </div>
+</header>
+
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<section class="page-hero">
+  <div class="container">
+    <div class="breadcrumb">
+      <a href="index.html">トップ</a> &gt; 釣り用語辞典
+    </div>
+    <h1>釣り用語辞典</h1>
+    <p class="page-hero-desc">釣りに関する専門用語をあいうえお順で解説。初心者からベテランまで、知りたい用語がすぐに見つかる釣り用語集です。</p>
+  </div>
+</section>
+
+<section class="filter-bar">
+  <div class="container">
+    <input type="text" class="filter-search" id="glossarySearch" placeholder="用語を検索...">
+    <nav class="jump-nav" id="jumpNav">
+      <a href="#a-row" class="jump-nav-link">ア行</a>
+      <a href="#ka-row" class="jump-nav-link">カ行</a>
+      <a href="#sa-row" class="jump-nav-link">サ行</a>
+      <a href="#ta-row" class="jump-nav-link">タ行</a>
+      <a href="#na-row" class="jump-nav-link">ナ行</a>
+      <a href="#ha-row" class="jump-nav-link">ハ行</a>
+      <a href="#ma-row" class="jump-nav-link">マ行</a>
+      <a href="#ya-row" class="jump-nav-link">ヤ行</a>
+      <a href="#ra-row" class="jump-nav-link">ラ行</a>
+      <a href="#wa-row" class="jump-nav-link">ワ行</a>
+    </nav>
+  </div>
+</section>
+
+<main class="guide-content">
+  <div class="container">
+    <div id="noResults" style="display:none;text-align:center;padding:40px 0;color:#888;font-size:1.1rem;">該当する用語が見つかりませんでした</div>
+
+    <!-- ア行 -->
+    <section class="glossary-section" id="a-row">
+      <h2 class="glossary-section-title">ア行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">アクション</h3>
+        <span class="glossary-reading">あくしょん</span>
+        <p class="glossary-desc">ルアーや竿の動きのこと。ルアーのアクションはリトリーブ時やロッドワークによって生まれる泳ぎの動きを指し、ロッドのアクションは竿の曲がり具合や調子を意味する。ファストアクション（先調子）やスローアクション（胴調子）などがある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="トゥイッチ">トゥイッチ</a>, <a href="#" data-term="ジャーク">ジャーク</a>, <a href="#" data-term="リトリーブ">リトリーブ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">アウトリガー</h3>
+        <span class="glossary-reading">あうとりがー</span>
+        <p class="glossary-desc">船の両側に張り出すように取り付けるポールのこと。トローリングなどで複数のラインを同時に流すために使用される。ラインの絡みを防ぎながら広範囲を探ることができる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="オフショア">オフショア</a>, <a href="#" data-term="タックル">タックル</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">アタリ</h3>
+        <span class="glossary-reading">あたり</span>
+        <p class="glossary-desc">魚がエサやルアーに食いついたときに、竿先やライン、ウキなどに伝わる反応のこと。コツコツという小さなアタリから、竿をひったくるような大きなアタリまで様々な種類がある。アタリを感じ取る感度は釣果を大きく左右する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アワセ">アワセ</a>, <a href="#" data-term="バイト">バイト</a>, <a href="#" data-term="フッキング">フッキング</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">アワセ</h3>
+        <span class="glossary-reading">あわせ</span>
+        <p class="glossary-desc">魚のアタリを感じた瞬間にロッドを煽り、フックを魚の口にしっかりと掛ける動作のこと。即アワセ、遅アワセ、巻きアワセなどのテクニックがあり、対象魚や釣法によって最適なタイミングが異なる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アタリ">アタリ</a>, <a href="#" data-term="フッキング">フッキング</a>, <a href="#" data-term="合わせ切れ">合わせ切れ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">アンダーショット</h3>
+        <span class="glossary-reading">あんだーしょっと</span>
+        <p class="glossary-desc">ダウンショットリグの別称。ライン先端にシンカーを取り付け、その上にフックをセットする仕掛けのこと。ボトム付近でワームをナチュラルに漂わせることができ、バス釣りやロックフィッシュで多用される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ダウンショットリグ">ダウンショットリグ</a>, <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ボトム">ボトム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">イソメ</h3>
+        <span class="glossary-reading">いそめ</span>
+        <p class="glossary-desc">海釣りで最もポピュラーな生きエサの一つ。多毛類に属し、アオイソメやイワイソメなど複数の種類がある。堤防釣り、投げ釣り、船釣りなど幅広い釣りで使用され、多くの魚種に有効。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="コマセ">コマセ</a>, <a href="#" data-term="テンヤ">テンヤ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ウェーディング</h3>
+        <span class="glossary-reading">うぇーでぃんぐ</span>
+        <p class="glossary-desc">ウェーダーを着用して水中に立ち込んで釣りをすること。干潟や河川、サーフなどで行われ、岸からでは届かないポイントにアクセスできる。シーバスやヒラメ、トラウトフィッシングでよく用いられる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="サーフ">サーフ</a>, <a href="#" data-term="シーバス">シーバス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ウキ</h3>
+        <span class="glossary-reading">うき</span>
+        <p class="glossary-desc">仕掛けを水中の狙ったタナ（深さ）に保持し、魚のアタリを視覚的に伝える釣り具。玉ウキ、棒ウキ、円錐ウキなど形状は多種多様で、対象魚やフィールドに応じて使い分ける。ウキ釣りは最も基本的な釣法の一つ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アタリ">アタリ</a>, <a href="#" data-term="オモリ">オモリ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">エギ</h3>
+        <span class="glossary-reading">えぎ</span>
+        <p class="glossary-desc">アオリイカなどのイカ類を釣るために設計された疑似餌（ルアー）。エビに似た形状をしており、布で覆われたボディとカンナと呼ばれる傘状の針が特徴。シャクリを加えてダートさせ、フォールで抱かせるのが基本的な使い方。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="シャクリ">シャクリ</a>, <a href="#" data-term="フォール">フォール</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">エラ洗い</h3>
+        <span class="glossary-reading">えらあらい</span>
+        <p class="glossary-desc">掛かった魚が水面でジャンプしながら頭を振り、フックを外そうとする行動のこと。特にシーバス（スズキ）が頻繁に行うことで有名。エラ洗いが始まったらロッドを下げてラインテンションを保つことが、バラシを防ぐコツ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="シーバス">シーバス</a>, <a href="#" data-term="ドラグ">ドラグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">オフショア</h3>
+        <span class="glossary-reading">おふしょあ</span>
+        <p class="glossary-desc">船に乗って沖合で行う釣りの総称。ジギング、タイラバ、キャスティングゲームなど様々な釣法がある。岸からの釣り（ショア）では狙えない大型魚や回遊魚をターゲットにできるのが魅力。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ジギング">ジギング</a>, <a href="#" data-term="タイラバ">タイラバ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">オモリ</h3>
+        <span class="glossary-reading">おもり</span>
+        <p class="glossary-desc">仕掛けやルアーに重さを加えるための鉛やタングステン製の道具。投げる距離を伸ばしたり、仕掛けを狙った水深まで沈めたりする役割がある。ナス型、丸型、中通し型など形状が豊富で、号数やグラムで重さが表記される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ウキ">ウキ</a>, <a href="#" data-term="スプリットショットリグ">スプリットショットリグ</a></div>
+      </div>
+    </section>
+
+    <!-- カ行 -->
+    <section class="glossary-section" id="ka-row">
+      <h2 class="glossary-section-title">カ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">カーブフォール</h3>
+        <span class="glossary-reading">かーぶふぉーる</span>
+        <p class="glossary-desc">ラインのテンションを保ったままルアーやワームを沈めるテクニック。フリーフォールと異なり、ラインを張った状態で弧を描くように手前に寄りながら沈んでいく。アタリが取りやすく、根がかりも軽減できる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="フォール">フォール</a>, <a href="#" data-term="ライン">ライン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ガイド</h3>
+        <span class="glossary-reading">がいど</span>
+        <p class="glossary-desc">ロッド（釣竿）に取り付けられたリング状のパーツで、ラインを通すための部品。SiC（シリコンカーバイド）やトルザイトなどの素材が使われ、ラインの滑りやすさや耐久性に影響する。また、釣りの案内人を指すこともある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="タックル">タックル</a>, <a href="#" data-term="ライン">ライン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">キャスティング</h3>
+        <span class="glossary-reading">きゃすてぃんぐ</span>
+        <p class="glossary-desc">ロッドを振ってルアーや仕掛けを狙ったポイントに投げ込む動作のこと。オーバーヘッドキャスト、サイドキャスト、ピッチングなど様々な投げ方があり、正確なキャスティング技術は釣果に直結する重要なスキル。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="サミング">サミング</a>, <a href="#" data-term="ベイトリール">ベイトリール</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">キャッチアンドリリース</h3>
+        <span class="glossary-reading">きゃっちあんどりりーす</span>
+        <p class="glossary-desc">釣った魚を持ち帰らず、生きたまま水中に戻す行為のこと。魚の資源保護や釣り場環境の維持を目的とする。バーブレスフックの使用やランディングネットでの丁寧な取り扱いなど、魚へのダメージを最小限にする配慮が求められる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="バーブレス">バーブレス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">クランクベイト</h3>
+        <span class="glossary-reading">くらんくべいと</span>
+        <p class="glossary-desc">丸みを帯びたボディとリップを持つハードルアーの一種。リトリーブするだけでブルブルとした独特のウォブリングアクションを発生させる。リップの長さや角度によって潜行深度が決まり、シャローからディープまで幅広いレンジを攻められる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ミノー">ミノー</a>, <a href="#" data-term="リトリーブ">リトリーブ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">グラブ</h3>
+        <span class="glossary-reading">ぐらぶ</span>
+        <p class="glossary-desc">カーリーテール（巻き尾）を持つワームの一種。テールが水流を受けてひらひらと動き、魚にアピールする。ジグヘッドリグやテキサスリグなど様々なリグとの相性が良く、バス釣りからソルトまで幅広く使われる万能ワーム。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ジグヘッド">ジグヘッド</a>, <a href="#" data-term="テキサスリグ">テキサスリグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ケミホタル</h3>
+        <span class="glossary-reading">けみほたる</span>
+        <p class="glossary-desc">化学反応で発光するスティック状のライト。夜釣りでウキや竿先に装着してアタリを視認するために使用される。折り曲げると内部の液体が混合し、数時間にわたって光り続ける。太刀魚釣りなどでも集魚効果が期待できる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ナイトゲーム">ナイトゲーム</a>, <a href="#" data-term="ウキ">ウキ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">コマセ</h3>
+        <span class="glossary-reading">こませ</span>
+        <p class="glossary-desc">魚を寄せるために撒くエサのこと。撒き餌とも呼ばれる。アミエビやオキアミを主原料に、配合エサを混ぜて使うのが一般的。ウキフカセ釣りやサビキ釣りでは欠かせない存在で、潮に乗せて魚を効果的に集める。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="イソメ">イソメ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ゴロタ場</h3>
+        <span class="glossary-reading">ごろたば</span>
+        <p class="glossary-desc">海岸や河川沿いにゴロゴロとした大きめの石が積み重なっている場所のこと。根魚（ロックフィッシュ）やカサゴ、メバルなどの好ポイントとなる。足場が不安定なため、移動時には注意が必要。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="根魚">根魚</a>, <a href="#" data-term="根がかり">根がかり</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">合わせ切れ</h3>
+        <span class="glossary-reading">あわせぎれ</span>
+        <p class="glossary-desc">アワセの動作を入れた瞬間にラインが切れてしまうこと。ラインの劣化、結束部分の強度不足、ドラグの締めすぎ、急激なアワセなどが原因で起こる。細いラインやリーダーを使用する際は特に注意が必要。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アワセ">アワセ</a>, <a href="#" data-term="ライン">ライン</a>, <a href="#" data-term="リーダー">リーダー</a></div>
+      </div>
+    </section>
+
+    <!-- サ行 -->
+    <section class="glossary-section" id="sa-row">
+      <h2 class="glossary-section-title">サ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">サーフ</h3>
+        <span class="glossary-reading">さーふ</span>
+        <p class="glossary-desc">砂浜のこと。サーフフィッシングでは、ヒラメやマゴチ、シーバス、青物などを狙うことができる。遠投が必要な場合が多く、長めのロッドと飛距離の出るルアーやメタルジグが活躍する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ウェーディング">ウェーディング</a>, <a href="#" data-term="メタルジグ">メタルジグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">サイトフィッシング</h3>
+        <span class="glossary-reading">さいとふぃっしんぐ</span>
+        <p class="glossary-desc">水中の魚を目視で確認しながら釣る方法。偏光グラスを使用して水中を観察し、魚の反応を見ながらルアーを操作する。バス釣りのシャローゲームやフライフィッシングなどで多く行われるテクニカルな釣り方。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="キャスティング">キャスティング</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">サスペンド</h3>
+        <span class="glossary-reading">さすぺんど</span>
+        <p class="glossary-desc">ルアーの浮力設定の一つで、水中の一定のレンジで静止する（浮きも沈みもしない）タイプのこと。リトリーブを止めるとその場で漂うため、ストップ&ゴーなどのアクションで効果を発揮する。低活性時に特に有効。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ミノー">ミノー</a>, <a href="#" data-term="リトリーブ">リトリーブ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">サミング</h3>
+        <span class="glossary-reading">さみんぐ</span>
+        <p class="glossary-desc">ベイトリールのスプールに親指を軽く当てて回転を制御する技術。キャスト時のバックラッシュ防止やルアーの着水点を正確にコントロールするために行う。スピニングリールでラインに指を当てる場合はフェザリングと呼ぶ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="キャスティング">キャスティング</a>, <a href="#" data-term="ベイトリール">ベイトリール</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">シーバス</h3>
+        <span class="glossary-reading">しーばす</span>
+        <p class="glossary-desc">スズキのルアーフィッシングでの通称。河口、港湾、干潟、サーフなど身近なフィールドで狙え、ルアーへの反応も良いことからソルトルアーの入門魚として人気が高い。最大で1メートルを超える大型に成長する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="エラ洗い">エラ洗い</a>, <a href="#" data-term="バチ抜け">バチ抜け</a>, <a href="#" data-term="ナイトゲーム">ナイトゲーム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">シャクリ</h3>
+        <span class="glossary-reading">しゃくり</span>
+        <p class="glossary-desc">ロッドを大きく煽ってルアーやエギを跳ね上げるアクションのこと。エギングではシャクリが基本操作で、ワンピッチジャークやツーピッチジャークなどバリエーションがある。ジギングでもメタルジグを操作する際に用いられる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="エギ">エギ</a>, <a href="#" data-term="ジャーク">ジャーク</a>, <a href="#" data-term="ワンピッチジャーク">ワンピッチジャーク</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ジグヘッド</h3>
+        <span class="glossary-reading">じぐへっど</span>
+        <p class="glossary-desc">フック（針）のアイ付近に鉛やタングステンのウェイトが一体化したもの。ワームを装着して使うのが基本で、ヘッドの形状（ラウンド型、ダート型、フットボール型など）によってアクションが変わる。ライトゲームからロックフィッシュまで幅広く使われる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ミドスト">ミドスト</a>, <a href="#" data-term="ライトゲーム">ライトゲーム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ジャーク</h3>
+        <span class="glossary-reading">じゃーく</span>
+        <p class="glossary-desc">ロッドを鋭くあおってルアーに急激な動きを与えるアクション。トゥイッチよりも大きく力強い動きが特徴で、リアクションバイトを誘発する効果がある。ジャークベイトやメタルジグなどで多用される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="トゥイッチ">トゥイッチ</a>, <a href="#" data-term="シャクリ">シャクリ</a>, <a href="#" data-term="アクション">アクション</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">スイムベイト</h3>
+        <span class="glossary-reading">すいむべいと</span>
+        <p class="glossary-desc">小魚を模したソフトまたはハード素材のルアーで、リトリーブすると自然な泳ぎを見せるタイプ。ジョイント式のボディが多く、S字やウォブルなどのリアルなアクションが特徴。ビッグベイト系の釣りでも人気が高い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ベイトフィッシュ">ベイトフィッシュ</a>, <a href="#" data-term="リトリーブ">リトリーブ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">スナップ</h3>
+        <span class="glossary-reading">すなっぷ</span>
+        <p class="glossary-desc">ルアーとラインを素早く接続・交換するための金属製のコネクター。ルアーチェンジが容易になるほか、ルアーの動きに自由度を与える効果もある。ただし、強度低下のリスクがあるため、対象魚に合った適切なサイズを選ぶ必要がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="リーダー">リーダー</a>, <a href="#" data-term="ルアー">ルアー</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">スピナーベイト</h3>
+        <span class="glossary-reading">すぴなーべいと</span>
+        <p class="glossary-desc">V字型のワイヤーアームにブレードとスカート付きのフックを組み合わせたルアー。ブレードの回転によるフラッシングと波動で広範囲にアピールする。障害物回避能力が高く、バス釣りにおいてはサーチベイトとしても優秀。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ブレード">ブレード</a>, <a href="#" data-term="クランクベイト">クランクベイト</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">スプリットショットリグ</h3>
+        <span class="glossary-reading">すぷりっとしょっとりぐ</span>
+        <p class="glossary-desc">フックから少し離れた位置にガン玉（スプリットショット）を打つシンプルなリグ。ワームがナチュラルに漂い、フィネスな誘いが可能。バス釣りの定番リグの一つで、タフコンディション時にも有効な食わせの仕掛け。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="オモリ">オモリ</a>, <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="フィネス">フィネス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">スレ</h3>
+        <span class="glossary-reading">すれ</span>
+        <p class="glossary-desc">魚が釣り人のプレッシャーに慣れてしまい、ルアーやエサへの反応が悪くなった状態。ハイプレッシャーなフィールドほどスレが進行しやすい。スレた魚にはフィネスなアプローチやルアーローテーションが有効。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="フィネス">フィネス</a>, <a href="#" data-term="ヒットパターン">ヒットパターン</a></div>
+      </div>
+    </section>
+
+    <!-- タ行 -->
+    <section class="glossary-section" id="ta-row">
+      <h2 class="glossary-section-title">タ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">タイラバ</h3>
+        <span class="glossary-reading">たいらば</span>
+        <p class="glossary-desc">マダイをメインターゲットにしたオフショアルアーフィッシングの一種、またはそれに使うルアーのこと。ヘッド（おもり）、スカート、ネクタイ、フックで構成され、一定速度でリトリーブする「等速巻き」が基本操作。シンプルな釣法ながら奥が深い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="オフショア">オフショア</a>, <a href="#" data-term="リトリーブ">リトリーブ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">タックル</h3>
+        <span class="glossary-reading">たっくる</span>
+        <p class="glossary-desc">釣りに使う道具一式の総称。主にロッド（竿）、リール、ライン（糸）の組み合わせを指すことが多い。対象魚やフィールド、釣法に合わせたタックルの選定が、快適な釣りと釣果の両方を左右する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ガイド">ガイド</a>, <a href="#" data-term="ライン">ライン</a>, <a href="#" data-term="ベイトリール">ベイトリール</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ダウンショットリグ</h3>
+        <span class="glossary-reading">だうんしょっとりぐ</span>
+        <p class="glossary-desc">ラインの最下部にシンカーを配置し、その上方にフックをセットするリグ。ボトム付近の一定のレンジにワームを留めて誘えるのが最大の特徴。シェイクやズル引きなどの繊細な操作でバスやロックフィッシュに効果を発揮する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アンダーショット">アンダーショット</a>, <a href="#" data-term="ネコリグ">ネコリグ</a>, <a href="#" data-term="ボトム">ボトム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">チニング</h3>
+        <span class="glossary-reading">ちにんぐ</span>
+        <p class="glossary-desc">チヌ（クロダイ）やキビレをルアーで狙う釣りの総称。河口域や港湾部のボトムをラバージグやワームで攻めるスタイルが主流。トップウォーターで水面を割らせるエキサイティングな釣りも人気を集めている。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="トップウォーター">トップウォーター</a>, <a href="#" data-term="ボトム">ボトム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ツ抜け</h3>
+        <span class="glossary-reading">つぬけ</span>
+        <p class="glossary-desc">1回の釣行で10匹以上釣ることを指す釣り用語。「一つ、二つ...九つ」まではすべて「つ」が付くが、十（とお）で「つ」が抜けることから「ツ抜け」と言われる。数釣りの一つの目標ラインとして使われる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ボウズ">ボウズ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">テキサスリグ</h3>
+        <span class="glossary-reading">てきさすりぐ</span>
+        <p class="glossary-desc">バレットシンカーとオフセットフックを組み合わせた代表的なワームリグ。シンカーがラインを通じて自由にスライドするため、ワームのナチュラルなアクションを損なわない。障害物の多いカバー撃ちで真価を発揮する根がかりしにくいリグ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ダウンショットリグ">ダウンショットリグ</a>, <a href="#" data-term="根がかり">根がかり</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">テンヤ</h3>
+        <span class="glossary-reading">てんや</span>
+        <p class="glossary-desc">鉛のヘッドに大きな針が付いた仕掛けで、エビなどのエサを付けて使う。一つテンヤ真鯛は船釣りで大人気の釣法で、軽いテンヤを使いフォールとシャクリで誘う。タチウオテンヤやタコテンヤなど対象魚によって形状が異なる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="タイラバ">タイラバ</a>, <a href="#" data-term="フォール">フォール</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ドラグ</h3>
+        <span class="glossary-reading">どらぐ</span>
+        <p class="glossary-desc">リールに搭載された、一定以上の負荷がかかるとラインを送り出す機構。魚の引きに対してラインブレイクを防ぐ役割を果たす。ドラグの設定（締め具合）は対象魚のサイズやラインの強度に応じて適切に調整する必要がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ベイトリール">ベイトリール</a>, <a href="#" data-term="ライン">ライン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">トゥイッチ</h3>
+        <span class="glossary-reading">とぅいっち</span>
+        <p class="glossary-desc">ロッドの穂先を小刻みに動かしてルアーに短い不規則なアクションを与えるテクニック。ジャークよりも小さく繊細な動きが特徴で、ミノーやシャッドの操作で多用される。弱った小魚を演出してバイトを誘う効果がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ジャーク">ジャーク</a>, <a href="#" data-term="アクション">アクション</a>, <a href="#" data-term="ミノー">ミノー</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">トップウォーター</h3>
+        <span class="glossary-reading">とっぷうぉーたー</span>
+        <p class="glossary-desc">水面または水面直下を攻略するルアーやその釣法の総称。ポッパー、ペンシルベイト、フロッグなどが代表的。魚が水面を割ってバイトする瞬間は迫力満点で、視覚的な興奮が味わえるためファンが多い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ボイル">ボイル</a>, <a href="#" data-term="ナブラ">ナブラ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ドリフト</h3>
+        <span class="glossary-reading">どりふと</span>
+        <p class="glossary-desc">流れに乗せてルアーやエサを自然に漂わせるテクニック。シーバス釣りやトラウトフィッシングで多用され、流れのヨレやストラクチャー周りをナチュラルに攻めることができる。潮流や河川の流れを読む力が求められる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="シーバス">シーバス</a>, <a href="#" data-term="ヨレ">ヨレ</a></div>
+      </div>
+    </section>
+
+    <!-- ナ行 -->
+    <section class="glossary-section" id="na-row">
+      <h2 class="glossary-section-title">ナ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ナイトゲーム</h3>
+        <span class="glossary-reading">ないとげーむ</span>
+        <p class="glossary-desc">夜間に行うルアーフィッシングのこと。シーバスやメバル、アジなどは夜行性の傾向があり、常夜灯周りや暗い堤防が好ポイントとなる。日中よりもプレッシャーが下がり、大型が釣れやすいことも多い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="シーバス">シーバス</a>, <a href="#" data-term="ケミホタル">ケミホタル</a>, <a href="#" data-term="ライトゲーム">ライトゲーム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ナブラ</h3>
+        <span class="glossary-reading">なぶら</span>
+        <p class="glossary-desc">フィッシュイーター（大型魚）がベイトフィッシュの群れを水面に追い詰め、小魚が逃げ惑って水面がバシャバシャと波立つ現象。ナブラが発生したら絶好のチャンスで、素早くルアーをキャストすることで高確率でバイトが得られる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ボイル">ボイル</a>, <a href="#" data-term="ベイトフィッシュ">ベイトフィッシュ</a>, <a href="#" data-term="トップウォーター">トップウォーター</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ニジマス</h3>
+        <span class="glossary-reading">にじます</span>
+        <p class="glossary-desc">サケ科に属する淡水魚で、トラウトフィッシングの代表的なターゲット。管理釣り場から本流、湖まで幅広いフィールドで楽しめる。引きが強くジャンプも多いためゲーム性が高く、食味も良いことから人気が高い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="トラウト">トラウト</a>, <a href="#" data-term="ミノー">ミノー</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ネコリグ</h3>
+        <span class="glossary-reading">ねこりぐ</span>
+        <p class="glossary-desc">ストレートワームの先端にネイルシンカーを挿入し、ワッキー掛けにするリグ。名前の由来は「根こそぎ釣れるリグ」の略。ボトムで頭を下にして立ち上がるような姿勢になり、シェイクすると絶妙な微振動を発生させる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ダウンショットリグ">ダウンショットリグ</a>, <a href="#" data-term="フィネス">フィネス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">根がかり</h3>
+        <span class="glossary-reading">ねがかり</span>
+        <p class="glossary-desc">ルアーや仕掛けが水底の岩、海藻、ゴミ、構造物などに引っかかって回収できなくなること。ロストにつながるだけでなく、水中にゴミを残してしまうため、根がかりしにくいリグの選択やルアー回収器の使用が推奨される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ゴロタ場">ゴロタ場</a>, <a href="#" data-term="テキサスリグ">テキサスリグ</a>, <a href="#" data-term="ボトム">ボトム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">根魚</h3>
+        <span class="glossary-reading">ねざかな</span>
+        <p class="glossary-desc">岩礁帯やテトラポッドの隙間など、ストラクチャー（障害物）に寄り添って生活する魚の総称。カサゴ、メバル、アイナメ、ソイ、ハタ類などが代表的。ロックフィッシュとも呼ばれ、ワームやジグヘッドで狙う釣りが人気。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ゴロタ場">ゴロタ場</a>, <a href="#" data-term="ジグヘッド">ジグヘッド</a></div>
+      </div>
+    </section>
+
+    <!-- ハ行 -->
+    <section class="glossary-section" id="ha-row">
+      <h2 class="glossary-section-title">ハ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">バーブレス</h3>
+        <span class="glossary-reading">ばーぶれす</span>
+        <p class="glossary-desc">フック（釣り針）のカエシ（バーブ）がない、またはペンチで潰した状態のこと。魚へのダメージが少なくフックの外しが容易なため、キャッチアンドリリースを前提とした管理釣り場などでは必須とされる場合が多い。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="キャッチアンドリリース">キャッチアンドリリース</a>, <a href="#" data-term="フッキング">フッキング</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">バイト</h3>
+        <span class="glossary-reading">ばいと</span>
+        <p class="glossary-desc">魚がルアーやエサに食いつくこと。英語の「bite」に由来する。ショートバイト（軽く触れる程度のバイト）やリアクションバイト（反射的に食いつくバイト）など、バイトの質によって最適なアワセ方が異なる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アタリ">アタリ</a>, <a href="#" data-term="フッキング">フッキング</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">パーミング</h3>
+        <span class="glossary-reading">ぱーみんぐ</span>
+        <p class="glossary-desc">ベイトリールを手のひらで包み込むように持つグリップ方法。リール本体を手のひら（パーム）で覆いながらロッドを握ることで、安定したキャスティングとリーリングが可能になる。長時間の釣りでも疲れにくい。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ベイトリール">ベイトリール</a>, <a href="#" data-term="サミング">サミング</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">バチ抜け</h3>
+        <span class="glossary-reading">ばちぬけ</span>
+        <p class="glossary-desc">ゴカイやイソメなどの多毛類（バチ）が産卵のために底から抜け出し、大量に水面を漂う現象。主に冬から春にかけての大潮周りに発生する。シーバスがバチを大量に捕食するため、バチパターンと呼ばれる専用の釣法が存在する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="シーバス">シーバス</a>, <a href="#" data-term="イソメ">イソメ</a>, <a href="#" data-term="ヒットパターン">ヒットパターン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">パワーフィネス</h3>
+        <span class="glossary-reading">ぱわーふぃねす</span>
+        <p class="glossary-desc">スピニングタックルにPEラインを組み合わせ、通常のフィネスよりも強引にカバーから魚を引きずり出す釣法。繊細なアプローチとパワーファイトの両立を目指すスタイルで、バス釣りのカバー攻略で注目されている。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="フィネス">フィネス</a>, <a href="#" data-term="タックル">タックル</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ヒットパターン</h3>
+        <span class="glossary-reading">ひっとぱたーん</span>
+        <p class="glossary-desc">その日の釣りで魚が反応する条件やパターンのこと。ルアーの種類、カラー、アクション、レンジ、ポイントなど、様々な要素の組み合わせでヒットパターンは決まる。釣行中にいかに早くパターンを見つけるかが釣果を左右する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="マズメ">マズメ</a>, <a href="#" data-term="ランガン">ランガン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">フィネス</h3>
+        <span class="glossary-reading">ふぃねす</span>
+        <p class="glossary-desc">繊細で軽量な仕掛けやルアーを使った釣りのスタイル。細いライン、軽いシンカー、小さなワームを駆使して、プレッシャーの高い状況やタフコンディションで魚を食わせる技術。ライトリグ全般がフィネスに分類される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="パワーフィネス">パワーフィネス</a>, <a href="#" data-term="ネコリグ">ネコリグ</a>, <a href="#" data-term="ダウンショットリグ">ダウンショットリグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">フォール</h3>
+        <span class="glossary-reading">ふぉーる</span>
+        <p class="glossary-desc">ルアーやエギが水中で沈んでいく動きのこと。フリーフォール（テンションを掛けずに落とす）とカーブフォール（ラインテンションを保って弧を描くように沈める）がある。フォール中にバイトが集中することも多く、重要なアクションの一つ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="カーブフォール">カーブフォール</a>, <a href="#" data-term="エギ">エギ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">フッキング</h3>
+        <span class="glossary-reading">ふっきんぐ</span>
+        <p class="glossary-desc">アワセとほぼ同義で、魚の口にフック（針）を貫通させる動作のこと。英語圏ではhook setとも言う。フッキングの成功率はフックの鋭さ、ロッドの硬さ、ラインの伸縮性、タイミングなど多くの要素に左右される。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アワセ">アワセ</a>, <a href="#" data-term="バイト">バイト</a>, <a href="#" data-term="バーブレス">バーブレス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ブレード</h3>
+        <span class="glossary-reading">ぶれーど</span>
+        <p class="glossary-desc">金属製の薄い板状パーツで、回転することでフラッシング（光の反射）と振動を生み出す。スピナーベイトやブレードジグ、チャターベイトなどに使用される。コロラド、ウィローリーフ、インディアナなどの形状がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="スピナーベイト">スピナーベイト</a>, <a href="#" data-term="メタルジグ">メタルジグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ベイトフィッシュ</h3>
+        <span class="glossary-reading">べいとふぃっしゅ</span>
+        <p class="glossary-desc">フィッシュイーター（肉食魚）のエサとなる小魚の総称。イワシ、アジ、コノシロ、ボラの幼魚などが代表的。ベイトフィッシュの種類やサイズに合わせてルアーを選ぶ「マッチザベイト」は釣りの基本的な考え方の一つ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="マイクロベイト">マイクロベイト</a>, <a href="#" data-term="ナブラ">ナブラ</a>, <a href="#" data-term="ボイル">ボイル</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ベイトリール</h3>
+        <span class="glossary-reading">べいとりーる</span>
+        <p class="glossary-desc">スプールが横向きに回転してラインを巻き取るタイプのリール。太いラインが使え、巻き取り力が強く、手返しの良いキャストが可能。パワーゲームやカバー撃ちに適するが、バックラッシュ（ラインの絡み）が起きやすいため慣れが必要。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="パーミング">パーミング</a>, <a href="#" data-term="サミング">サミング</a>, <a href="#" data-term="ドラグ">ドラグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ボイル</h3>
+        <span class="glossary-reading">ぼいる</span>
+        <p class="glossary-desc">フィッシュイーターが水面近くで小魚を捕食する際に発生する水面の盛り上がりや波紋のこと。ナブラよりも小規模な場合に使われることが多い。ボイルを見つけたら、その周辺にルアーを通すことで高確率でバイトが得られる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ナブラ">ナブラ</a>, <a href="#" data-term="トップウォーター">トップウォーター</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ボウズ</h3>
+        <span class="glossary-reading">ぼうず</span>
+        <p class="glossary-desc">釣行で一匹も魚が釣れなかった状態のこと。「おでこ」とも言う。釣り人にとっては避けたい結果だが、ボウズの日こそ自然を楽しみ、次回の釣行に向けた学びを得る良い機会でもある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ツ抜け">ツ抜け</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ボトム</h3>
+        <span class="glossary-reading">ぼとむ</span>
+        <p class="glossary-desc">水底のこと。ボトムの地形や底質（砂、岩、泥など）は魚の付き場を左右する重要な要素。ボトムを取る（底を感知する）技術はあらゆる釣りの基本であり、ルアーフィッシングではボトムバンプやズル引きなどの攻め方がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ダウンショットリグ">ダウンショットリグ</a>, <a href="#" data-term="根がかり">根がかり</a></div>
+      </div>
+    </section>
+
+    <!-- マ行 -->
+    <section class="glossary-section" id="ma-row">
+      <h2 class="glossary-section-title">マ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">マイクロベイト</h3>
+        <span class="glossary-reading">まいくろべいと</span>
+        <p class="glossary-desc">シラスやアミエビなど非常に小さなベイトフィッシュの総称。マイクロベイトパターンの時期はルアーのサイズを極端に小さくする必要があり、通常のルアーでは反応を得にくい。小型のプラグやワームが有効。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ベイトフィッシュ">ベイトフィッシュ</a>, <a href="#" data-term="ヒットパターン">ヒットパターン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">マズメ</h3>
+        <span class="glossary-reading">まずめ</span>
+        <p class="glossary-desc">日の出前後の「朝マズメ」と日没前後の「夕マズメ」の時間帯を指す。魚の活性が最も高まるゴールデンタイムとされ、多くの魚種がこの時間帯に積極的に捕食行動を取る。釣果を上げたいなら必ず押さえておきたい時間帯。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="夕マズメ">夕マズメ</a>, <a href="#" data-term="ナイトゲーム">ナイトゲーム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ミドスト</h3>
+        <span class="glossary-reading">みどすと</span>
+        <p class="glossary-desc">ミッドストローリングの略。ジグヘッドリグをロッドのシェイクで左右にロールさせながら中層を引いてくるテクニック。バス釣りで特に有効で、小魚が群れで泳ぐ姿を演出してバイトを誘う。リアルな波動が魚を引きつける。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ジグヘッド">ジグヘッド</a>, <a href="#" data-term="フィネス">フィネス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ミノー</h3>
+        <span class="glossary-reading">みのー</span>
+        <p class="glossary-desc">小魚を模した細長い形状のハードルアー。リップ付きが一般的で、リトリーブするとウォブリングやローリングアクションを起こす。フローティング、サスペンド、シンキングの3タイプがあり、シーバスやトラウトの定番ルアー。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="サスペンド">サスペンド</a>, <a href="#" data-term="トゥイッチ">トゥイッチ</a>, <a href="#" data-term="クランクベイト">クランクベイト</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">メタルジグ</h3>
+        <span class="glossary-reading">めたるじぐ</span>
+        <p class="glossary-desc">金属製のルアーで、その重さから抜群の飛距離と素早いフォールが特徴。ショアジギングやオフショアジギングの主力ルアーで、青物やヒラメ、マダイなど幅広い魚種に対応する。形状やウェイトバランスによってアクションが大きく変わる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワンピッチジャーク">ワンピッチジャーク</a>, <a href="#" data-term="シャクリ">シャクリ</a>, <a href="#" data-term="オフショア">オフショア</a></div>
+      </div>
+    </section>
+
+    <!-- ヤ行 -->
+    <section class="glossary-section" id="ya-row">
+      <h2 class="glossary-section-title">ヤ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ヤエン</h3>
+        <span class="glossary-reading">やえん</span>
+        <p class="glossary-desc">アオリイカを釣るための独特な釣法、またはその仕掛けのこと。生きたアジをエサに泳がせ、イカが抱きついたらラインにヤエン（金属製の掛け針）を滑り降ろしてイカに掛ける。エギングとは異なる伝統的な釣り方。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="エギ">エギ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ヨレ</h3>
+        <span class="glossary-reading">よれ</span>
+        <p class="glossary-desc">水流がぶつかり合ったり曲がったりして、流れが乱れている場所のこと。流れのヨレにはプランクトンやベイトフィッシュが溜まりやすく、フィッシュイーターのフィーディングスポットになる。シーバスやトラウトの一級ポイント。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ドリフト">ドリフト</a>, <a href="#" data-term="シーバス">シーバス</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">夕マズメ</h3>
+        <span class="glossary-reading">ゆうまずめ</span>
+        <p class="glossary-desc">日没前後の時間帯を指し、朝マズメと並ぶ釣りのゴールデンタイム。太陽が沈む直前から暗くなるまでの間に魚の活性が急激に上がることが多い。特に青物やシーバスは夕マズメの回遊が顕著で、短時間での爆釣も期待できる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="マズメ">マズメ</a>, <a href="#" data-term="ナイトゲーム">ナイトゲーム</a></div>
+      </div>
+    </section>
+
+    <!-- ラ行 -->
+    <section class="glossary-section" id="ra-row">
+      <h2 class="glossary-section-title">ラ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ライトゲーム</h3>
+        <span class="glossary-reading">らいとげーむ</span>
+        <p class="glossary-desc">アジ、メバル、カサゴなどの小型魚を軽量タックルで狙うルアーフィッシングの総称。1g前後のジグヘッドに小さなワームをセットするのが基本。繊細なアタリを感じ取るゲーム性の高さと手軽さから人気が急上昇している。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ジグヘッド">ジグヘッド</a>, <a href="#" data-term="フィネス">フィネス</a>, <a href="#" data-term="ナイトゲーム">ナイトゲーム</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ライン</h3>
+        <span class="glossary-reading">らいん</span>
+        <p class="glossary-desc">釣り糸のこと。ナイロン、フロロカーボン、PE（ポリエチレン）の3種類が主流で、それぞれ伸縮性、比重、強度、感度などの特性が異なる。対象魚や釣法に応じて適切な素材と太さ（号数またはlb表記）を選択する。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="リーダー">リーダー</a>, <a href="#" data-term="タックル">タックル</a>, <a href="#" data-term="ドラグ">ドラグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ランガン</h3>
+        <span class="glossary-reading">らんがん</span>
+        <p class="glossary-desc">「ラン&ガン」の略で、一つのポイントに固執せず次々と移動しながら釣るスタイル。アクティブに動き回ることで広範囲を効率よく探り、活性の高い魚を見つけ出す。ショアのルアーフィッシング全般で有効な戦略。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ヒットパターン">ヒットパターン</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">リーダー</h3>
+        <span class="glossary-reading">りーだー</span>
+        <p class="glossary-desc">メインラインの先端に結束するハリス部分のライン。PEラインは根ズレに弱いため、フロロカーボンやナイロンのリーダーを接続するのが一般的。魚の歯や障害物からメインラインを守る役割と、ルアーの動きを自然にする効果がある。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ライン">ライン</a>, <a href="#" data-term="スナップ">スナップ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">リトリーブ</h3>
+        <span class="glossary-reading">りとりーぶ</span>
+        <p class="glossary-desc">リールを巻いてルアーを引いてくる動作のこと。一定速度で巻く「ただ巻き」はルアーフィッシングの最も基本的なテクニック。スロー、ミディアム、ファストなど巻き速度を変えたり、ストップ&ゴーで緩急をつけたりすることで魚の反応が変わる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="アクション">アクション</a>, <a href="#" data-term="タイラバ">タイラバ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ルアー</h3>
+        <span class="glossary-reading">るあー</span>
+        <p class="glossary-desc">魚を騙して食いつかせるための疑似餌の総称。ハードルアー（プラグ、メタルジグなど）とソフトルアー（ワーム）に大別される。形状、カラー、サイズ、アクションなど無数のバリエーションがあり、ルアー選びも釣りの醍醐味の一つ。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="ワーム">ワーム</a>, <a href="#" data-term="ミノー">ミノー</a>, <a href="#" data-term="メタルジグ">メタルジグ</a></div>
+      </div>
+    </section>
+
+    <!-- ワ行 -->
+    <section class="glossary-section" id="wa-row">
+      <h2 class="glossary-section-title">ワ行</h2>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ワーム</h3>
+        <span class="glossary-reading">わーむ</span>
+        <p class="glossary-desc">柔らかい樹脂素材で作られたソフトルアーの総称。ストレート、シャッドテール、クロー、グラブなど形状は多岐にわたる。テキサスリグ、ダウンショットリグ、ジグヘッドリグなど様々なリグと組み合わせて使用し、ナチュラルな動きで魚を誘う。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="グラブ">グラブ</a>, <a href="#" data-term="テキサスリグ">テキサスリグ</a>, <a href="#" data-term="ネコリグ">ネコリグ</a></div>
+      </div>
+
+      <div class="glossary-item">
+        <h3 class="glossary-term">ワンピッチジャーク</h3>
+        <span class="glossary-reading">わんぴっちじゃーく</span>
+        <p class="glossary-desc">ロッドを一回シャクると同時にリールのハンドルを一回転させる、ジギングの最も基本的な操作方法。メタルジグをリズミカルに跳ね上げながら巻き上げてくることで、青物やマダイなど様々な魚種にアピールする。テンポや幅のバリエーションで反応が変わる。</p>
+        <div class="glossary-related">関連用語: <a href="#" data-term="メタルジグ">メタルジグ</a>, <a href="#" data-term="シャクリ">シャクリ</a>, <a href="#" data-term="オフショア">オフショア</a></div>
+      </div>
+    </section>
+
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+(function() {
+  var searchInput = document.getElementById('glossarySearch');
+  var sections = document.querySelectorAll('.glossary-section');
+  var noResults = document.getElementById('noResults');
+  var jumpLinks = document.querySelectorAll('.jump-nav-link');
+
+  // Search/filter
+  searchInput.addEventListener('input', function() {
+    var query = this.value.trim().toLowerCase();
+    var totalVisible = 0;
+
+    sections.forEach(function(section) {
+      var items = section.querySelectorAll('.glossary-item');
+      var sectionVisible = 0;
+
+      items.forEach(function(item) {
+        var term = item.querySelector('.glossary-term').textContent.toLowerCase();
+        var reading = item.querySelector('.glossary-reading').textContent.toLowerCase();
+        var desc = item.querySelector('.glossary-desc').textContent.toLowerCase();
+
+        if (!query || term.indexOf(query) !== -1 || reading.indexOf(query) !== -1 || desc.indexOf(query) !== -1) {
+          item.style.display = '';
+          sectionVisible++;
+        } else {
+          item.style.display = 'none';
+        }
+      });
+
+      section.style.display = sectionVisible > 0 ? '' : 'none';
+      totalVisible += sectionVisible;
+    });
+
+    noResults.style.display = totalVisible === 0 ? '' : 'none';
+  });
+
+  // Jump nav smooth scroll + active highlight
+  jumpLinks.forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.preventDefault();
+      var targetId = this.getAttribute('href').substring(1);
+      var target = document.getElementById(targetId);
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      }
+      jumpLinks.forEach(function(l) { l.classList.remove('active'); });
+      this.classList.add('active');
+    });
+  });
+
+  // Update active jump link on scroll
+  window.addEventListener('scroll', function() {
+    var scrollPos = window.scrollY + 120;
+    var current = '';
+
+    sections.forEach(function(section) {
+      if (section.offsetTop <= scrollPos) {
+        current = section.id;
+      }
+    });
+
+    jumpLinks.forEach(function(link) {
+      var href = link.getAttribute('href').substring(1);
+      if (href === current) {
+        link.classList.add('active');
+      } else {
+        link.classList.remove('active');
+      }
+    });
+  });
+})();
+</script>
+
+</body>
+</html>

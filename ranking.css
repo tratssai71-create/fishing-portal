@@ -1,0 +1,76 @@
+/* ===== RANKING PAGE ===== */
+
+/* Breadcrumb */
+.breadcrumb{font-size:.8rem;color:#888;padding:14px 0;border-bottom:1px solid #eee}
+.breadcrumb a{color:#888;text-decoration:none}
+.breadcrumb a:hover{color:#c00}
+.breadcrumb span{margin:0 6px;color:#bbb}
+
+/* Page header */
+.rk-header{padding:32px 0 24px;text-align:center;border-bottom:2px solid #111}
+.rk-header h1{font-size:1.8rem;font-weight:800;letter-spacing:.04em}
+.rk-header .rk-en{display:block;font-size:.75rem;font-weight:700;color:#c00;letter-spacing:.12em;margin-bottom:4px}
+.rk-header .rk-updated{font-size:.78rem;color:#888;margin-top:8px}
+
+/* Tabs */
+.rk-tabs{display:flex;gap:0;border-bottom:2px solid #ddd;margin:24px 0 0}
+.rk-tab{flex:1;text-align:center;padding:10px 0;font-size:.88rem;font-weight:600;color:#666;background:none;border:none;cursor:pointer;border-bottom:2px solid transparent;margin-bottom:-2px;transition:color .2s,border-color .2s}
+.rk-tab:hover{color:#111}
+.rk-tab-active{color:#111;border-bottom-color:#c00}
+
+/* Ranking list */
+.rk-list{display:flex;flex-direction:column;gap:0}
+
+/* Item base */
+.rk-item{display:flex;gap:16px;padding:20px 0;border-bottom:1px solid #eee;align-items:flex-start}
+.rk-item:last-child{border-bottom:none}
+
+/* Rank number */
+.rk-num{flex-shrink:0;width:40px;height:40px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:1.3rem;font-weight:800;color:#aaa;background:#f5f5f5;border-radius:6px;line-height:1}
+
+/* Gold / Silver / Bronze */
+.rk-num-1{color:#fff;background:#d4a017}
+.rk-num-2{color:#fff;background:#999}
+.rk-num-3{color:#fff;background:#cd7f32}
+
+/* Thumbnail */
+.rk-thumb{flex-shrink:0;width:140px;height:90px;border-radius:6px;overflow:hidden}
+.rk-thumb img{width:100%;height:100%;object-fit:cover;display:block}
+
+/* Body */
+.rk-body{flex:1;min-width:0}
+.rk-body .badge{margin-bottom:6px}
+.rk-title{font-size:.95rem;font-weight:700;line-height:1.5;margin:0;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.rk-title a{color:#111;text-decoration:none}
+.rk-title a:hover{color:#c00}
+.rk-meta{font-size:.75rem;color:#888;margin-top:6px;display:flex;gap:12px}
+
+/* TOP 3 special */
+.rk-top3{padding:24px 0}
+.rk-top3 .rk-num{width:52px;height:52px;font-size:1.6rem}
+.rk-top3 .rk-thumb{width:200px;height:130px}
+.rk-top3 .rk-title{font-size:1.08rem}
+
+/* Sidebar ranking widgets */
+.side-rk-list{list-style:none;padding:0;margin:0}
+.side-rk-list li{display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid #f0f0f0}
+.side-rk-list li:last-child{border-bottom:none}
+.side-rk-num{flex-shrink:0;width:24px;height:24px;display:flex;align-items:center;justify-content:center;font-family:'Inter',sans-serif;font-size:.75rem;font-weight:800;color:#fff;background:#bbb;border-radius:4px}
+.side-rk-num-1{background:#d4a017}
+.side-rk-num-2{background:#999}
+.side-rk-num-3{background:#cd7f32}
+.side-rk-list a{font-size:.82rem;color:#333;text-decoration:none;line-height:1.4;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
+.side-rk-list a:hover{color:#c00}
+
+/* Responsive */
+@media(max-width:768px){
+  .rk-header h1{font-size:1.4rem}
+  .rk-top3 .rk-thumb{width:140px;height:90px}
+  .rk-top3 .rk-num{width:40px;height:40px;font-size:1.3rem}
+  .rk-thumb{width:110px;height:72px}
+  .rk-title{font-size:.88rem}
+}
+@media(max-width:480px){
+  .rk-thumb{width:90px;height:60px}
+  .rk-top3 .rk-thumb{width:110px;height:72px}
+}

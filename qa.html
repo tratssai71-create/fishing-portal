@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Q&A 質問掲示板 | TSURI PRESS</title>
+  <meta name="description" content="釣りに関する質問・回答掲示板。バス釣り・シーバス・エギング・ジギングなど、あらゆる釣りジャンルの疑問を解決。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    .qa-page-header{display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px;margin-bottom:24px;padding-top:24px}
+    .qa-page-title{font-size:1.5rem;font-weight:700;color:var(--black)}
+    .qa-ask-btn{display:inline-block;background:var(--accent);color:var(--white);font-weight:600;font-size:.9rem;padding:10px 24px;border:none;border-radius:var(--radius);cursor:pointer;text-decoration:none;transition:opacity .2s}
+    .qa-ask-btn:hover{opacity:.85}
+    .qa-tabs{display:flex;gap:8px;margin-bottom:24px;flex-wrap:wrap}
+    .qa-tab{padding:7px 18px;border-radius:20px;font-size:.85rem;font-weight:500;border:1px solid var(--border);background:var(--white);color:var(--mid);cursor:pointer;transition:all .2s}
+    .qa-tab.active{background:var(--black);color:var(--white);border-color:var(--black)}
+    .qa-tab:hover:not(.active){border-color:var(--dark);color:var(--dark)}
+    .qa-list{display:flex;flex-direction:column;gap:0}
+    .qa-item{display:flex;gap:16px;padding:18px 0;border-bottom:1px solid var(--border)}
+    .qa-item:first-child{border-top:1px solid var(--border)}
+    .qa-answer-count{display:flex;flex-direction:column;align-items:center;justify-content:center;min-width:56px;padding:8px;border-radius:var(--radius);background:var(--bg);text-align:center;flex-shrink:0}
+    .qa-answer-count .num{font-size:1.3rem;font-weight:700;color:var(--black);line-height:1}
+    .qa-answer-count .label{font-size:.7rem;color:var(--light);margin-top:2px}
+    .qa-answer-count.has-answers .num{color:var(--accent)}
+    .qa-item-body{flex:1;min-width:0}
+    .qa-item-title{font-size:1rem;font-weight:600;color:var(--black);margin:0 0 8px;line-height:1.5}
+    .qa-item-title a{color:inherit;text-decoration:none}
+    .qa-item-title a:hover{color:var(--accent)}
+    .qa-item-meta{display:flex;align-items:center;gap:10px;flex-wrap:wrap;font-size:.8rem;color:var(--light)}
+    .qa-tag{display:inline-block;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:2px 8px;font-size:.75rem;font-weight:500;color:var(--mid)}
+    .qa-user{display:inline-flex;align-items:center;gap:5px}
+    .qa-user img{width:22px;height:22px;border-radius:50%;object-fit:cover}
+    .qa-views{color:var(--pale)}
+    .qa-detail{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;margin-bottom:32px}
+    .qa-detail-title{font-size:1.25rem;font-weight:700;color:var(--black);margin:0 0 12px;line-height:1.5}
+    .qa-detail-meta{display:flex;align-items:center;gap:12px;flex-wrap:wrap;font-size:.8rem;color:var(--light);margin-bottom:16px}
+    .qa-detail-body{font-size:.95rem;line-height:1.8;color:var(--dark);margin-bottom:0}
+    .qa-answers-header{font-size:1.1rem;font-weight:700;color:var(--black);margin:28px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--black)}
+    .qa-answer{display:flex;gap:14px;padding:20px 0;border-bottom:1px solid var(--border)}
+    .qa-vote{display:flex;flex-direction:column;align-items:center;min-width:36px;flex-shrink:0;user-select:none}
+    .qa-vote-btn{background:none;border:none;cursor:pointer;font-size:1rem;color:var(--pale);line-height:1;padding:2px 6px;transition:color .2s}
+    .qa-vote-btn:hover{color:var(--accent)}
+    .qa-vote-count{font-size:1rem;font-weight:700;color:var(--dark);margin:2px 0}
+    .qa-answer-body{flex:1;min-width:0}
+    .qa-answer-text{font-size:.93rem;line-height:1.8;color:var(--dark);margin:0 0 10px}
+    .qa-answer-meta{display:flex;align-items:center;gap:10px;font-size:.8rem;color:var(--light)}
+    .qa-best{display:inline-flex;align-items:center;gap:4px;background:#1a7f37;color:var(--white);font-size:.75rem;font-weight:600;padding:3px 10px;border-radius:3px;margin-bottom:8px}
+    .qa-sidebar{display:flex;flex-direction:column;gap:20px}
+    .qa-sidebar-box{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:18px}
+    .qa-sidebar-box h3{font-size:.95rem;font-weight:700;color:var(--black);margin:0 0 12px;padding-bottom:8px;border-bottom:1px solid var(--border)}
+    .qa-sidebar-box ul{list-style:none;padding:0;margin:0}
+    .qa-sidebar-box li{padding:6px 0;border-bottom:1px solid var(--bg)}
+    .qa-sidebar-box li:last-child{border-bottom:none}
+    .qa-sidebar-box li a{font-size:.85rem;color:var(--dark);text-decoration:none}
+    .qa-sidebar-box li a:hover{color:var(--accent)}
+    .qa-layout{display:grid;grid-template-columns:1fr 280px;gap:28px;padding-bottom:40px}
+    @media(max-width:768px){
+      .qa-layout{grid-template-columns:1fr;gap:20px}
+      .qa-page-header{flex-direction:column;align-items:flex-start}
+      .qa-item{flex-direction:column;gap:10px}
+      .qa-answer-count{flex-direction:row;min-width:auto;gap:6px;padding:4px 10px;align-self:flex-start}
+      .qa-answer-count .label{margin-top:0;margin-left:2px}
+      .qa-detail{padding:16px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar"><div class="container topbar-inner"><ul class="topbar-links"><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">お問い合わせ</a></li></ul><div class="topbar-sns"><a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a><a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a><a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a></div></div></div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header"><div class="container header-inner"><a href="index.html" class="logo"><span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span></a><div class="header-search"><input type="text" placeholder="キーワードで記事を検索" id="headerSearch"><button type="button" class="search-submit">検索</button></div><button class="sp-menu-btn" id="spMenuBtn"><span></span><span></span><span></span></button></div></header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav"><div class="container"><ul class="gnav-list">
+  <li><a href="index.html" class="gnav-item">トップ</a></li>
+  <li><a href="#" class="gnav-item">バス釣り</a></li>
+  <li><a href="#" class="gnav-item">シーバス</a></li>
+  <li><a href="#" class="gnav-item">エギング</a></li>
+  <li><a href="#" class="gnav-item">ジギング</a></li>
+  <li><a href="#" class="gnav-item">ショアソルト</a></li>
+  <li><a href="#" class="gnav-item">トラウト</a></li>
+  <li><a href="#" class="gnav-item">エサ釣り</a></li>
+  <li><a href="#" class="gnav-item">タックル</a></li>
+  <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+  <li><a href="#" class="gnav-item">動画</a></li>
+  <li><a href="#" class="gnav-item">コラム</a></li>
+</ul></div></nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search"><input type="text" placeholder="記事を検索"><button>検索</button></div>
+  <ul class="sp-drawer-nav">
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+  </ul>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main class="container">
+  <div class="qa-page-header">
+    <h1 class="qa-page-title">Q&A 質問掲示板</h1>
+    <a href="#" class="qa-ask-btn">質問する</a>
+  </div>
+
+  <div class="qa-tabs">
+    <button class="qa-tab active">新着</button>
+    <button class="qa-tab">回答多い順</button>
+    <button class="qa-tab">未回答</button>
+  </div>
+
+  <div class="qa-layout">
+    <div class="qa-main">
+
+      <!-- Expanded question detail -->
+      <div class="qa-detail">
+        <span class="qa-tag" style="margin-bottom:10px;display:inline-block">バス釣り</span>
+        <h2 class="qa-detail-title">夏のバス釣りでトップウォーターが反応しないときの対処法を教えてください</h2>
+        <div class="qa-detail-meta">
+          <span class="qa-user"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80" alt="">田中釣太郎</span>
+          <span>2026年6月20日</span>
+          <span>閲覧 342</span>
+        </div>
+        <div class="qa-detail-body">
+          <p>毎年夏になるとトップウォーターで狙うのですが、今年は例年に比べて全く反応がありません。ポッパーやペンシルベイト、バズベイトなど一通り試しましたが、チェイスすらない状況です。フィールドは霞ヶ浦の本湖で、水温は28度前後。朝マズメと夕マズメに絞って釣行しています。</p>
+          <p>同じような経験をされた方、どのようなルアーやアプローチに切り替えて釣果を出されましたか？レンジを下げるべきか、それともエリアを変えるべきか悩んでいます。</p>
+        </div>
+      </div>
+
+      <!-- Answers -->
+      <div class="qa-answers-header">3件の回答</div>
+
+      <div class="qa-answer">
+        <div class="qa-vote">
+          <button class="qa-vote-btn" aria-label="賛成">&#9650;</button>
+          <span class="qa-vote-count">12</span>
+          <button class="qa-vote-btn" aria-label="反対">&#9660;</button>
+        </div>
+        <div class="qa-answer-body">
+          <div class="qa-best">ベストアンサー</div>
+          <p class="qa-answer-text">霞ヶ浦で同じ経験があります。水温28度だとバスはシェードやストラクチャーのタイトな場所に着いていることが多く、トップに出にくくなります。私の場合、ノーシンカーのワーム（ヤマセンコー4インチ）をカバー際にフォールさせるパターンに切り替えたら一気に釣果が上がりました。あとは水温が高い時期はフロッグ系が効くこともあります。マットカバーの上を通すとガバッと出ますよ。</p>
+          <div class="qa-answer-meta">
+            <span class="qa-user"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&q=80" alt="">佐藤バスマスター</span>
+            <span>2026年6月20日</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-answer">
+        <div class="qa-vote">
+          <button class="qa-vote-btn" aria-label="賛成">&#9650;</button>
+          <span class="qa-vote-count">7</span>
+          <button class="qa-vote-btn" aria-label="反対">&#9660;</button>
+        </div>
+        <div class="qa-answer-body">
+          <p class="qa-answer-text">時間帯をさらに絞ってみてはいかがでしょうか。真夏の霞ヶ浦だと、朝4時台の本当に薄暗い時間帯にしかトップに反応しないことがあります。あと、風が吹いている日を選んで風裏のブレイクラインをバズベイトで流すと結構出ますよ。</p>
+          <div class="qa-answer-meta">
+            <span class="qa-user"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=40&q=80" alt="">鈴木アングラー</span>
+            <span>2026年6月21日</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="qa-answer">
+        <div class="qa-vote">
+          <button class="qa-vote-btn" aria-label="賛成">&#9650;</button>
+          <span class="qa-vote-count">3</span>
+          <button class="qa-vote-btn" aria-label="反対">&#9660;</button>
+        </div>
+        <div class="qa-answer-body">
+          <p class="qa-answer-text">レンジを1段下げてシャロークランクやスピナーベイトに変えてみるのもありです。表層に出きらないバスでもリアクションで口を使うことがあります。あとは意外とI字系のルアーをデッドスローで引くと出る場合もあります。</p>
+          <div class="qa-answer-meta">
+            <span class="qa-user"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80" alt="">山田フィッシング</span>
+            <span>2026年6月21日</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Question list -->
+      <h2 style="font-size:1.1rem;font-weight:700;color:var(--black);margin:32px 0 16px;padding-bottom:10px;border-bottom:2px solid var(--black)">質問一覧</h2>
+
+      <div class="qa-list">
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">5</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">シーバスのバチ抜けパターンでおすすめのルアーは？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">シーバス</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&q=80" alt="">佐藤バスマスター</span>
+              <span>2026年6月19日</span>
+              <span class="qa-views">閲覧 289</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count"><span class="num">0</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">エギング初心者です。秋イカにおすすめのエギサイズを教えてください</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">エギング</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=40&q=80" alt="">鈴木アングラー</span>
+              <span>2026年6月18日</span>
+              <span class="qa-views">閲覧 156</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">8</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">ショアジギングでブリを狙うのにPEラインは何号がベスト？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">ジギング</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80" alt="">田中釣太郎</span>
+              <span>2026年6月17日</span>
+              <span class="qa-views">閲覧 512</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">3</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">管理釣り場でスプーンのカラーローテーションはどうしてますか？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">トラウト</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&q=80" alt="">佐藤バスマスター</span>
+              <span>2026年6月16日</span>
+              <span class="qa-views">閲覧 198</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">2</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">堤防サビキ釣りで釣れる時間帯を教えてください</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">エサ釣り</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=40&q=80" alt="">鈴木アングラー</span>
+              <span>2026年6月15日</span>
+              <span class="qa-views">閲覧 423</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count"><span class="num">0</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">リールのドラグ設定、何キロにしてますか？ターゲット別に知りたいです</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">タックル</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80" alt="">田中釣太郎</span>
+              <span>2026年6月14日</span>
+              <span class="qa-views">閲覧 267</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">6</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">東京湾奥でおすすめのシーバスポイントを教えてください</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">シーバス</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&q=80" alt="">佐藤バスマスター</span>
+              <span>2026年6月13日</span>
+              <span class="qa-views">閲覧 678</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">4</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">ベイトフィネスリールの選び方、初心者向けのおすすめは？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">タックル</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=40&q=80" alt="">鈴木アングラー</span>
+              <span>2026年6月12日</span>
+              <span class="qa-views">閲覧 345</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">1</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">ティップランエギングのロッド選びで迷っています</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">エギング</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?w=40&q=80" alt="">田中釣太郎</span>
+              <span>2026年6月11日</span>
+              <span class="qa-views">閲覧 189</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count"><span class="num">0</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">渓流ルアーでヤマメを狙う場合のミノーイングのコツは？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">トラウト</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1599566150163-29194dcaad36?w=40&q=80" alt="">佐藤バスマスター</span>
+              <span>2026年6月10日</span>
+              <span class="qa-views">閲覧 134</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="qa-item">
+          <div class="qa-answer-count has-answers"><span class="num">7</span><span class="label">回答</span></div>
+          <div class="qa-item-body">
+            <h3 class="qa-item-title"><a href="#">メバリングのジグヘッドの重さ、どう使い分けていますか？</a></h3>
+            <div class="qa-item-meta">
+              <span class="qa-tag">ショアソルト</span>
+              <span class="qa-user"><img src="https://images.unsplash.com/photo-1527980965255-d3b416303d12?w=40&q=80" alt="">鈴木アングラー</span>
+              <span>2026年6月9日</span>
+              <span class="qa-views">閲覧 298</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Sidebar -->
+    <aside class="qa-sidebar">
+      <div class="qa-sidebar-box">
+        <h3>人気のカテゴリ</h3>
+        <ul>
+          <li><a href="#">バス釣り (128)</a></li>
+          <li><a href="#">シーバス (95)</a></li>
+          <li><a href="#">エギング (72)</a></li>
+          <li><a href="#">タックル (68)</a></li>
+          <li><a href="#">ジギング (54)</a></li>
+          <li><a href="#">ショアソルト (43)</a></li>
+          <li><a href="#">トラウト (37)</a></li>
+          <li><a href="#">エサ釣り (29)</a></li>
+        </ul>
+      </div>
+      <div class="qa-sidebar-box">
+        <h3>注目の質問</h3>
+        <ul>
+          <li><a href="#">2026年新作リール、買うならどれ？</a></li>
+          <li><a href="#">雨の日のバス釣りで気をつけること</a></li>
+          <li><a href="#">フロロとナイロン、リーダーはどっち？</a></li>
+          <li><a href="#">初心者が最初に買うべきロッドは？</a></li>
+          <li><a href="#">夜釣りの安全対策について</a></li>
+        </ul>
+      </div>
+    </aside>
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row"><a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a></div>
+    </div>
+    <div class="footer-nav">
+      <div><h4>ジャンル</h4><ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul></div>
+      <div><h4>コンテンツ</h4><ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul></div>
+      <div><h4>関連メディア</h4><ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul><h4>サイト情報</h4><ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div></div>
+</footer>
+
+<script>
+// SP drawer
+const spBtn=document.getElementById('spMenuBtn'),spDrawer=document.getElementById('spDrawer'),spOverlay=document.getElementById('spOverlay'),spClose=document.getElementById('spClose');
+function openDrawer(){spDrawer.classList.add('open');spOverlay.classList.add('open');document.body.style.overflow='hidden'}
+function closeDrawer(){spDrawer.classList.remove('open');spOverlay.classList.remove('open');document.body.style.overflow=''}
+spBtn.addEventListener('click',openDrawer);spClose.addEventListener('click',closeDrawer);spOverlay.addEventListener('click',closeDrawer);
+
+// Tab switching
+document.querySelectorAll('.qa-tab').forEach(function(tab){
+  tab.addEventListener('click',function(){
+    document.querySelectorAll('.qa-tab').forEach(function(t){t.classList.remove('active')});
+    this.classList.add('active');
+  });
+});
+</script>
+</body>
+</html>

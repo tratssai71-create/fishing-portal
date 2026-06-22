@@ -1,0 +1,183 @@
+/* ===== Community Page Styles ===== */
+:root {
+  --black: #111;
+  --accent: #c8102e;
+  --bg: #f7f7f7;
+  --white: #fff;
+  --border: #e5e5e5;
+  --dark: #333;
+  --mid: #666;
+  --light: #999;
+  --pale: #ccc;
+  --radius: 5px;
+  --shadow: 0 1px 4px rgba(0,0,0,.06);
+}
+
+/* Hero */
+.community-hero {
+  background: var(--black);
+  color: var(--white);
+  padding: 60px 0;
+  text-align: center;
+}
+.community-hero h1 {
+  font-size: 2rem;
+  font-weight: 700;
+  margin: 0 0 12px;
+  letter-spacing: .04em;
+}
+.community-hero p {
+  font-size: .95rem;
+  color: var(--pale);
+  max-width: 560px;
+  margin: 0 auto;
+  line-height: 1.7;
+}
+
+/* Toolbar: filters + post button */
+.community-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 24px 0 16px;
+}
+.filter-tabs {
+  display: flex;
+  gap: 8px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+.filter-tabs li a {
+  display: block;
+  padding: 6px 18px;
+  border-radius: 50px;
+  font-size: .85rem;
+  font-weight: 500;
+  color: var(--mid);
+  background: var(--white);
+  border: 1px solid var(--border);
+  text-decoration: none;
+  transition: all .2s;
+}
+.filter-tabs li a:hover,
+.filter-tabs li a.active {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+}
+.btn-post {
+  display: inline-block;
+  padding: 10px 28px;
+  background: var(--accent);
+  color: var(--white);
+  font-size: .9rem;
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity .2s;
+}
+.btn-post:hover {
+  opacity: .85;
+}
+
+/* Card Grid */
+.catch-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  padding-bottom: 60px;
+}
+.catch-card {
+  background: var(--white);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  transition: box-shadow .2s;
+}
+.catch-card:hover {
+  box-shadow: 0 4px 16px rgba(0,0,0,.1);
+}
+.catch-card-img {
+  width: 100%;
+  aspect-ratio: 4/3;
+  object-fit: cover;
+  display: block;
+}
+.catch-card-body {
+  padding: 14px 16px 16px;
+}
+.catch-card-user {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 10px;
+}
+.catch-card-avatar {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+.catch-card-username {
+  font-size: .8rem;
+  font-weight: 600;
+  color: var(--dark);
+}
+.catch-card-species {
+  font-size: .95rem;
+  font-weight: 700;
+  color: var(--black);
+  margin: 0 0 6px;
+}
+.catch-card-meta {
+  font-size: .78rem;
+  color: var(--light);
+  line-height: 1.6;
+  margin: 0 0 10px;
+}
+.catch-card-meta span {
+  display: inline-block;
+  margin-right: 10px;
+}
+.catch-card-footer {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  font-size: .78rem;
+  color: var(--light);
+  border-top: 1px solid var(--border);
+  padding-top: 10px;
+}
+.catch-card-footer span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+
+/* Responsive */
+@media (max-width: 900px) {
+  .catch-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+@media (max-width: 600px) {
+  .catch-grid {
+    grid-template-columns: 1fr;
+  }
+  .community-hero h1 {
+    font-size: 1.5rem;
+  }
+  .community-hero {
+    padding: 40px 0;
+  }
+  .community-toolbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}

@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>潮汐カレンダー・釣り日和判定ツール｜TSURI PRESS</title>
+  <meta name="description" content="潮汐カレンダーで大潮・中潮・小潮をチェック。月齢と潮回りから釣り日和スコアを自動判定。釣行計画に役立つ無料ツール。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <style>
+    /* ===== BREADCRUMB ===== */
+    .breadcrumb{padding:12px 0;font-size:12px;color:var(--mid)}
+    .breadcrumb a{color:var(--mid);text-decoration:none}
+    .breadcrumb a:hover{color:var(--accent)}
+    .breadcrumb span{margin:0 6px}
+
+    /* ===== PAGE HERO ===== */
+    .page-hero{padding:32px 0 24px;border-bottom:1px solid var(--border)}
+    .page-hero h1{font-size:28px;font-weight:800;color:var(--black);margin:0 0 8px}
+    .page-hero p{font-size:14px;color:var(--mid);margin:0}
+
+    /* ===== CALENDAR ===== */
+    .cal-nav{display:flex;align-items:center;justify-content:center;gap:16px;padding:24px 0 16px}
+    .cal-nav button{background:none;border:1px solid var(--border);border-radius:var(--radius);width:36px;height:36px;font-size:18px;cursor:pointer;color:var(--dark);display:flex;align-items:center;justify-content:center;transition:background .15s}
+    .cal-nav button:hover{background:var(--bg)}
+    .cal-nav .cal-month{font-size:20px;font-weight:700;color:var(--black);min-width:160px;text-align:center;font-family:var(--ff-en),var(--ff)}
+
+    .cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:1px;background:var(--border);border:1px solid var(--border);border-radius:var(--radius);overflow:hidden;margin-bottom:32px}
+    .cal-head{background:var(--black);color:var(--white);text-align:center;padding:8px 0;font-size:12px;font-weight:700}
+    .cal-head.sun{background:#8b1a1a}
+    .cal-head.sat{background:#1a3a6b}
+
+    .cal-cell{background:var(--white);min-height:72px;padding:6px;cursor:pointer;border-left:3px solid transparent;transition:background .15s,border-color .15s;position:relative}
+    .cal-cell:hover{background:var(--bg)}
+    .cal-cell.selected{background:#fff5f5;border-left-color:var(--accent)!important}
+    .cal-cell.empty{background:var(--bg);cursor:default;border-left-color:transparent!important}
+    .cal-cell.empty:hover{background:var(--bg)}
+
+    .cal-cell .day-num{font-size:14px;font-weight:700;color:var(--dark);font-family:var(--ff-en),var(--ff)}
+    .cal-cell.sun-col .day-num{color:var(--accent)}
+    .cal-cell.sat-col .day-num{color:#2563eb}
+
+    .cal-cell .tide-type{display:inline-block;font-size:10px;font-weight:600;margin-top:2px;padding:1px 4px;border-radius:2px}
+    .cal-cell .tide-type.oshio{background:#fef2f2;color:var(--accent)}
+    .cal-cell .tide-type.chushio{background:#f5f5f5;color:var(--dark)}
+    .cal-cell .tide-type.koshio{background:#fafafa;color:var(--light)}
+    .cal-cell .tide-type.wakashio{background:#fafafa;color:var(--pale)}
+    .cal-cell .tide-type.nagashio{background:#fafafa;color:var(--pale)}
+
+    .cal-cell .moon-phase{display:block;font-size:9px;color:var(--mid);margin-top:2px}
+
+    .cal-cell.border-oshio{border-left-color:var(--accent)}
+    .cal-cell.border-chushio{border-left-color:var(--dark)}
+    .cal-cell.border-koshio{border-left-color:var(--light)}
+    .cal-cell.border-wakashio{border-left-color:var(--pale)}
+    .cal-cell.border-nagashio{border-left-color:var(--pale)}
+
+    /* ===== SCORE PANEL ===== */
+    .score-panel{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:32px}
+    .score-panel h2{font-size:18px;font-weight:700;color:var(--black);margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+    .score-date{font-size:22px;font-weight:800;color:var(--black);margin-bottom:12px;font-family:var(--ff-en),var(--ff)}
+    .score-meta{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:20px}
+    .score-meta-item{background:var(--bg);padding:12px;border-radius:var(--radius)}
+    .score-meta-item dt{font-size:11px;color:var(--mid);font-weight:600;margin-bottom:4px}
+    .score-meta-item dd{font-size:14px;font-weight:700;color:var(--dark);margin:0}
+
+    .score-display{text-align:center;padding:20px 0;border-top:1px solid var(--border);border-bottom:1px solid var(--border);margin-bottom:16px}
+    .score-label{font-size:13px;font-weight:700;color:var(--mid);margin-bottom:8px}
+    .score-fish{font-size:28px;font-family:var(--ff-en),monospace;letter-spacing:6px;color:var(--pale)}
+    .score-fish .filled{color:var(--accent)}
+    .score-value{font-size:13px;color:var(--dark);font-weight:600;margin-top:8px}
+    .score-explain{font-size:13px;color:var(--mid);line-height:1.8}
+
+    /* ===== LEGEND ===== */
+    .legend-section{background:var(--white);border:1px solid var(--border);border-radius:var(--radius);padding:24px;box-shadow:var(--shadow);margin-bottom:48px}
+    .legend-section h2{font-size:16px;font-weight:700;color:var(--black);margin:0 0 16px;padding-bottom:12px;border-bottom:1px solid var(--border)}
+    .legend-list{display:grid;gap:12px}
+    .legend-item{display:flex;gap:12px;align-items:flex-start}
+    .legend-item .l-label{flex-shrink:0;width:48px;font-size:12px;font-weight:700;padding:2px 0;text-align:center;border-left:3px solid transparent;padding-left:6px}
+    .legend-item .l-label.l-oshio{border-left-color:var(--accent);color:var(--accent)}
+    .legend-item .l-label.l-chushio{border-left-color:var(--dark);color:var(--dark)}
+    .legend-item .l-label.l-koshio{border-left-color:var(--light);color:var(--light)}
+    .legend-item .l-label.l-wakashio{border-left-color:var(--pale);color:var(--mid)}
+    .legend-item .l-label.l-nagashio{border-left-color:var(--pale);color:var(--mid)}
+    .legend-item .l-text{font-size:13px;color:var(--mid);line-height:1.7}
+
+    /* ===== RESPONSIVE ===== */
+    @media(max-width:768px){
+      .page-hero h1{font-size:22px}
+      .cal-cell{min-height:56px;padding:4px}
+      .cal-cell .day-num{font-size:12px}
+      .cal-cell .tide-type{font-size:9px}
+      .cal-cell .moon-phase{font-size:8px}
+      .cal-nav .cal-month{font-size:16px;min-width:120px}
+      .score-meta{grid-template-columns:1fr}
+      .score-panel,.legend-section{padding:16px}
+    }
+  </style>
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="/" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="#" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="#" class="gnav-item">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="#">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="#">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
+  </ul>
+</div>
+
+<!-- ===== MAIN CONTENT ===== -->
+<main>
+  <div class="container">
+
+    <!-- Breadcrumb -->
+    <div class="breadcrumb">
+      <a href="/">トップ</a><span>&gt;</span><a href="#">ツール</a><span>&gt;</span>潮汐カレンダー
+    </div>
+
+    <!-- Page Hero -->
+    <div class="page-hero">
+      <h1>潮汐カレンダー</h1>
+      <p>潮回りと月齢から釣り日和スコアを自動判定。釣行計画の参考にお使いください。</p>
+    </div>
+
+    <!-- Calendar Navigation -->
+    <div class="cal-nav">
+      <button id="prevMonth" aria-label="前の月">&lt;</button>
+      <div class="cal-month" id="calMonth"></div>
+      <button id="nextMonth" aria-label="次の月">&gt;</button>
+    </div>
+
+    <!-- Calendar Grid -->
+    <div class="cal-grid" id="calGrid"></div>
+
+    <!-- Score Panel -->
+    <div class="score-panel" id="scorePanel">
+      <h2>釣り日和スコア</h2>
+      <div class="score-date" id="scoreDate">日付を選択してください</div>
+      <div class="score-meta" id="scoreMeta" style="display:none">
+        <dl class="score-meta-item"><dt>潮回り</dt><dd id="scoreTide">--</dd></dl>
+        <dl class="score-meta-item"><dt>月齢</dt><dd id="scoreMoon">--</dd></dl>
+        <dl class="score-meta-item"><dt>日の出 / 日の入</dt><dd id="scoreSun">--</dd></dl>
+        <dl class="score-meta-item"><dt>満潮 / 干潮</dt><dd id="scoreTideTime">--</dd></dl>
+      </div>
+      <div class="score-display" id="scoreDisplay" style="display:none">
+        <div class="score-label">釣り日和スコア</div>
+        <div class="score-fish" id="scoreFish"></div>
+        <div class="score-value" id="scoreValue"></div>
+      </div>
+      <div class="score-explain" id="scoreExplain"></div>
+    </div>
+
+    <!-- Legend -->
+    <div class="legend-section">
+      <h2>潮回りの種類</h2>
+      <div class="legend-list">
+        <div class="legend-item">
+          <div class="l-label l-oshio">大潮</div>
+          <div class="l-text">新月・満月の前後に発生。潮の干満差が最も大きく、潮流が強い。魚の活性が上がりやすく、釣果が期待できる潮回り。</div>
+        </div>
+        <div class="legend-item">
+          <div class="l-label l-chushio">中潮</div>
+          <div class="l-text">大潮と小潮の間の潮回り。適度な潮流があり、安定した釣果が見込める。釣り全般に適したコンディション。</div>
+        </div>
+        <div class="legend-item">
+          <div class="l-label l-koshio">小潮</div>
+          <div class="l-text">上弦・下弦の月の前後に発生。干満差が小さく潮流が弱い。魚の活性はやや低めだが、穏やかな海況で釣りやすい面もある。</div>
+        </div>
+        <div class="legend-item">
+          <div class="l-label l-nagashio">長潮</div>
+          <div class="l-text">小潮の後に訪れる。干満の変化が最も緩やかで、潮がだらだらと長く続く。一般的に釣果は厳しいとされる。</div>
+        </div>
+        <div class="legend-item">
+          <div class="l-label l-wakashio">若潮</div>
+          <div class="l-text">長潮の翌日。潮が「若返る」意味で、ここから徐々に潮の動きが大きくなっていく。回復傾向の潮回り。</div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</main>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="#">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>関連メディア</h4>
+        <ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script src="script.js"></script>
+<script>
+(function(){
+  // Tide data: { day: { tide, moon } }
+  var tideData = {
+    '2026-5': {
+      1:{tide:'中潮'},2:{tide:'大潮'},3:{tide:'大潮'},4:{tide:'大潮'},5:{tide:'大潮'},
+      6:{tide:'中潮',moon:'新月'},7:{tide:'中潮'},8:{tide:'小潮'},9:{tide:'小潮'},10:{tide:'小潮'},
+      11:{tide:'長潮'},12:{tide:'若潮'},13:{tide:'中潮'},14:{tide:'中潮',moon:'上弦'},
+      15:{tide:'大潮'},16:{tide:'大潮'},17:{tide:'大潮'},18:{tide:'大潮'},
+      19:{tide:'中潮'},20:{tide:'中潮',moon:'満月'},21:{tide:'小潮'},22:{tide:'小潮'},
+      23:{tide:'小潮'},24:{tide:'長潮'},25:{tide:'若潮'},26:{tide:'中潮'},
+      27:{tide:'中潮'},28:{tide:'大潮',moon:'下弦'},29:{tide:'大潮'},30:{tide:'大潮'},31:{tide:'大潮'}
+    },
+    '2026-6': {
+      1:{tide:'中潮'},2:{tide:'中潮'},3:{tide:'大潮'},4:{tide:'大潮'},
+      5:{tide:'大潮',moon:'新月'},6:{tide:'大潮'},7:{tide:'中潮'},8:{tide:'中潮'},
+      9:{tide:'小潮'},10:{tide:'小潮'},11:{tide:'小潮'},12:{tide:'長潮'},
+      13:{tide:'若潮'},14:{tide:'中潮'},15:{tide:'中潮'},16:{tide:'大潮'},
+      17:{tide:'大潮'},18:{tide:'大潮'},19:{tide:'大潮',moon:'満月'},20:{tide:'中潮'},
+      21:{tide:'中潮'},22:{tide:'小潮'},23:{tide:'小潮'},24:{tide:'小潮'},
+      25:{tide:'長潮'},26:{tide:'若潮'},27:{tide:'中潮'},28:{tide:'中潮',moon:'下弦'},
+      29:{tide:'大潮'},30:{tide:'大潮'}
+    },
+    '2026-7': {
+      1:{tide:'大潮'},2:{tide:'大潮'},3:{tide:'中潮'},4:{tide:'中潮',moon:'新月'},
+      5:{tide:'小潮'},6:{tide:'小潮'},7:{tide:'小潮'},8:{tide:'長潮'},
+      9:{tide:'若潮'},10:{tide:'中潮'},11:{tide:'中潮'},12:{tide:'大潮',moon:'上弦'},
+      13:{tide:'大潮'},14:{tide:'大潮'},15:{tide:'大潮'},16:{tide:'中潮'},
+      17:{tide:'中潮'},18:{tide:'小潮'},19:{tide:'大潮',moon:'満月'},20:{tide:'小潮'},
+      21:{tide:'小潮'},22:{tide:'長潮'},23:{tide:'若潮'},24:{tide:'中潮'},
+      25:{tide:'中潮'},26:{tide:'大潮'},27:{tide:'大潮',moon:'下弦'},28:{tide:'大潮'},
+      29:{tide:'大潮'},30:{tide:'中潮'},31:{tide:'中潮'}
+    }
+  };
+
+  // Mock sunrise/sunset and tide times per month
+  var sunData = {
+    5: {rise:'04:52',set:'18:42'},
+    6: {rise:'04:38',set:'19:02'},
+    7: {rise:'04:45',set:'19:05'}
+  };
+  var tideTimes = {
+    '大潮': {high:'06:12 / 18:35',low:'00:18 / 12:24'},
+    '中潮': {high:'07:45 / 19:58',low:'01:33 / 13:50'},
+    '小潮': {high:'09:22 / 21:15',low:'03:08 / 15:30'},
+    '長潮': {high:'10:40 / 22:55',low:'04:25 / 16:48'},
+    '若潮': {high:'10:05 / 22:20',low:'03:50 / 16:10'}
+  };
+
+  var currentYear = 2026;
+  var currentMonth = 6;
+  var selectedDay = null;
+
+  var dayNames = ['日','月','火','水','木','金','土'];
+
+  function getKey(y,m){ return y+'-'+m; }
+
+  function getDaysInMonth(y,m){ return new Date(y,m,0).getDate(); }
+  function getFirstDow(y,m){ return new Date(y,m-1,1).getDay(); }
+
+  function tideClass(t){
+    if(t==='大潮') return 'oshio';
+    if(t==='中潮') return 'chushio';
+    if(t==='小潮') return 'koshio';
+    if(t==='若潮') return 'wakashio';
+    if(t==='長潮') return 'nagashio';
+    return '';
+  }
+
+  function calcScore(info){
+    if(!info) return 1;
+    var t=info.tide, m=info.moon||'';
+    if(t==='大潮'&&(m==='新月'||m==='満月')) return 5;
+    if(t==='大潮') return 4;
+    if(t==='中潮') return 3;
+    if(t==='小潮'||t==='若潮') return 2;
+    return 1;
+  }
+
+  function scoreText(s){
+    var texts = {
+      5:'最高の釣り日和です。大潮と新月/満月が重なり、魚の活性が非常に高くなります。大型魚の回遊も期待できるベストタイミング。',
+      4:'好条件の釣り日和です。大潮で潮流が強く、魚の捕食活動が活発になります。朝夕のマズメ時は特に期待大。',
+      3:'まずまずの釣り日和です。中潮は適度な潮流があり、安定した釣果が見込めます。ターゲットを絞って狙いましょう。',
+      2:'やや厳しい条件です。潮の動きが弱いため、ポイント選びとタイミングが重要。潮変わりの前後を集中的に狙いましょう。',
+      1:'厳しい条件です。潮の動きが非常に緩やかなため、魚の活性は低め。足元の小物狙いや、のんびり釣りを楽しむ日に。'
+    };
+    return texts[s]||'';
+  }
+
+  function renderCalendar(){
+    var grid = document.getElementById('calGrid');
+    var monthLabel = document.getElementById('calMonth');
+    monthLabel.textContent = currentYear + '年' + currentMonth + '月';
+
+    var html = '';
+    for(var i=0;i<7;i++){
+      var cls = 'cal-head';
+      if(i===0) cls+=' sun';
+      if(i===6) cls+=' sat';
+      html+='<div class="'+cls+'">'+dayNames[i]+'</div>';
+    }
+
+    var days = getDaysInMonth(currentYear, currentMonth);
+    var firstDow = getFirstDow(currentYear, currentMonth);
+    var key = getKey(currentYear, currentMonth);
+    var data = tideData[key]||{};
+
+    for(var e=0;e<firstDow;e++){
+      html+='<div class="cal-cell empty"></div>';
+    }
+
+    for(var d=1;d<=days;d++){
+      var dow = (firstDow+d-1)%7;
+      var info = data[d]||{tide:'--'};
+      var tc = tideClass(info.tide);
+      var cls = 'cal-cell';
+      if(tc) cls+=' border-'+tc;
+      if(dow===0) cls+=' sun-col';
+      if(dow===6) cls+=' sat-col';
+      if(selectedDay===d) cls+=' selected';
+
+      html+='<div class="'+cls+'" data-day="'+d+'">';
+      html+='<div class="day-num">'+d+'</div>';
+      if(info.tide!=='--'){
+        html+='<div class="tide-type '+tc+'">'+info.tide+'</div>';
+      }
+      if(info.moon){
+        html+='<div class="moon-phase">'+info.moon+'</div>';
+      }
+      html+='</div>';
+    }
+
+    grid.innerHTML = html;
+
+    // Bind clicks
+    var cells = grid.querySelectorAll('.cal-cell:not(.empty)');
+    for(var c=0;c<cells.length;c++){
+      cells[c].addEventListener('click', function(){
+        selectedDay = parseInt(this.getAttribute('data-day'));
+        renderCalendar();
+        updateScore();
+      });
+    }
+  }
+
+  function updateScore(){
+    var key = getKey(currentYear, currentMonth);
+    var data = tideData[key]||{};
+    var info = data[selectedDay];
+    var panel = document.getElementById('scorePanel');
+    var meta = document.getElementById('scoreMeta');
+    var display = document.getElementById('scoreDisplay');
+
+    if(!selectedDay||!info){
+      document.getElementById('scoreDate').textContent = '日付を選択してください';
+      meta.style.display='none';
+      display.style.display='none';
+      document.getElementById('scoreExplain').textContent='';
+      return;
+    }
+
+    meta.style.display='';
+    display.style.display='';
+
+    document.getElementById('scoreDate').textContent = currentYear+'年'+currentMonth+'月'+selectedDay+'日';
+    document.getElementById('scoreTide').textContent = info.tide;
+    document.getElementById('scoreMoon').textContent = info.moon||'--';
+
+    var sun = sunData[currentMonth]||{rise:'--',set:'--'};
+    document.getElementById('scoreSun').textContent = sun.rise+' / '+sun.set;
+
+    var tt = tideTimes[info.tide]||{high:'--',low:'--'};
+    document.getElementById('scoreTideTime').textContent = '満潮 '+tt.high+' / 干潮 '+tt.low;
+
+    var score = calcScore(info);
+    var fishHtml = '';
+    for(var i=0;i<5;i++){
+      if(i<score) fishHtml+='<span class="filled">&gt;&lt;&gt;</span> ';
+      else fishHtml+='<span>&gt;&lt;&gt;</span> ';
+    }
+    document.getElementById('scoreFish').innerHTML = fishHtml;
+    document.getElementById('scoreValue').textContent = score+' / 5';
+    document.getElementById('scoreExplain').textContent = scoreText(score);
+  }
+
+  document.getElementById('prevMonth').addEventListener('click', function(){
+    currentMonth--;
+    if(currentMonth<1){currentMonth=12;currentYear--;}
+    selectedDay=null;
+    renderCalendar();
+    updateScore();
+  });
+
+  document.getElementById('nextMonth').addEventListener('click', function(){
+    currentMonth++;
+    if(currentMonth>12){currentMonth=1;currentYear++;}
+    selectedDay=null;
+    renderCalendar();
+    updateScore();
+  });
+
+  renderCalendar();
+})();
+</script>
+</body>
+</html>

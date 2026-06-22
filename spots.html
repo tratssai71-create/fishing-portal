@@ -1,0 +1,515 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>釣り場ガイド｜TSURI PRESS</title>
+  <meta name="description" content="全国の人気釣り場を地域別に紹介。対象魚・ベストシーズン・アクセス・駐車場情報など、釣行計画に役立つ情報をまとめています。">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="spots.css">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<!-- ===== TOPBAR ===== -->
+<div class="topbar">
+  <div class="container topbar-inner">
+    <ul class="topbar-links">
+      <li><a href="#">運営会社</a></li>
+      <li><a href="#">広告掲載</a></li>
+      <li><a href="#">お問い合わせ</a></li>
+    </ul>
+    <div class="topbar-sns">
+      <a href="#" aria-label="X"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg></a>
+      <a href="#" aria-label="Instagram"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg></a>
+      <a href="#" aria-label="YouTube"><svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 00-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 00.502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 002.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 002.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg></a>
+    </div>
+  </div>
+</div>
+
+<!-- ===== HEADER ===== -->
+<header class="site-header">
+  <div class="container header-inner">
+    <a href="index.html" class="logo">
+      <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+    </a>
+    <div class="header-search">
+      <input type="text" placeholder="キーワードで記事を検索" id="headerSearch">
+      <button type="button" class="search-submit">検索</button>
+    </div>
+    <button class="sp-menu-btn" id="spMenuBtn">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<!-- ===== GNAV ===== -->
+<nav class="gnav">
+  <div class="container">
+    <ul class="gnav-list">
+      <li><a href="index.html" class="gnav-item">トップ</a></li>
+      <li><a href="#" class="gnav-item">バス釣り</a></li>
+      <li><a href="#" class="gnav-item">シーバス</a></li>
+      <li><a href="#" class="gnav-item">エギング</a></li>
+      <li><a href="#" class="gnav-item">ジギング</a></li>
+      <li><a href="#" class="gnav-item">ショアソルト</a></li>
+      <li><a href="#" class="gnav-item">トラウト</a></li>
+      <li><a href="#" class="gnav-item">エサ釣り</a></li>
+      <li><a href="#" class="gnav-item">タックル</a></li>
+      <li><a href="spots.html" class="gnav-item" style="color:#fff">釣り場ガイド</a></li>
+      <li><a href="#" class="gnav-item">動画</a></li>
+      <li><a href="#" class="gnav-item">コラム</a></li>
+    </ul>
+  </div>
+</nav>
+
+<!-- SP MENU -->
+<div class="sp-overlay" id="spOverlay"></div>
+<div class="sp-drawer" id="spDrawer">
+  <div class="sp-drawer-head"><span>MENU</span><button id="spClose">&times;</button></div>
+  <div class="sp-drawer-search">
+    <input type="text" placeholder="記事を検索">
+    <button>検索</button>
+  </div>
+  <ul class="sp-drawer-nav">
+    <li><a href="index.html">トップ</a></li>
+    <li><a href="#">バス釣り</a></li>
+    <li><a href="#">シーバス</a></li>
+    <li><a href="#">エギング</a></li>
+    <li><a href="#">ジギング</a></li>
+    <li><a href="#">ショアソルト</a></li>
+    <li><a href="#">トラウト</a></li>
+    <li><a href="#">エサ釣り</a></li>
+    <li><a href="#">タックル</a></li>
+    <li><a href="spots.html">釣り場ガイド</a></li>
+    <li><a href="#">動画</a></li>
+    <li><a href="#">コラム</a></li>
+    <li><a href="#">初心者ガイド</a></li>
+    <li><a href="#">大会・イベント</a></li>
+  </ul>
+</div>
+
+<!-- ===== HERO MAP ===== -->
+<section class="spots-hero">
+  <div class="container spots-hero-inner">
+    <h1>釣り場ガイド</h1>
+    <p>全国の人気フィールドを地域別に紹介。対象魚やベストシーズン、アクセス情報など釣行計画に必要な情報をまとめています。</p>
+    <div class="spots-map">
+      <svg viewBox="0 0 400 500" xmlns="http://www.w3.org/2000/svg">
+        <!-- Simplified Japan outline -->
+        <path d="M280 60 Q290 55 295 65 Q300 75 290 85 Q285 80 275 78 Q270 70 280 60Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Hokkaido -->
+        <path d="M270 80 Q310 70 320 90 Q330 110 310 120 Q290 130 270 115 Q260 100 270 80Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Tohoku -->
+        <path d="M280 130 Q300 125 305 145 Q310 165 300 185 Q290 195 275 185 Q265 170 270 150 Q272 135 280 130Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Kanto -->
+        <path d="M270 190 Q295 185 300 205 Q305 215 290 225 Q275 230 265 215 Q260 200 270 190Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Chubu / Tokai -->
+        <path d="M240 200 Q265 195 270 215 Q275 235 260 245 Q245 250 230 240 Q220 225 230 210 Q235 203 240 200Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Kansai -->
+        <path d="M220 240 Q245 235 250 255 Q255 270 240 275 Q225 280 215 265 Q210 250 220 240Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Chugoku / Shikoku -->
+        <path d="M170 260 Q215 250 220 270 Q225 285 210 295 Q195 300 175 295 Q160 285 165 270 Q167 263 170 260Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <path d="M195 300 Q220 295 225 310 Q220 320 205 318 Q190 315 195 300Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Kyushu -->
+        <path d="M155 300 Q175 295 180 315 Q185 340 170 355 Q155 365 140 350 Q130 335 135 315 Q140 303 155 300Z" fill="#444" stroke="#555" stroke-width="1"/>
+        <!-- Region dots -->
+        <circle cx="295" cy="95" r="6" fill="#c8102e" opacity=".9"/><text x="295" y="92" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">3</text>
+        <circle cx="285" cy="210" r="6" fill="#c8102e" opacity=".9"/><text x="285" y="207" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">3</text>
+        <circle cx="250" cy="225" r="6" fill="#c8102e" opacity=".9"/><text x="250" y="222" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">2</text>
+        <circle cx="235" cy="260" r="6" fill="#c8102e" opacity=".9"/><text x="235" y="257" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">3</text>
+        <circle cx="195" cy="280" r="6" fill="#c8102e" opacity=".9"/><text x="195" y="277" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">2</text>
+        <circle cx="160" cy="330" r="6" fill="#c8102e" opacity=".9"/><text x="160" y="327" text-anchor="middle" fill="#fff" font-size="6" font-weight="700" dy=".35em">3</text>
+        <!-- Labels -->
+        <text x="320" y="95" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">北海道</text>
+        <text x="305" y="210" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">関東</text>
+        <text x="260" y="222" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">東海</text>
+        <text x="248" y="258" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">関西</text>
+        <text x="145" y="278" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">中国・四国</text>
+        <text x="170" y="335" fill="rgba(255,255,255,.5)" font-size="8" font-weight="600">九州</text>
+      </svg>
+    </div>
+  </div>
+</section>
+
+<!-- ===== FILTER TABS ===== -->
+<div class="filter-tabs">
+  <div class="container filter-tabs-inner">
+    <button class="filter-tab active" data-filter="all">すべて</button>
+    <button class="filter-tab" data-filter="kanto">関東</button>
+    <button class="filter-tab" data-filter="kansai">関西</button>
+    <button class="filter-tab" data-filter="kyushu">九州</button>
+    <button class="filter-tab" data-filter="hokkaido">北海道</button>
+    <button class="filter-tab" data-filter="tokai">東海</button>
+    <button class="filter-tab" data-filter="chugoku-shikoku">中国・四国</button>
+  </div>
+</div>
+
+<!-- ===== SPOT CARDS ===== -->
+<section class="spots-section">
+  <div class="container">
+    <div class="spots-grid">
+
+      <!-- 関東 1 -->
+      <div class="spot-card" data-region="kanto">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1592132886027-b7bbc39a22e5?w=400&q=80" alt="霞ヶ浦" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">霞ヶ浦</span>
+            <span class="spot-card-pref">茨城県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ブラックバス / ワカサギ / ナマズ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">4月〜10月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">常磐道 土浦北ICから約15分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各ポイントに無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">日本第2位の面積を誇る湖。おかっぱりポイントが豊富でバスフィッシングの聖地として全国から釣り人が集まる。</p>
+        </div>
+      </div>
+
+      <!-- 関東 2 -->
+      <div class="spot-card" data-region="kanto">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1622713486130-aa0177e64542?w=400&q=80" alt="東京湾奥" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">東京湾奥</span>
+            <span class="spot-card-pref">千葉/東京</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">シーバス / クロダイ / タチウオ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">9月〜12月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">湾岸線各IC / 電車でも可</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">周辺コインP</span></div>
+          </div>
+          <p class="spot-card-note">都心から近く仕事帰りのナイトゲームが人気。秋のコノシロパターンではランカーシーバスの実績多数。</p>
+        </div>
+      </div>
+
+      <!-- 関東 3 -->
+      <div class="spot-card" data-region="kanto">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1505850557988-b858c0aec076?w=400&q=80" alt="相模湾" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">相模湾</span>
+            <span class="spot-card-pref">神奈川県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">キハダマグロ / カツオ / シイラ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">7月〜10月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">小田原厚木道路 平塚ICから約20分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各港に有(有料あり)</span></div>
+          </div>
+          <p class="spot-card-note">夏場のキハダゲームは関東屈指の人気。相模湾一帯の船宿からオフショアジギング・キャスティングが楽しめる。</p>
+        </div>
+      </div>
+
+      <!-- 関西 1 -->
+      <div class="spot-card" data-region="kansai">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1548109858-3d7763d13618?w=400&q=80" alt="琵琶湖" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">琵琶湖</span>
+            <span class="spot-card-pref">滋賀県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ブラックバス / ビワマス</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">3月〜11月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">名神高速 瀬田西ICから約10分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各エリアに無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">日本最大の湖にしてバスフィッシングの最高峰フィールド。ロクマル以上の実績が毎年多数報告されている。</p>
+        </div>
+      </div>
+
+      <!-- 関西 2 -->
+      <div class="spot-card" data-region="kansai">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1601248981876-29b78bd607df?w=400&q=80" alt="淡路島" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">淡路島</span>
+            <span class="spot-card-pref">兵庫県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">アオリイカ / メバル / 青物</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">9月〜12月(エギング) / 通年</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">神戸淡路鳴門道 淡路ICから各港</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">有(漁港により異なる)</span></div>
+          </div>
+          <p class="spot-card-note">島全域が釣りスポット。秋のアオリイカ、冬のメバリングが特に人気で、関西圏からのアクセスも良好。</p>
+        </div>
+      </div>
+
+      <!-- 関西 3 -->
+      <div class="spot-card" data-region="kansai">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1537872384762-e785271d14f8?w=400&q=80" alt="紀伊水道" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">紀伊水道</span>
+            <span class="spot-card-pref">和歌山県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">マダイ / 青物 / アオリイカ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">4月〜6月 / 9月〜11月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">阪和道 海南ICから約30分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各漁港に無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">潮通しの良い好漁場。タイラバやジギングのオフショアに加え、地磯からのショアジギングも盛ん。</p>
+        </div>
+      </div>
+
+      <!-- 九州 1 -->
+      <div class="spot-card" data-region="kyushu">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1529230117010-b6c436154f25?w=400&q=80" alt="玄界灘" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">玄界灘</span>
+            <span class="spot-card-pref">福岡県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ヒラマサ / ブリ / キハダマグロ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">5月〜11月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">福岡都市高速 姪浜出口から各港</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各港に有(無料)</span></div>
+          </div>
+          <p class="spot-card-note">ヒラマサジギングの聖地。10kg超えのヒラマサが狙え、秋にはキハダマグロも回遊する日本屈指の好漁場。</p>
+        </div>
+      </div>
+
+      <!-- 九州 2 -->
+      <div class="spot-card" data-region="kyushu">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1592132886027-b7bbc39a22e5?w=400&q=80" alt="錦江湾" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">錦江湾</span>
+            <span class="spot-card-pref">鹿児島県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">カンパチ / マダイ / アオリイカ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">6月〜11月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">九州道 鹿児島ICから約20分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各港に有</span></div>
+          </div>
+          <p class="spot-card-note">桜島を望む内湾ながら水深が深く、カンパチやマダイの大物が狙える。ティップランエギングも人気。</p>
+        </div>
+      </div>
+
+      <!-- 九州 3 -->
+      <div class="spot-card" data-region="kyushu">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1622713486130-aa0177e64542?w=400&q=80" alt="遠賀川" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">遠賀川</span>
+            <span class="spot-card-pref">福岡県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ブラックバス / ナマズ / シーバス</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">4月〜10月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">九州道 八幡ICから約15分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">河川敷に無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">九州を代表するバスリバー。トーナメントも頻繁に開催され、河口域ではシーバスも好実績。</p>
+        </div>
+      </div>
+
+      <!-- 北海道 1 -->
+      <div class="spot-card" data-region="hokkaido">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1505850557988-b858c0aec076?w=400&q=80" alt="支笏湖" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">支笏湖</span>
+            <span class="spot-card-pref">北海道</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ブラウントラウト / ニジマス / ヒメマス</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">5月〜10月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">新千歳空港から車で約40分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">有(有料 500円/日)</span></div>
+          </div>
+          <p class="spot-card-note">透明度日本一クラスの湖。大型ブラウントラウトの実績があり、ウェーディングでのルアー釣りが主流。</p>
+        </div>
+      </div>
+
+      <!-- 北海道 2 -->
+      <div class="spot-card" data-region="hokkaido">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1548109858-3d7763d13618?w=400&q=80" alt="十勝川" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">十勝川</span>
+            <span class="spot-card-pref">北海道</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">アメマス / ニジマス / サケ(規制有)</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">6月〜10月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">道東道 音更帯広ICから各ポイント</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">河川敷に無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">北海道を代表する大河川。本流でのニジマスは60cmクラスも珍しくなく、ネイティブトラウトの宝庫。</p>
+        </div>
+      </div>
+
+      <!-- 北海道 3 -->
+      <div class="spot-card" data-region="hokkaido">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1601248981876-29b78bd607df?w=400&q=80" alt="積丹半島" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">積丹半島</span>
+            <span class="spot-card-pref">北海道</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">ヒラメ / ソイ / ホッケ / ブリ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">5月〜10月(青物) / 通年</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">札樽道 小樽ICから約60分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各漁港に無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">積丹ブルーの海が広がる道央屈指の磯釣りエリア。近年はブリのショアジギングが注目を集めている。</p>
+        </div>
+      </div>
+
+      <!-- 東海 1 -->
+      <div class="spot-card" data-region="tokai">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1537872384762-e785271d14f8?w=400&q=80" alt="浜名湖" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">浜名湖</span>
+            <span class="spot-card-pref">静岡県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">クロダイ / シーバス / マゴチ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">4月〜11月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">東名高速 浜松西ICから約15分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各ポイントに無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">汽水湖ならではの豊富な魚種。チニングの聖地として知られ、トップウォーターでのクロダイゲームが盛ん。</p>
+        </div>
+      </div>
+
+      <!-- 東海 2 -->
+      <div class="spot-card" data-region="tokai">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1529230117010-b6c436154f25?w=400&q=80" alt="伊勢湾" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">伊勢湾</span>
+            <span class="spot-card-pref">三重県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">マダイ / 青物 / タチウオ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">5月〜12月</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">伊勢道 伊勢ICから各港へ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各港に有</span></div>
+          </div>
+          <p class="spot-card-note">タイラバ発祥の地ともいわれるエリア。大型真鯛の実績が高く、秋冬のタチウオジギングも人気。</p>
+        </div>
+      </div>
+
+      <!-- 中国・四国 1 -->
+      <div class="spot-card" data-region="chugoku-shikoku">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1586920917141-71ffe0798441?w=400&q=80" alt="瀬戸内海" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">瀬戸内海</span>
+            <span class="spot-card-pref">広島県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">マダイ / メバル / アコウ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">通年(春秋がベスト)</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">山陽道 広島ICから各港へ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">有(港により異なる)</span></div>
+          </div>
+          <p class="spot-card-note">穏やかな内海に多島美が広がる。潮流の変化が豊富で、タイラバ・メバリング・アコウゲームの好フィールド。</p>
+        </div>
+      </div>
+
+      <!-- 中国・四国 2 -->
+      <div class="spot-card" data-region="chugoku-shikoku">
+        <img class="spot-card-img" src="https://images.unsplash.com/photo-1505850557988-b858c0aec076?w=400&q=80" alt="四万十川" loading="lazy">
+        <div class="spot-card-body">
+          <div class="spot-card-head">
+            <span class="spot-card-name">四万十川</span>
+            <span class="spot-card-pref">高知県</span>
+          </div>
+          <div class="spot-card-info">
+            <div class="spot-info-row"><span class="spot-info-label">対象魚</span><span class="spot-info-value">アユ / アカメ / テナガエビ</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">ベストシーズン</span><span class="spot-info-value">6月〜9月(アユ) / 通年(アカメ)</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">アクセス</span><span class="spot-info-value">高知道 四万十町中央ICから約40分</span></div>
+            <div class="spot-info-row"><span class="spot-info-label">駐車場</span><span class="spot-info-value">各沈下橋周辺に無料Pあり</span></div>
+          </div>
+          <p class="spot-card-note">日本最後の清流と称される名河川。幻の魚アカメが棲息し、夏場は天然アユの友釣りで賑わう。</p>
+        </div>
+      </div>
+
+    </div>
+    <p class="spots-empty">該当する釣り場がありません</p>
+  </div>
+</section>
+
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。バス釣り・シーバス・エギング・ジギングなど、あらゆるジャンルの釣り情報を毎日お届けしています。</p>
+      <div class="footer-sns-row">
+        <a href="#">X</a><a href="#">Instagram</a><a href="#">YouTube</a><a href="#">LINE</a>
+      </div>
+    </div>
+    <div class="footer-nav">
+      <div>
+        <h4>ジャンル</h4>
+        <ul><li><a href="#">バス釣り</a></li><li><a href="#">シーバス</a></li><li><a href="#">エギング</a></li><li><a href="#">ジギング</a></li><li><a href="#">ショアソルト</a></li><li><a href="#">トラウト</a></li><li><a href="#">エサ釣り</a></li></ul>
+      </div>
+      <div>
+        <h4>コンテンツ</h4>
+        <ul><li><a href="#">新着記事</a></li><li><a href="#">動画</a></li><li><a href="#">特集</a></li><li><a href="#">タックルレビュー</a></li><li><a href="spots.html">釣り場ガイド</a></li><li><a href="#">コラム</a></li><li><a href="#">初心者ガイド</a></li></ul>
+      </div>
+      <div>
+        <h4>関連メディア</h4>
+        <ul><li><a href="#">CAMP PRESS</a></li><li><a href="#">YAMA PRESS</a></li><li><a href="#">OUTDOOR PRESS</a></li></ul>
+        <h4>サイト情報</h4>
+        <ul><li><a href="#">運営会社</a></li><li><a href="#">広告掲載</a></li><li><a href="#">プライバシーポリシー</a></li><li><a href="#">利用規約</a></li><li><a href="#">お問い合わせ</a></li></ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+// SP drawer
+(function(){
+  var btn=document.getElementById('spMenuBtn'),drawer=document.getElementById('spDrawer'),overlay=document.getElementById('spOverlay'),close=document.getElementById('spClose');
+  function open(){drawer.classList.add('open');overlay.classList.add('open')}
+  function shut(){drawer.classList.remove('open');overlay.classList.remove('open')}
+  if(btn)btn.addEventListener('click',open);
+  if(close)close.addEventListener('click',shut);
+  if(overlay)overlay.addEventListener('click',shut);
+})();
+
+// Region filter
+(function(){
+  var tabs=document.querySelectorAll('.filter-tab');
+  var cards=document.querySelectorAll('.spot-card');
+  var empty=document.querySelector('.spots-empty');
+  tabs.forEach(function(tab){
+    tab.addEventListener('click',function(){
+      tabs.forEach(function(t){t.classList.remove('active')});
+      tab.classList.add('active');
+      var f=tab.getAttribute('data-filter');
+      var visible=0;
+      cards.forEach(function(card){
+        if(f==='all'||card.getAttribute('data-region')===f){
+          card.style.display='';
+          visible++;
+        }else{
+          card.style.display='none';
+        }
+      });
+      if(empty){empty.style.display=visible===0?'block':'none'}
+    });
+  });
+})();
+</script>
+</body>
+</html>
