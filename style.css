@@ -66,6 +66,38 @@ button{cursor:pointer;border:none;background:none;font-family:var(--ff)}
 .gnav-item:hover{color:#fff;background:rgba(255,255,255,.08)}
 
 /* ============================================================
+   SITE CATCH
+   ============================================================ */
+.site-catch{background:var(--black);padding:48px 0 40px;text-align:center}
+.catch-sub{font-family:var(--ff-en);font-size:.72rem;font-weight:700;letter-spacing:.25em;color:var(--accent);margin-bottom:12px}
+.catch-main{color:#fff;font-size:2rem;font-weight:900;letter-spacing:.04em;margin-bottom:16px;line-height:1.4}
+.catch-desc{color:rgba(255,255,255,.5);font-size:.88rem;line-height:1.7;max-width:640px;margin:0 auto}
+
+/* ============================================================
+   CATEGORY NAV
+   ============================================================ */
+.cat-nav{background:var(--black);padding:0 0 32px}
+.cat-nav-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:8px}
+.cat-nav-item{position:relative;display:block;border-radius:var(--radius);overflow:hidden;height:180px}
+.cat-nav-item img{width:100%;height:100%;object-fit:cover;transition:transform .4s;filter:brightness(.7)}
+.cat-nav-item:hover img{transform:scale(1.06);filter:brightness(.9)}
+.cat-nav-label{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;color:#fff;gap:2px;text-align:center}
+.cat-nav-label span{font-family:var(--ff-en);font-size:.65rem;font-weight:700;letter-spacing:.12em;opacity:.6}
+.cat-nav-label{font-size:1.05rem;font-weight:800}
+
+@media(max-width:768px){
+  .catch-main{font-size:1.4rem}
+  .catch-desc{font-size:.8rem}
+  .cat-nav-grid{grid-template-columns:repeat(3,1fr)}
+  .cat-nav-item{height:140px}
+}
+@media(max-width:480px){
+  .catch-main{font-size:1.15rem}
+  .cat-nav-grid{grid-template-columns:repeat(2,1fr)}
+  .cat-nav-item{height:120px}
+}
+
+/* ============================================================
    SP DRAWER
    ============================================================ */
 .sp-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.5);z-index:500}
