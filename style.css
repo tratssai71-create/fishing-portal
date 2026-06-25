@@ -29,41 +29,37 @@ button{cursor:pointer;border:none;background:none;font-family:var(--ff)}
 .container{max-width:1280px;margin:0 auto;padding:0 20px}
 
 /* ============================================================
-   TOPBAR
+   HEADER (unified block)
    ============================================================ */
-.topbar{background:var(--black);color:rgba(255,255,255,.55);font-size:.68rem;padding:5px 0}
-.topbar-inner{display:flex;align-items:center;justify-content:space-between}
-.topbar-links{display:flex;gap:18px}
-.topbar-links a{color:rgba(255,255,255,.55)}
-.topbar-links a:hover{color:#fff}
-.topbar-sns{display:flex;gap:14px}
-.topbar-sns a{color:rgba(255,255,255,.45)}
-.topbar-sns a:hover{color:#fff}
+.site-header{position:sticky;top:0;z-index:100;background:var(--black)}
 
-/* ============================================================
-   HEADER
-   ============================================================ */
-.site-header{background:var(--white);border-bottom:1px solid var(--border)}
-.header-inner{display:flex;align-items:center;height:60px;gap:20px}
-.logo{display:flex;align-items:baseline;gap:1px;font-family:var(--ff-en);font-weight:900;font-size:1.55rem;letter-spacing:-.03em}
-.logo-main{color:var(--black)}
+/* topbar */
+.topbar{border-bottom:1px solid rgba(255,255,255,.08);font-size:.7rem}
+.topbar-inner{display:flex;align-items:center;justify-content:space-between;height:32px}
+.topbar-tagline{color:rgba(255,255,255,.45);font-weight:500;letter-spacing:.02em}
+.topbar-right{display:flex;align-items:center;gap:16px}
+.topbar-right a{color:rgba(255,255,255,.45);transition:color .15s}
+.topbar-right a:hover{color:#fff}
+.topbar-yt{display:flex;align-items:center;color:var(--accent) !important}
+.topbar-yt:hover{opacity:.8}
+
+/* logo area */
+.header-logo-area{padding:20px 0 16px}
+.header-logo-inner{display:flex;align-items:center;justify-content:center;position:relative}
+.logo{display:flex;flex-direction:column;align-items:center;gap:0;text-align:center}
+.logo-main,.logo-accent{font-family:var(--ff-en);font-weight:900;font-size:2.4rem;letter-spacing:.06em;line-height:1}
+.logo-main{color:#fff}
 .logo-accent{color:var(--accent)}
-.header-search{flex:1;max-width:360px;display:flex;border:1px solid var(--border);border-radius:3px;overflow:hidden;margin-left:auto}
-.header-search input{flex:1;border:none;padding:7px 12px;font-size:.82rem;outline:none;font-family:var(--ff);background:var(--bg)}
-.header-search input::placeholder{color:var(--pale)}
-.search-submit{background:var(--black);color:#fff;font-size:.75rem;font-weight:600;padding:0 14px}
-.search-submit:hover{background:var(--accent)}
-.sp-menu-btn{display:none;flex-direction:column;gap:5px;padding:8px}
-.sp-menu-btn span{display:block;width:22px;height:2px;background:var(--black);border-radius:1px}
+.logo-sub{display:block;font-family:var(--ff-en);font-size:.65rem;font-weight:500;color:rgba(255,255,255,.35);letter-spacing:.18em;margin-top:6px}
+.sp-menu-btn{display:none;flex-direction:column;gap:5px;padding:8px;position:absolute;right:0;top:50%;transform:translateY(-50%)}
+.sp-menu-btn span{display:block;width:24px;height:2px;background:#fff;border-radius:1px}
 
-/* ============================================================
-   GNAV
-   ============================================================ */
-.gnav{background:var(--black);overflow-x:auto;scrollbar-width:none}
+/* gnav */
+.gnav{background:rgba(255,255,255,.06);border-top:1px solid rgba(255,255,255,.08);overflow-x:auto;scrollbar-width:none}
 .gnav::-webkit-scrollbar{display:none}
-.gnav-list{display:flex;gap:0;white-space:nowrap}
-.gnav-item{display:block;padding:11px 15px;font-size:.78rem;font-weight:600;color:rgba(255,255,255,.7);position:relative;transition:color .15s}
-.gnav-item:hover{color:#fff;background:rgba(255,255,255,.08)}
+.gnav-list{display:flex;gap:0;white-space:nowrap;justify-content:center}
+.gnav-item{display:block;padding:12px 18px;font-size:.8rem;font-weight:600;color:rgba(255,255,255,.6);position:relative;transition:color .15s,background .15s;letter-spacing:.02em}
+.gnav-item:hover{color:#fff;background:rgba(255,255,255,.06)}
 
 /* ============================================================
    SITE CATCH
@@ -363,8 +359,11 @@ button{cursor:pointer;border:none;background:none;font-family:var(--ff)}
 }
 @media(max-width:768px){
   .topbar{display:none}
-  .header-search{display:none}
+  .header-logo-area{padding:14px 0 10px}
+  .logo-main,.logo-accent{font-size:1.6rem}
+  .logo-sub{font-size:.55rem;margin-top:4px}
   .sp-menu-btn{display:flex}
+  .gnav-list{justify-content:flex-start}
   .hero-grid{grid-template-columns:1fr}
   .hero-main img{height:300px}
   .hero-main figcaption h2{font-size:1.1rem}
