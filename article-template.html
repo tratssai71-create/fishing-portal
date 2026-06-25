@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title id="pageTitle">読み込み中... | TSURI PRESS</title>
+<link rel="stylesheet" href="/style.css">
+<link rel="stylesheet" href="/article.css">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
+<body>
+
+<header class="site-header">
+  <div class="topbar">
+    <div class="container topbar-inner">
+      <p class="topbar-tagline">ルアーフィッシングの総合ニュースサイト</p>
+      <div class="topbar-right">
+        <a href="/about.html">運営会社</a>
+        <a href="/contact.html">お問い合わせ</a>
+      </div>
+    </div>
+  </div>
+  <div class="header-logo-area">
+    <div class="container header-logo-inner">
+      <a href="/" class="logo">
+        <span class="logo-main">TSURI</span><span class="logo-accent">PRESS</span>
+        <span class="logo-sub">- Lure Fishing Media -</span>
+      </a>
+    </div>
+  </div>
+  <nav class="gnav">
+    <div class="container">
+      <ul class="gnav-list">
+        <li><a href="/" class="gnav-item">TOP</a></li>
+        <li><a href="/category-bass.html" class="gnav-item">バス釣り</a></li>
+        <li><a href="/category-seabass.html" class="gnav-item">シーバス</a></li>
+        <li><a href="/lure-zukan.html" class="gnav-item">ルアー図鑑</a></li>
+        <li><a href="/uozukan.html" class="gnav-item">魚図鑑</a></li>
+        <li><a href="/ranking.html" class="gnav-item">ランキング</a></li>
+      </ul>
+    </div>
+  </nav>
+</header>
+
+<div class="breadcrumb">
+  <div class="container">
+    <a href="/">トップ</a> &gt; <span id="bcCategory">読み込み中</span> &gt; <span id="bcTitle"></span>
+  </div>
+</div>
+
+<div class="article-wrap container">
+  <article class="article-main" id="articleContent">
+    <div style="text-align:center;padding:80px 0;color:#999">記事を読み込んでいます...</div>
+  </article>
+</div>
+
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div class="footer-about">
+      <p class="footer-logo-text">TSURI<span>PRESS</span></p>
+      <p class="footer-desc">釣り人のための総合メディア。</p>
+    </div>
+    <div class="footer-nav">
+      <div><h4>ジャンル</h4><ul><li><a href="/category-bass.html">バス釣り</a></li><li><a href="/category-seabass.html">シーバス</a></li></ul></div>
+      <div><h4>コンテンツ</h4><ul><li><a href="/ranking.html">ランキング</a></li><li><a href="/video.html">動画</a></li></ul></div>
+      <div><h4>サイト情報</h4><ul><li><a href="/about.html">運営会社</a></li><li><a href="/contact.html">お問い合わせ</a></li></ul></div>
+    </div>
+  </div>
+  <div class="footer-bottom"><div class="container">&copy; 2026 TSURI PRESS. All rights reserved.</div></div>
+</footer>
+
+<script>
+const CATEGORIES = {bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
+const slug = location.pathname.replace('/article/', '');
+
+fetch('/api/article-by-slug/' + slug)
+  .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
+  .then(a => {
+    document.getElementById('pageTitle').textContent = a.title + ' | TSURI PRESS';
+    document.getElementById('bcCategory').textContent = CATEGORIES[a.category] || a.category;
+    document.getElementById('bcTitle').textContent = a.title;
+
+    const date = a.created_at ? a.created_at.slice(0, 10).replace(/-/g, '.') : '';
+    const catName = CATEGORIES[a.category] || a.category;
+
+    document.getElementById('articleContent').innerHTML = `
+      <div class="article-header">
+        <span class="badge badge-${a.category}">${catName}</span>
+        <h1>${a.title}</h1>
+        <div class="article-info">
+          <div class="article-author-box">
+            <div>
+              <span class="author-nm">${a.author}</span>
+            </div>
+          </div>
+          <div class="article-dates">
+            <time>${date}</time>
+          </div>
+        </div>
+      </div>
+      ${a.thumbnail ? '<figure class="article-hero"><img src="'+a.thumbnail+'" alt=""></figure>' : ''}
+      <div class="article-body">${a.body}</div>
+      <div class="share-box">
+        <p>この記事をシェアする</p>
+        <div class="share-btns">
+          <a href="#" class="share-btn s-x">X でシェア</a>
+          <a href="#" class="share-btn s-line">LINEで送る</a>
+        </div>
+      </div>
+    `;
+  })
+  .catch(() => {
+    document.getElementById('articleContent').innerHTML = '<div style="text-align:center;padding:80px 0"><h2 style="font-size:1.5rem;margin-bottom:12px">404</h2><p style="color:#999">記事が見つかりませんでした</p><a href="/" style="color:#c8102e;font-weight:700;margin-top:16px;display:inline-block">トップに戻る</a></div>';
+  });
+</script>
+</body>
+</html>

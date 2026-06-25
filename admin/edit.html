@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>記事エディタ | TSURI PRESS CMS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f5f5f5;color:#111}
+.admin-header{background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;position:sticky;top:0;z-index:10}
+.admin-logo{font-family:'Inter',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:.04em}
+.admin-logo span{color:#c8102e}
+.admin-logo small{font-weight:400;font-size:.7rem;color:#666;margin-left:10px}
+.admin-nav{display:flex;align-items:center;gap:16px}
+.admin-nav a{color:#999;font-size:.78rem;font-weight:500;text-decoration:none}
+.admin-nav a:hover{color:#fff}
+.wrap{max-width:1100px;margin:0 auto;padding:28px 20px}
+.editor-grid{display:grid;grid-template-columns:1fr 300px;gap:24px;align-items:start}
+.editor-main{display:flex;flex-direction:column;gap:16px}
+.editor-sidebar{display:flex;flex-direction:column;gap:16px}
+.card{background:#fff;border:1px solid #e5e5e5;border-radius:6px;padding:20px}
+.card h3{font-size:.82rem;font-weight:800;margin-bottom:14px;padding-bottom:8px;border-bottom:1px solid #e5e5e5}
+label{display:block;font-size:.75rem;font-weight:700;color:#666;margin-bottom:5px}
+input[type="text"],select,textarea{width:100%;padding:10px 12px;border:1px solid #e5e5e5;border-radius:4px;font-size:.88rem;font-family:inherit;outline:none;background:#fff;transition:border-color .15s}
+input:focus,select:focus,textarea:focus{border-color:#c8102e}
+textarea{resize:vertical;min-height:120px}
+.title-input{font-size:1.3rem;font-weight:800;padding:14px 16px;border:2px solid #e5e5e5}
+.title-input:focus{border-color:#111}
+.form-row{margin-bottom:16px}
+
+/* Rich editor toolbar */
+.toolbar{display:flex;flex-wrap:wrap;gap:4px;padding:8px;background:#fafafa;border:1px solid #e5e5e5;border-bottom:none;border-radius:4px 4px 0 0}
+.toolbar button{padding:6px 10px;border:1px solid #e5e5e5;border-radius:3px;background:#fff;font-size:.75rem;font-weight:600;color:#333;cursor:pointer;transition:all .15s}
+.toolbar button:hover{background:#111;color:#fff;border-color:#111}
+.toolbar .sep{width:1px;background:#e5e5e5;margin:0 4px}
+.editor-area{border:1px solid #e5e5e5;border-radius:0 0 4px 4px;min-height:500px;padding:20px;outline:none;font-size:.92rem;line-height:1.9;background:#fff;overflow-y:auto}
+.editor-area:focus{border-color:#c8102e}
+.editor-area h2{font-size:1.2rem;margin:20px 0 10px;padding:10px 14px;background:#111;color:#fff;border-radius:3px}
+.editor-area h3{font-size:1rem;margin:16px 0 8px;font-weight:700;border-bottom:2px solid #111;padding-bottom:6px}
+.editor-area img{max-width:100%;border-radius:4px;margin:10px 0}
+.editor-area blockquote{border-left:4px solid #c8102e;padding:10px 16px;margin:10px 0;background:#fafafa;color:#555}
+.editor-area ul,.editor-area ol{padding-left:24px;margin:8px 0}
+
+/* Thumbnail */
+.thumb-preview{width:100%;height:160px;background:#f5f5f5;border:2px dashed #e5e5e5;border-radius:4px;display:flex;align-items:center;justify-content:center;margin-bottom:10px;overflow:hidden;cursor:pointer;transition:border-color .15s}
+.thumb-preview:hover{border-color:#c8102e}
+.thumb-preview img{width:100%;height:100%;object-fit:cover}
+.thumb-preview .placeholder{color:#999;font-size:.8rem;text-align:center;line-height:1.5}
+.file-input{display:none}
+
+/* Buttons */
+.btn-row{display:flex;gap:10px;margin-top:8px}
+.btn{padding:12px 28px;border:none;border-radius:4px;font-size:.88rem;font-weight:700;cursor:pointer;transition:all .15s;font-family:inherit}
+.btn-publish{background:#c8102e;color:#fff}
+.btn-publish:hover{background:#a80d24}
+.btn-draft{background:#fff;color:#111;border:2px solid #111}
+.btn-draft:hover{background:#111;color:#fff}
+.btn-preview{background:#fff;color:#666;border:1px solid #e5e5e5}
+.btn-preview:hover{border-color:#111;color:#111}
+.btn-back{display:inline-block;color:#999;font-size:.78rem;text-decoration:none;margin-bottom:16px}
+.btn-back:hover{color:#111}
+
+.slug-row{display:flex;gap:8px;align-items:center}
+.slug-prefix{font-size:.78rem;color:#999;white-space:nowrap}
+.slug-input{flex:1}
+
+.saved-msg{display:none;position:fixed;top:70px;right:24px;background:#111;color:#fff;padding:12px 24px;border-radius:4px;font-size:.85rem;font-weight:600;z-index:100;animation:fadeIn .2s}
+@keyframes fadeIn{from{opacity:0;transform:translateY(-10px)}to{opacity:1;transform:translateY(0)}}
+
+@media(max-width:768px){
+  .editor-grid{grid-template-columns:1fr}
+  .editor-sidebar{order:-1}
+}
+</style>
+</head>
+<body>
+<div class="admin-header">
+  <div class="admin-logo">TSURI<span>PRESS</span> <small>CMS</small></div>
+  <div class="admin-nav">
+    <a href="/">サイトを見る</a>
+    <a href="/admin">記事一覧</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <a href="/admin" class="btn-back">&larr; 記事一覧に戻る</a>
+
+  <div class="editor-grid">
+    <div class="editor-main">
+      <input type="text" class="title-input" id="title" placeholder="記事タイトルを入力">
+
+      <div>
+        <div class="toolbar">
+          <button onclick="execCmd('bold')" title="太字"><b>B</b></button>
+          <button onclick="execCmd('italic')" title="斜体"><i>I</i></button>
+          <button onclick="execCmd('underline')" title="下線"><u>U</u></button>
+          <div class="sep"></div>
+          <button onclick="insertHeading('h2')" title="見出し2">H2</button>
+          <button onclick="insertHeading('h3')" title="見出し3">H3</button>
+          <div class="sep"></div>
+          <button onclick="execCmd('insertUnorderedList')" title="箇条書き">UL</button>
+          <button onclick="execCmd('insertOrderedList')" title="番号リスト">OL</button>
+          <div class="sep"></div>
+          <button onclick="execCmd('formatBlock','blockquote')" title="引用">引用</button>
+          <button onclick="insertLink()" title="リンク">Link</button>
+          <button onclick="insertImage()" title="画像挿入">画像</button>
+          <div class="sep"></div>
+          <button onclick="toggleSource()" title="HTMLソース">HTML</button>
+        </div>
+        <div class="editor-area" id="editor" contenteditable="true">
+          <p>ここに記事本文を入力してください...</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="editor-sidebar">
+      <div class="card">
+        <h3>公開設定</h3>
+        <div class="btn-row">
+          <button class="btn btn-publish" onclick="saveArticle('published')">公開する</button>
+          <button class="btn btn-draft" onclick="saveArticle('draft')">下書き保存</button>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>サムネイル画像</h3>
+        <div class="thumb-preview" id="thumbPreview" onclick="document.getElementById('thumbFile').click()">
+          <div class="placeholder" id="thumbPlaceholder">クリックして画像を選択<br>またはドラッグ&ドロップ</div>
+        </div>
+        <input type="file" class="file-input" id="thumbFile" accept="image/*">
+        <input type="hidden" id="thumbnail">
+      </div>
+
+      <div class="card">
+        <h3>記事情報</h3>
+        <div class="form-row">
+          <label>カテゴリ</label>
+          <select id="category">
+            <option value="bass">バス釣り</option>
+            <option value="seabass">シーバス</option>
+            <option value="eging">エギング</option>
+            <option value="jigging">ジギング</option>
+            <option value="shore">ショアソルト</option>
+            <option value="trout">トラウト</option>
+            <option value="tackle">タックル</option>
+            <option value="lure">ルアー</option>
+            <option value="column">コラム</option>
+            <option value="guide">入門ガイド</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <label>スラッグ (URL)</label>
+          <div class="slug-row">
+            <span class="slug-prefix">/article/</span>
+            <input type="text" id="slug" class="slug-input" placeholder="auto-generated">
+          </div>
+        </div>
+        <div class="form-row">
+          <label>著者</label>
+          <input type="text" id="author" value="TSURI PRESS編集部">
+        </div>
+        <div class="form-row">
+          <label>抜粋（記事一覧に表示）</label>
+          <textarea id="excerpt" rows="3" placeholder="記事の概要を100文字程度で"></textarea>
+        </div>
+      </div>
+
+      <div class="card">
+        <h3>プレビュー</h3>
+        <button class="btn btn-preview" onclick="openPreview()" style="width:100%">プレビューを開く</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="saved-msg" id="savedMsg">保存しました</div>
+
+<script>
+const articleId = location.pathname.match(/\/admin\/edit\/(\d+)/)?.[1];
+const editor = document.getElementById('editor');
+let isSourceMode = false;
+
+if (articleId) {
+  fetch('/api/articles/' + articleId).then(r => r.json()).then(a => {
+    document.getElementById('title').value = a.title || '';
+    document.getElementById('slug').value = a.slug || '';
+    document.getElementById('category').value = a.category || 'bass';
+    document.getElementById('author').value = a.author || '';
+    document.getElementById('excerpt').value = a.excerpt || '';
+    document.getElementById('thumbnail').value = a.thumbnail || '';
+    editor.innerHTML = a.body || '<p></p>';
+    if (a.thumbnail) {
+      document.getElementById('thumbPreview').innerHTML = '<img src="' + a.thumbnail + '" alt="">';
+    }
+    document.title = '編集: ' + a.title + ' | TSURI PRESS CMS';
+  });
+}
+
+function execCmd(cmd, val) { document.execCommand(cmd, false, val || null); editor.focus(); }
+
+function insertHeading(tag) {
+  document.execCommand('formatBlock', false, tag);
+  editor.focus();
+}
+
+function insertLink() {
+  const url = prompt('URLを入力:');
+  if (url) execCmd('createLink', url);
+}
+
+function insertImage() {
+  const input = document.createElement('input');
+  input.type = 'file';
+  input.accept = 'image/*';
+  input.onchange = async () => {
+    const fd = new FormData();
+    fd.append('image', input.files[0]);
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.url) execCmd('insertImage', data.url);
+  };
+  input.click();
+}
+
+function toggleSource() {
+  if (isSourceMode) {
+    editor.innerHTML = editor.textContent;
+    editor.contentEditable = 'true';
+    isSourceMode = false;
+  } else {
+    editor.textContent = editor.innerHTML;
+    editor.contentEditable = 'true';
+    isSourceMode = true;
+  }
+}
+
+document.getElementById('thumbFile').addEventListener('change', async function() {
+  const fd = new FormData();
+  fd.append('image', this.files[0]);
+  const res = await fetch('/api/upload', { method: 'POST', body: fd });
+  const data = await res.json();
+  if (data.url) {
+    document.getElementById('thumbnail').value = data.url;
+    document.getElementById('thumbPreview').innerHTML = '<img src="' + data.url + '" alt="">';
+  }
+});
+
+async function saveArticle(status) {
+  const body = isSourceMode ? editor.textContent : editor.innerHTML;
+  const payload = {
+    title: document.getElementById('title').value,
+    slug: document.getElementById('slug').value || document.getElementById('title').value.replace(/\s+/g, '-').toLowerCase(),
+    category: document.getElementById('category').value,
+    thumbnail: document.getElementById('thumbnail').value,
+    excerpt: document.getElementById('excerpt').value,
+    body: body,
+    author: document.getElementById('author').value,
+    status: status
+  };
+
+  let res;
+  if (articleId) {
+    res = await fetch('/api/articles/' + articleId, { method: 'PUT', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+  } else {
+    res = await fetch('/api/articles', { method: 'POST', headers: {'Content-Type': 'application/json'}, body: JSON.stringify(payload) });
+  }
+  const data = await res.json();
+
+  const msg = document.getElementById('savedMsg');
+  msg.textContent = status === 'published' ? '公開しました' : '下書きを保存しました';
+  msg.style.display = 'block';
+  setTimeout(() => msg.style.display = 'none', 2500);
+
+  if (!articleId && data.id) {
+    history.replaceState(null, '', '/admin/edit/' + data.id);
+  }
+}
+
+function openPreview() {
+  const slug = document.getElementById('slug').value || 'preview';
+  window.open('/article/' + slug, '_blank');
+}
+
+document.getElementById('title').addEventListener('input', function() {
+  if (!articleId && !document.getElementById('slug').value) {
+    // auto-slug on new articles only
+  }
+});
+</script>
+</body>
+</html>

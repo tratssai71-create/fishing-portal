@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ログイン | TSURI PRESS CMS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#111;display:flex;align-items:center;justify-content:center;min-height:100vh;color:#fff}
+.login-box{background:#1a1a1a;border:1px solid #333;border-radius:8px;padding:48px 40px;width:380px;text-align:center}
+.login-logo{font-family:'Inter',sans-serif;font-size:1.8rem;font-weight:900;margin-bottom:8px;letter-spacing:.05em}
+.login-logo span{color:#c8102e}
+.login-sub{font-size:.75rem;color:#666;margin-bottom:32px}
+.login-box label{display:block;text-align:left;font-size:.78rem;font-weight:600;color:#999;margin-bottom:6px}
+.login-box input[type="text"],.login-box input[type="password"]{width:100%;padding:12px 14px;border:1px solid #333;border-radius:4px;background:#111;color:#fff;font-size:.9rem;margin-bottom:18px;outline:none;font-family:inherit}
+.login-box input:focus{border-color:#c8102e}
+.login-btn{width:100%;padding:14px;background:#c8102e;color:#fff;border:none;border-radius:4px;font-size:.9rem;font-weight:700;cursor:pointer;transition:background .15s}
+.login-btn:hover{background:#a80d24}
+.error{color:#c8102e;font-size:.78rem;margin-bottom:14px}
+</style>
+</head>
+<body>
+<div class="login-box">
+  <div class="login-logo">TSURI<span>PRESS</span></div>
+  <p class="login-sub">Content Management System</p>
+  <div id="error" class="error" style="display:none">ユーザー名またはパスワードが正しくありません</div>
+  <form method="POST" action="/admin/login">
+    <label>ユーザー名</label>
+    <input type="text" name="username" required autofocus>
+    <label>パスワード</label>
+    <input type="password" name="password" required>
+    <button type="submit" class="login-btn">ログイン</button>
+  </form>
+</div>
+<script>if(location.search.includes('error'))document.getElementById('error').style.display='block'</script>
+</body>
+</html>

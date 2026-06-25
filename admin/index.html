@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>記事管理 | TSURI PRESS CMS</title>
+<style>
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Noto Sans JP',sans-serif;background:#f5f5f5;color:#111}
+.admin-header{background:#111;color:#fff;display:flex;align-items:center;justify-content:space-between;padding:0 24px;height:56px;position:sticky;top:0;z-index:10}
+.admin-logo{font-family:'Inter',sans-serif;font-weight:900;font-size:1.1rem;letter-spacing:.04em}
+.admin-logo span{color:#c8102e}
+.admin-logo small{font-weight:400;font-size:.7rem;color:#666;margin-left:10px;letter-spacing:0}
+.admin-nav{display:flex;align-items:center;gap:16px}
+.admin-nav a{color:#999;font-size:.78rem;font-weight:500;text-decoration:none;transition:color .15s}
+.admin-nav a:hover{color:#fff}
+.admin-nav .logout{color:#c8102e}
+.wrap{max-width:1000px;margin:0 auto;padding:28px 20px}
+.top-bar{display:flex;align-items:center;justify-content:space-between;margin-bottom:24px}
+.top-bar h1{font-size:1.2rem;font-weight:800}
+.btn-new{display:inline-block;background:#c8102e;color:#fff;font-weight:700;font-size:.85rem;padding:10px 24px;border-radius:4px;text-decoration:none;transition:background .15s}
+.btn-new:hover{background:#a80d24}
+.stats{display:flex;gap:12px;margin-bottom:24px}
+.stat-card{flex:1;background:#fff;border:1px solid #e5e5e5;border-radius:6px;padding:16px 20px;text-align:center}
+.stat-num{font-family:'Inter',sans-serif;font-size:1.8rem;font-weight:900;color:#111}
+.stat-label{font-size:.72rem;color:#999;margin-top:2px}
+.filter-bar{display:flex;gap:8px;margin-bottom:16px}
+.filter-btn{padding:6px 14px;border:1px solid #e5e5e5;border-radius:3px;font-size:.75rem;font-weight:600;background:#fff;color:#666;cursor:pointer;transition:all .15s}
+.filter-btn.active,.filter-btn:hover{background:#111;color:#fff;border-color:#111}
+.article-table{width:100%;border-collapse:collapse;background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden}
+.article-table th{background:#fafafa;font-size:.72rem;font-weight:700;color:#999;text-align:left;padding:10px 14px;border-bottom:1px solid #e5e5e5}
+.article-table td{padding:12px 14px;border-bottom:1px solid #f0f0f0;font-size:.85rem;vertical-align:middle}
+.article-table tr:last-child td{border-bottom:none}
+.article-table tr:hover{background:#fafafa}
+.td-thumb{width:60px}
+.td-thumb img{width:56px;height:38px;object-fit:cover;border-radius:3px;background:#eee}
+.td-title a{color:#111;text-decoration:none;font-weight:600}
+.td-title a:hover{color:#c8102e}
+.td-status{width:70px}
+.status{display:inline-block;font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:2px}
+.status-published{background:#e8f5e9;color:#2e7d32}
+.status-draft{background:#fff3e0;color:#e65100}
+.td-date{font-size:.75rem;color:#999;width:100px}
+.td-actions{width:100px}
+.td-actions a{font-size:.75rem;color:#999;text-decoration:none;margin-right:10px}
+.td-actions a:hover{color:#c8102e}
+.td-actions .del{color:#c8102e}
+.empty{text-align:center;padding:48px;color:#999;font-size:.9rem}
+</style>
+</head>
+<body>
+<div class="admin-header">
+  <div class="admin-logo">TSURI<span>PRESS</span> <small>CMS</small></div>
+  <div class="admin-nav">
+    <a href="/">サイトを見る</a>
+    <a href="/admin">記事管理</a>
+    <a href="/admin/logout" class="logout">ログアウト</a>
+  </div>
+</div>
+
+<div class="wrap">
+  <div class="top-bar">
+    <h1>記事管理</h1>
+    <a href="/admin/new" class="btn-new">+ 新しい記事を書く</a>
+  </div>
+
+  <div class="stats">
+    <div class="stat-card"><div class="stat-num" id="totalCount">-</div><div class="stat-label">総記事数</div></div>
+    <div class="stat-card"><div class="stat-num" id="publishedCount">-</div><div class="stat-label">公開中</div></div>
+    <div class="stat-card"><div class="stat-num" id="draftCount">-</div><div class="stat-label">下書き</div></div>
+  </div>
+
+  <div class="filter-bar">
+    <button class="filter-btn active" data-filter="all">すべて</button>
+    <button class="filter-btn" data-filter="published">公開中</button>
+    <button class="filter-btn" data-filter="draft">下書き</button>
+  </div>
+
+  <table class="article-table">
+    <thead>
+      <tr>
+        <th class="td-thumb"></th>
+        <th>タイトル</th>
+        <th>カテゴリ</th>
+        <th>ステータス</th>
+        <th>作成日</th>
+        <th>操作</th>
+      </tr>
+    </thead>
+    <tbody id="articleList">
+      <tr><td colspan="6" class="empty">読み込み中...</td></tr>
+    </tbody>
+  </table>
+</div>
+
+<script>
+const CATEGORIES = {bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
+let allArticles = [];
+let currentFilter = 'all';
+
+async function loadArticles() {
+  const res = await fetch('/api/articles');
+  allArticles = await res.json();
+  document.getElementById('totalCount').textContent = allArticles.length;
+  document.getElementById('publishedCount').textContent = allArticles.filter(a => a.status === 'published').length;
+  document.getElementById('draftCount').textContent = allArticles.filter(a => a.status === 'draft').length;
+  renderList();
+}
+
+function renderList() {
+  const list = currentFilter === 'all' ? allArticles : allArticles.filter(a => a.status === currentFilter);
+  const tbody = document.getElementById('articleList');
+  if (!list.length) {
+    tbody.innerHTML = '<tr><td colspan="6" class="empty">記事がありません。「+ 新しい記事を書く」から作成してください。</td></tr>';
+    return;
+  }
+  tbody.innerHTML = list.map(a => `<tr>
+    <td class="td-thumb">${a.thumbnail ? '<img src="'+a.thumbnail+'" alt="">' : '<div style="width:56px;height:38px;background:#eee;border-radius:3px"></div>'}</td>
+    <td class="td-title"><a href="/admin/edit/${a.id}">${a.title}</a></td>
+    <td>${CATEGORIES[a.category] || a.category}</td>
+    <td class="td-status"><span class="status status-${a.status}">${a.status === 'published' ? '公開中' : '下書き'}</span></td>
+    <td class="td-date">${a.created_at ? a.created_at.slice(0,10) : ''}</td>
+    <td class="td-actions"><a href="/admin/edit/${a.id}">編集</a><a href="#" class="del" onclick="deleteArticle(${a.id});return false">削除</a></td>
+  </tr>`).join('');
+}
+
+async function deleteArticle(id) {
+  if (!confirm('この記事を削除しますか？')) return;
+  await fetch('/api/articles/' + id, { method: 'DELETE' });
+  loadArticles();
+}
+
+document.querySelectorAll('.filter-btn').forEach(btn => {
+  btn.addEventListener('click', () => {
+    document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    currentFilter = btn.dataset.filter;
+    renderList();
+  });
+});
+
+loadArticles();
+</script>
+</body>
+</html>
