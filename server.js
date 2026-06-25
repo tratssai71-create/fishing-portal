@@ -6,14 +6,16 @@ const fs = require('fs');
 const initSqlJs = require('sql.js');
 
 const app = express();
-const PORT = 3000;
+const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 app.use(session({ secret: 'tsuri-press-2026', resave: false, saveUninitialized: false }));
 
+const uploadsDir = process.env.NODE_ENV === 'production' ? path.join(__dirname, 'data', 'uploads') : path.join(__dirname, 'uploads');
+if (!fs.existsSync(uploadsDir)) fs.mkdirSync(uploadsDir, { recursive: true });
 const storage = multer.diskStorage({
-  destination: (req, file, cb) => cb(null, 'uploads/'),
+  destination: (req, file, cb) => cb(null, uploadsDir),
   filename: (req, file, cb) => cb(null, Date.now() + '-' + file.originalname)
 });
 const upload = multer({ storage, limits: { fileSize: 10 * 1024 * 1024 } });
@@ -22,7 +24,9 @@ app.use('/uploads', express.static('uploads'));
 app.use(express.static('.'));
 
 let db;
-const DB_PATH = path.join(__dirname, 'data.db');
+const dataDir = process.env.NODE_ENV === 'production' ? path.join(__dirname, 'data') : __dirname;
+if (!fs.existsSync(dataDir)) fs.mkdirSync(dataDir, { recursive: true });
+const DB_PATH = path.join(dataDir, 'data.db');
 
 async function initDB() {
   const SQL = await initSqlJs();
