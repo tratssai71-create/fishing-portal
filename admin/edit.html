@@ -60,6 +60,18 @@ textarea{resize:vertical;min-height:120px}
 .btn-back{display:inline-block;color:#999;font-size:.78rem;text-decoration:none;margin-bottom:16px}
 .btn-back:hover{color:#111}
 
+/* Image gallery */
+.img-gallery{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
+.img-gallery-item{display:flex;align-items:center;gap:8px;background:#fafafa;border:1px solid #e5e5e5;border-radius:4px;padding:6px;cursor:grab;transition:border-color .15s}
+.img-gallery-item:hover{border-color:#c8102e}
+.img-gallery-item.dragging{opacity:.4;border-style:dashed}
+.img-gallery-item img{width:64px;height:48px;object-fit:cover;border-radius:3px;flex-shrink:0}
+.img-gallery-item .img-num{font-family:'Inter',sans-serif;font-size:.7rem;font-weight:900;color:#999;min-width:18px;text-align:center}
+.img-gallery-item .img-caption{flex:1;border:none;background:transparent;font-size:.75rem;font-family:inherit;outline:none;padding:4px;color:#333}
+.img-gallery-item .img-caption::placeholder{color:#ccc}
+.img-gallery-item .img-del{background:none;border:none;color:#ccc;font-size:1.1rem;cursor:pointer;padding:0 4px;line-height:1}
+.img-gallery-item .img-del:hover{color:#c8102e}
+
 .slug-row{display:flex;gap:8px;align-items:center}
 .slug-prefix{font-size:.78rem;color:#999;white-space:nowrap}
 .slug-input{flex:1}
@@ -120,6 +132,15 @@ textarea{resize:vertical;min-height:120px}
           <button class="btn btn-publish" onclick="saveArticle('published')">公開する</button>
           <button class="btn btn-draft" onclick="saveArticle('draft')">下書き保存</button>
         </div>
+      </div>
+
+      <div class="card">
+        <h3>記事内画像（最大10枚）</h3>
+        <p style="font-size:.72rem;color:#999;margin-bottom:10px">画像を追加すると本文の末尾に挿入されます。ドラッグで順序変更可。</p>
+        <div id="imageGallery" class="img-gallery"></div>
+        <div id="imgCount" style="font-size:.7rem;color:#999;margin:6px 0">0 / 10 枚</div>
+        <button class="btn btn-preview" onclick="addArticleImage()" id="addImgBtn" style="width:100%;margin-bottom:4px">+ 画像を追加</button>
+        <input type="file" id="galleryFile" class="file-input" accept="image/*" multiple>
       </div>
 
       <div class="card">
@@ -232,6 +253,89 @@ function toggleSource() {
     editor.contentEditable = 'true';
     isSourceMode = true;
   }
+}
+
+// ===== 記事内画像ギャラリー（最大10枚） =====
+let galleryImages = [];
+const MAX_IMAGES = 10;
+
+function addArticleImage() {
+  if (galleryImages.length >= MAX_IMAGES) { alert('画像は最大10枚までです'); return; }
+  document.getElementById('galleryFile').click();
+}
+
+document.getElementById('galleryFile').addEventListener('change', async function() {
+  const files = Array.from(this.files).slice(0, MAX_IMAGES - galleryImages.length);
+  for (const file of files) {
+    const fd = new FormData();
+    fd.append('image', file);
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const data = await res.json();
+    if (data.url) {
+      galleryImages.push({ url: data.url, caption: '' });
+      insertImageToEditor(data.url);
+    }
+  }
+  renderGallery();
+  this.value = '';
+});
+
+function insertImageToEditor(url) {
+  const img = `<figure style="margin:16px 0"><img src="${url}" alt="" style="max-width:100%;border-radius:4px"><figcaption style="font-size:.75rem;color:#999;margin-top:4px;text-align:center"></figcaption></figure>`;
+  editor.focus();
+  document.execCommand('insertHTML', false, img);
+}
+
+function renderGallery() {
+  const container = document.getElementById('imageGallery');
+  document.getElementById('imgCount').textContent = galleryImages.length + ' / ' + MAX_IMAGES + ' 枚';
+  if (galleryImages.length >= MAX_IMAGES) {
+    document.getElementById('addImgBtn').style.display = 'none';
+  } else {
+    document.getElementById('addImgBtn').style.display = 'block';
+  }
+  container.innerHTML = galleryImages.map((img, i) => `
+    <div class="img-gallery-item" draggable="true" data-idx="${i}">
+      <span class="img-num">${i + 1}</span>
+      <img src="${img.url}" alt="">
+      <input class="img-caption" type="text" placeholder="キャプション（任意）" value="${img.caption || ''}" onchange="galleryImages[${i}].caption=this.value">
+      <button class="img-del" onclick="removeGalleryImage(${i})" title="削除">&times;</button>
+    </div>
+  `).join('');
+  initDragSort();
+}
+
+function removeGalleryImage(idx) {
+  const url = galleryImages[idx].url;
+  galleryImages.splice(idx, 1);
+  renderGallery();
+  const imgs = editor.querySelectorAll('img[src="' + url + '"]');
+  imgs.forEach(el => {
+    const fig = el.closest('figure');
+    if (fig) fig.remove(); else el.remove();
+  });
+}
+
+function initDragSort() {
+  const items = document.querySelectorAll('.img-gallery-item');
+  let dragIdx = null;
+  items.forEach(item => {
+    item.addEventListener('dragstart', e => {
+      dragIdx = parseInt(item.dataset.idx);
+      item.classList.add('dragging');
+      e.dataTransfer.effectAllowed = 'move';
+    });
+    item.addEventListener('dragend', () => item.classList.remove('dragging'));
+    item.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'move'; });
+    item.addEventListener('drop', e => {
+      e.preventDefault();
+      const dropIdx = parseInt(item.dataset.idx);
+      if (dragIdx === null || dragIdx === dropIdx) return;
+      const moved = galleryImages.splice(dragIdx, 1)[0];
+      galleryImages.splice(dropIdx, 0, moved);
+      renderGallery();
+    });
+  });
 }
 
 document.getElementById('thumbFile').addEventListener('change', async function() {
