@@ -62,15 +62,22 @@ textarea{resize:vertical;min-height:120px}
 
 /* Drop overlay */
 .editor-wrap{position:relative}
-.drop-overlay{display:none;position:absolute;inset:0;background:rgba(200,16,46,.08);border:3px dashed #c8102e;border-radius:4px;z-index:20;align-items:center;justify-content:center}
-.drop-overlay.active{display:flex}
-.drop-overlay-inner{text-align:center;pointer-events:none}
-.drop-icon{font-size:3rem;color:#c8102e;margin-bottom:8px;line-height:1}
-.drop-overlay-inner p{font-size:1rem;font-weight:700;color:#c8102e}
+.drop-overlay{display:none;position:absolute;inset:0;background:rgba(200,16,46,.05);border:3px dashed #c8102e;border-radius:4px;z-index:20;pointer-events:none}
+.drop-overlay.active{display:block}
 .uploading-indicator{position:fixed;bottom:24px;right:24px;background:#111;color:#fff;padding:12px 24px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:200;display:none;align-items:center;gap:8px}
 .uploading-indicator.show{display:flex}
 .spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
 @keyframes spin{to{transform:rotate(360deg)}}
+/* Drop insert line */
+.drop-insert-line{height:3px;background:#c8102e;border-radius:2px;margin:4px 0;pointer-events:none;animation:pulse .8s ease-in-out infinite alternate}
+@keyframes pulse{from{opacity:.5}to{opacity:1}}
+.editor-area .img-block{position:relative;margin:16px 0;border-radius:6px;overflow:hidden;background:#f5f5f5;border:1px solid #e5e5e5;transition:border-color .15s}
+.editor-area .img-block:hover{border-color:#c8102e}
+.editor-area .img-block img{width:100%;display:block;cursor:default}
+.editor-area .img-block .img-block-caption{display:block;width:100%;border:none;border-top:1px solid #e5e5e5;padding:8px 12px;font-size:.8rem;color:#666;background:#fafafa;outline:none;font-family:inherit}
+.editor-area .img-block .img-block-caption::placeholder{color:#ccc}
+.editor-area .img-block .img-block-del{position:absolute;top:8px;right:8px;width:28px;height:28px;background:rgba(0,0,0,.6);color:#fff;border:none;border-radius:50%;font-size:1rem;cursor:pointer;display:none;align-items:center;justify-content:center;line-height:1}
+.editor-area .img-block:hover .img-block-del{display:flex}
 
 /* Image gallery */
 .img-gallery{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
@@ -253,24 +260,70 @@ async function handleDroppedFiles(files) {
   }
 }
 
-// Editor drag events
+// ===== Drag & Drop with insert line =====
+let insertLine = null;
+let dropTarget = null;
+
+function getDropTarget(y) {
+  const children = Array.from(editor.children);
+  for (const child of children) {
+    const rect = child.getBoundingClientRect();
+    if (y < rect.top + rect.height / 2) return { el: child, pos: 'before' };
+  }
+  return { el: null, pos: 'after' };
+}
+
+function showInsertLine(target) {
+  if (!insertLine) { insertLine = document.createElement('div'); insertLine.className = 'drop-insert-line'; }
+  insertLine.remove();
+  if (target.el) {
+    target.el.parentNode.insertBefore(insertLine, target.el);
+  } else {
+    editor.appendChild(insertLine);
+  }
+}
+
+function removeInsertLine() { if (insertLine) insertLine.remove(); }
+
 editorWrap.addEventListener('dragenter', e => {
-  e.preventDefault();
-  dragCounter++;
+  e.preventDefault(); dragCounter++;
   if (e.dataTransfer.types.includes('Files')) dropOverlay.classList.add('active');
 });
 editorWrap.addEventListener('dragleave', e => {
-  e.preventDefault();
-  dragCounter--;
-  if (dragCounter <= 0) { dragCounter = 0; dropOverlay.classList.remove('active'); }
+  e.preventDefault(); dragCounter--;
+  if (dragCounter <= 0) { dragCounter = 0; dropOverlay.classList.remove('active'); removeInsertLine(); }
 });
-editorWrap.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+editorWrap.addEventListener('dragover', e => {
+  e.preventDefault(); e.dataTransfer.dropEffect = 'copy';
+  if (e.dataTransfer.types.includes('Files')) {
+    dropTarget = getDropTarget(e.clientY);
+    showInsertLine(dropTarget);
+  }
+});
 editorWrap.addEventListener('drop', async e => {
-  e.preventDefault();
-  dragCounter = 0;
+  e.preventDefault(); dragCounter = 0;
   dropOverlay.classList.remove('active');
+  removeInsertLine();
   const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
-  if (files.length) await handleDroppedFiles(files);
+  if (!files.length) return;
+  const target = getDropTarget(e.clientY);
+  for (const file of files) {
+    if (galleryImages.length >= MAX_IMAGES) { alert('画像は最大10枚までです'); break; }
+    const url = await uploadFile(file);
+    if (url) {
+      galleryImages.push({ url, caption: '' });
+      const block = createImageBlock(url);
+      const p = document.createElement('p'); p.innerHTML = '<br>';
+      if (target.el) {
+        target.el.parentNode.insertBefore(p, target.el);
+        target.el.parentNode.insertBefore(block, p);
+      } else {
+        editor.appendChild(block);
+        editor.appendChild(p);
+      }
+      renderGallery();
+    }
+  }
 });
 
 // Also handle paste images
@@ -373,11 +426,43 @@ document.getElementById('galleryFile').addEventListener('change', async function
   this.value = '';
 });
 
-function insertImageToEditor(url) {
-  const img = `<figure style="margin:16px 0"><img src="${url}" alt="" style="max-width:100%;border-radius:4px"><figcaption style="font-size:.75rem;color:#999;margin-top:4px;text-align:center"></figcaption></figure>`;
-  editor.focus();
-  document.execCommand('insertHTML', false, img);
+function createImageBlock(url) {
+  const block = document.createElement('div');
+  block.className = 'img-block';
+  block.contentEditable = 'false';
+  block.innerHTML = `<img src="${url}" alt=""><input class="img-block-caption" type="text" placeholder="キャプションを入力（任意）"><button class="img-block-del" onclick="this.parentElement.nextElementSibling||this.parentElement.parentElement.appendChild(document.createElement('p'));this.parentElement.remove()">&times;</button>`;
+  return block;
 }
+
+function insertImageAtCursor(url) {
+  const sel = window.getSelection();
+  if (!sel.rangeCount || !editor.contains(sel.anchorNode)) {
+    editor.appendChild(createImageBlock(url));
+    const p = document.createElement('p');
+    p.innerHTML = '<br>';
+    editor.appendChild(p);
+    return;
+  }
+  const range = sel.getRangeAt(0);
+  let target = range.startContainer;
+  while (target && target !== editor && target.parentNode !== editor) target = target.parentNode;
+  if (!target || target === editor) {
+    editor.appendChild(createImageBlock(url));
+  } else {
+    const block = createImageBlock(url);
+    target.parentNode.insertBefore(block, target.nextSibling);
+    const p = document.createElement('p');
+    p.innerHTML = '<br>';
+    block.parentNode.insertBefore(p, block.nextSibling);
+    const newRange = document.createRange();
+    newRange.setStart(p, 0);
+    newRange.collapse(true);
+    sel.removeAllRanges();
+    sel.addRange(newRange);
+  }
+}
+
+function insertImageToEditor(url) { insertImageAtCursor(url); }
 
 function renderGallery() {
   const container = document.getElementById('imageGallery');
