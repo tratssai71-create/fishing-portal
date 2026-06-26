@@ -60,6 +60,18 @@ textarea{resize:vertical;min-height:120px}
 .btn-back{display:inline-block;color:#999;font-size:.78rem;text-decoration:none;margin-bottom:16px}
 .btn-back:hover{color:#111}
 
+/* Drop overlay */
+.editor-wrap{position:relative}
+.drop-overlay{display:none;position:absolute;inset:0;background:rgba(200,16,46,.08);border:3px dashed #c8102e;border-radius:4px;z-index:20;align-items:center;justify-content:center}
+.drop-overlay.active{display:flex}
+.drop-overlay-inner{text-align:center;pointer-events:none}
+.drop-icon{font-size:3rem;color:#c8102e;margin-bottom:8px;line-height:1}
+.drop-overlay-inner p{font-size:1rem;font-weight:700;color:#c8102e}
+.uploading-indicator{position:fixed;bottom:24px;right:24px;background:#111;color:#fff;padding:12px 24px;border-radius:6px;font-size:.85rem;font-weight:600;z-index:200;display:none;align-items:center;gap:8px}
+.uploading-indicator.show{display:flex}
+.spinner{width:16px;height:16px;border:2px solid rgba(255,255,255,.3);border-top-color:#fff;border-radius:50%;animation:spin .6s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
 /* Image gallery */
 .img-gallery{display:flex;flex-direction:column;gap:6px;margin-bottom:6px}
 .img-gallery-item{display:flex;align-items:center;gap:8px;background:#fafafa;border:1px solid #e5e5e5;border-radius:4px;padding:6px;cursor:grab;transition:border-color .15s}
@@ -119,8 +131,16 @@ textarea{resize:vertical;min-height:120px}
           <div class="sep"></div>
           <button onclick="toggleSource()" title="HTMLソース">HTML</button>
         </div>
-        <div class="editor-area" id="editor" contenteditable="true">
-          <p>ここに記事本文を入力してください...</p>
+        <div class="editor-wrap" id="editorWrap">
+          <div class="editor-area" id="editor" contenteditable="true">
+            <p>ここに記事本文を入力してください...</p>
+          </div>
+          <div class="drop-overlay" id="dropOverlay">
+            <div class="drop-overlay-inner">
+              <div class="drop-icon">&#8681;</div>
+              <p>画像をここにドロップ</p>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -195,11 +215,84 @@ textarea{resize:vertical;min-height:120px}
 </div>
 
 <div class="saved-msg" id="savedMsg">保存しました</div>
+<div class="uploading-indicator" id="uploadingMsg"><div class="spinner"></div>画像をアップロード中...</div>
 
 <script>
 const articleId = location.pathname.match(/\/admin\/edit\/(\d+)/)?.[1];
 const editor = document.getElementById('editor');
+const editorWrap = document.getElementById('editorWrap');
+const dropOverlay = document.getElementById('dropOverlay');
+const uploadingMsg = document.getElementById('uploadingMsg');
 let isSourceMode = false;
+let dragCounter = 0;
+
+// ===== Drag & Drop on editor =====
+async function uploadFile(file) {
+  if (!file.type.startsWith('image/')) return null;
+  uploadingMsg.classList.add('show');
+  const fd = new FormData();
+  fd.append('image', file);
+  try {
+    const res = await fetch('/api/upload', { method: 'POST', body: fd });
+    const data = await res.json();
+    return data.url || null;
+  } catch(e) { return null; }
+  finally { uploadingMsg.classList.remove('show'); }
+}
+
+async function handleDroppedFiles(files) {
+  for (const file of files) {
+    if (!file.type.startsWith('image/')) continue;
+    if (galleryImages.length >= MAX_IMAGES) { alert('画像は最大10枚までです'); break; }
+    const url = await uploadFile(file);
+    if (url) {
+      galleryImages.push({ url, caption: '' });
+      insertImageToEditor(url);
+      renderGallery();
+    }
+  }
+}
+
+// Editor drag events
+editorWrap.addEventListener('dragenter', e => {
+  e.preventDefault();
+  dragCounter++;
+  if (e.dataTransfer.types.includes('Files')) dropOverlay.classList.add('active');
+});
+editorWrap.addEventListener('dragleave', e => {
+  e.preventDefault();
+  dragCounter--;
+  if (dragCounter <= 0) { dragCounter = 0; dropOverlay.classList.remove('active'); }
+});
+editorWrap.addEventListener('dragover', e => { e.preventDefault(); e.dataTransfer.dropEffect = 'copy'; });
+editorWrap.addEventListener('drop', async e => {
+  e.preventDefault();
+  dragCounter = 0;
+  dropOverlay.classList.remove('active');
+  const files = Array.from(e.dataTransfer.files).filter(f => f.type.startsWith('image/'));
+  if (files.length) await handleDroppedFiles(files);
+});
+
+// Also handle paste images
+editor.addEventListener('paste', async e => {
+  const items = Array.from(e.clipboardData.items).filter(i => i.type.startsWith('image/'));
+  if (!items.length) return;
+  e.preventDefault();
+  for (const item of items) {
+    if (galleryImages.length >= MAX_IMAGES) break;
+    const file = item.getAsFile();
+    const url = await uploadFile(file);
+    if (url) {
+      galleryImages.push({ url, caption: '' });
+      insertImageToEditor(url);
+      renderGallery();
+    }
+  }
+});
+
+// Page-level drag (for dropping anywhere on page)
+document.addEventListener('dragenter', e => { if (e.dataTransfer.types.includes('Files')) e.preventDefault(); });
+document.addEventListener('dragover', e => { if (e.dataTransfer.types.includes('Files')) e.preventDefault(); });
 
 if (articleId) {
   fetch('/api/articles/' + articleId).then(r => r.json()).then(a => {
