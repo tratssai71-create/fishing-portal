@@ -148,9 +148,42 @@ app.delete('/api/articles/:id', requireAuth, (req, res) => {
   res.json({ ok: true });
 });
 
-// API: Upload image
-app.post('/api/upload', requireAuth, upload.single('image'), (req, res) => {
+// API: Upload image → GitHub repo
+const GITHUB_TOKEN = process.env.GITHUB_TOKEN || '';
+const GITHUB_REPO = process.env.GITHUB_REPO || 'tratssai71-create/fishing-portal';
+
+app.post('/api/upload', requireAuth, upload.single('image'), async (req, res) => {
   if (!req.file) return res.status(400).json({ error: 'no file' });
+
+  const filePath = req.file.path;
+  const fileData = fs.readFileSync(filePath);
+  const base64 = fileData.toString('base64');
+  const ghPath = 'uploads/' + req.file.filename;
+
+  if (GITHUB_TOKEN) {
+    try {
+      const response = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${ghPath}`, {
+        method: 'PUT',
+        headers: {
+          'Authorization': `token ${GITHUB_TOKEN}`,
+          'Content-Type': 'application/json',
+          'User-Agent': 'tsuri-press-cms'
+        },
+        body: JSON.stringify({
+          message: 'CMS: upload ' + req.file.filename,
+          content: base64
+        })
+      });
+      const data = await response.json();
+      if (data.content && data.content.download_url) {
+        fs.unlinkSync(filePath);
+        res.json({ url: data.content.download_url });
+        return;
+      }
+    } catch (e) {
+      console.error('GitHub upload failed:', e.message);
+    }
+  }
   res.json({ url: '/uploads/' + req.file.filename });
 });
 
