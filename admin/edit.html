@@ -350,9 +350,11 @@ document.getElementById('thumbFile').addEventListener('change', async function()
 });
 
 async function saveArticle(status) {
+  const titleVal = document.getElementById('title').value.trim();
+  if (!titleVal) { alert('タイトルを入力してください'); document.getElementById('title').focus(); return; }
   const body = isSourceMode ? editor.textContent : editor.innerHTML;
   const payload = {
-    title: document.getElementById('title').value,
+    title: titleVal,
     slug: document.getElementById('slug').value || document.getElementById('title').value.replace(/\s+/g, '-').toLowerCase(),
     category: document.getElementById('category').value,
     thumbnail: document.getElementById('thumbnail').value,

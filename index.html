@@ -242,7 +242,7 @@
     let cmsLoaded=false;
     function loadCmsArticles(){
       fetch('/api/articles').then(r=>r.json()).then(articles=>{
-        const published=articles.filter(a=>a.status==='published');
+        const published=articles.filter(a=>a.status==='published'&&a.title);
         if(!published.length){renderFallback();return}
         cmsLoaded=true;
         const container=document.getElementById('cmsArticles');
