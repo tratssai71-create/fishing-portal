@@ -172,6 +172,51 @@
   </div>
 </section>
 
+<!-- ===== CMS最新記事（ヒーロー直下） ===== -->
+<section class="cms-latest" id="cmsLatestSection" style="display:none">
+  <div class="container">
+    <h2 class="sec-title"><span>LATEST</span>最新の投稿記事</h2>
+    <div class="cms-latest-grid" id="cmsLatestGrid"></div>
+  </div>
+</section>
+
+<script>
+(function(){
+  const CAT={bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',offshore:'オフショア',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
+  fetch('/api/articles').then(r=>r.json()).then(articles=>{
+    const pub=articles.filter(a=>a.status==='published'&&a.title);
+    if(!pub.length)return;
+    document.getElementById('cmsLatestSection').style.display='block';
+    document.getElementById('cmsLatestGrid').innerHTML=pub.slice(0,6).map((a,i)=>{
+      const cat=a.category||'bass';
+      const date=a.created_at?a.created_at.slice(0,10).replace(/-/g,'.'):'';
+      const thumb=a.thumbnail||'img/hero-bass1.jpg';
+      if(i===0) return `<article class="cms-card cms-card-main">
+        <a href="/article/${a.slug}">
+          <img src="${thumb}" alt="">
+          <div class="cms-card-overlay">
+            <span class="badge badge-${cat}">${CAT[cat]||cat}</span>
+            <h3>${a.title}</h3>
+            <p>${a.excerpt||''}</p>
+            <time>${date}</time>
+          </div>
+        </a>
+      </article>`;
+      return `<article class="cms-card">
+        <a href="/article/${a.slug}">
+          <img src="${thumb}" alt="">
+          <div class="cms-card-body">
+            <span class="badge badge-${cat}">${CAT[cat]||cat}</span>
+            <h3>${a.title}</h3>
+            <time>${date}</time>
+          </div>
+        </a>
+      </article>`;
+    }).join('');
+  }).catch(()=>{});
+})();
+</script>
+
 <!-- ===== PICKUP SLIDER ===== -->
 <section class="pickup-section">
   <div class="container">
