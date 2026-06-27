@@ -37,7 +37,12 @@ async function initDB() {
     const buf = fs.readFileSync(DB_PATH);
     db = new SQL.Database(buf);
   } else {
-    db = new SQL.Database();
+    const ghDb = await loadDBFromGitHub(SQL);
+    if (ghDb) {
+      db = ghDb;
+    } else {
+      db = new SQL.Database();
+    }
   }
 
   db.run(`CREATE TABLE IF NOT EXISTS articles (
@@ -67,9 +72,39 @@ async function initDB() {
   saveDB();
 }
 
-function saveDB() {
+function saveDB(syncToGitHub = false) {
   const data = db.export();
   fs.writeFileSync(DB_PATH, Buffer.from(data));
+  if (syncToGitHub && GITHUB_TOKEN) saveDBToGitHub(data);
+}
+
+async function saveDBToGitHub(data) {
+  try {
+    const ghPath = 'data/data.db';
+    let sha = '';
+    const existing = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${ghPath}`, {
+      headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'User-Agent': 'tsuri-press-cms' }
+    });
+    if (existing.ok) { const j = await existing.json(); sha = j.sha || ''; }
+    await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/${ghPath}`, {
+      method: 'PUT',
+      headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Content-Type': 'application/json', 'User-Agent': 'tsuri-press-cms' },
+      body: JSON.stringify({ message: 'CMS: auto-save DB', content: Buffer.from(data).toString('base64'), sha })
+    });
+  } catch (e) { console.error('DB GitHub save failed:', e.message); }
+}
+
+async function loadDBFromGitHub(SQL) {
+  if (!GITHUB_TOKEN) return null;
+  try {
+    const res = await fetch(`https://api.github.com/repos/${GITHUB_REPO}/contents/data/data.db`, {
+      headers: { 'Authorization': `token ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github.v3.raw', 'User-Agent': 'tsuri-press-cms' }
+    });
+    if (!res.ok) return null;
+    const buf = Buffer.from(await res.arrayBuffer());
+    console.log('Loaded DB from GitHub (' + buf.length + ' bytes)');
+    return new SQL.Database(buf);
+  } catch (e) { console.error('DB GitHub load failed:', e.message); return null; }
 }
 
 function requireAuth(req, res, next) {
@@ -124,7 +159,7 @@ app.post('/api/articles', requireAuth, (req, res) => {
   try {
     db.run("INSERT INTO articles (title, slug, category, thumbnail, excerpt, body, author, status) VALUES (?,?,?,?,?,?,?,?)",
       [title, s, category || 'bass', thumbnail || '', excerpt || '', body || '', author || 'TSURI PRESS編集部', status || 'draft']);
-    saveDB();
+    saveDB(true);
     const id = db.exec("SELECT last_insert_rowid()")[0].values[0][0];
     res.json({ id, slug: s });
   } catch (e) {
@@ -137,14 +172,14 @@ app.put('/api/articles/:id', requireAuth, (req, res) => {
   const { title, slug, category, thumbnail, excerpt, body, author, status } = req.body;
   db.run("UPDATE articles SET title=?, slug=?, category=?, thumbnail=?, excerpt=?, body=?, author=?, status=?, updated_at=datetime('now','localtime') WHERE id=?",
     [title, slug, category, thumbnail, excerpt, body, author, status, req.params.id]);
-  saveDB();
+  saveDB(true);
   res.json({ ok: true });
 });
 
 // API: Delete article
 app.delete('/api/articles/:id', requireAuth, (req, res) => {
   db.run("DELETE FROM articles WHERE id = ?", [req.params.id]);
-  saveDB();
+  saveDB(true);
   res.json({ ok: true });
 });
 
