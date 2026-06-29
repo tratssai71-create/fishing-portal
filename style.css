@@ -190,10 +190,10 @@ button{cursor:pointer;border:none;background:none;font-family:var(--ff)}
 /* ============================================================
    PICKUP
    ============================================================ */
-.pickup-section{padding:32px 0;background:var(--white);border-bottom:1px solid var(--border)}
-.pickup-track{display:flex;gap:16px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:var(--pale) transparent}
-.pickup-track::-webkit-scrollbar{height:4px}
-.pickup-track::-webkit-scrollbar-thumb{background:var(--pale);border-radius:3px}
+.pickup-section{padding:24px 0;background:var(--white);border-bottom:1px solid var(--border);overflow:hidden}
+.pickup-track{display:flex;gap:12px;width:max-content;animation:marquee 30s linear infinite}
+.pickup-track:hover{animation-play-state:paused}
+@keyframes marquee{0%{transform:translateX(0)}100%{transform:translateX(-50%)}}
 .pickup-card{flex:0 0 190px}
 .pickup-card a{display:block;border-radius:var(--radius);overflow:hidden;background:var(--white);border:1px solid var(--border);transition:border-color .15s}
 .pickup-card a:hover{border-color:var(--black)}

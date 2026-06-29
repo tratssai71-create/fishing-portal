@@ -228,9 +228,63 @@
           </div>
         </a>
       </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="img/offshore1.jpg" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-offshore">オフショア</span>
+            <p>玄界灘ジギング釣行レポ。80kgオーバーのキハダをキャッチ</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="img/boat1.jpg" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-seabass">シーバス</span>
+            <p>バチ抜け後のシーバス攻略。6月に効くルアー5選</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="img/bass-catch2.jpg" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-bass">バス釣り</span>
+            <p>ネコリグの全て。リグり方からワーム選びまで徹底解説</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="img/tackle-box1.jpg" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-tackle">タックル</span>
+            <p>5000番リールのススメ。ショアジギからサーフまで万能</p>
+          </div>
+        </a>
+      </article>
+      <article class="pickup-card">
+        <a href="#">
+          <img src="img/fishing-scene1.jpg" alt="">
+          <div class="pickup-body">
+            <span class="badge badge-trout">トラウト</span>
+            <p>管釣りスプーンの色選び。光量だけで決めるシンプルな法則</p>
+          </div>
+        </a>
+      </article>
     </div>
   </div>
 </section>
+<script>
+// 無限カルーセル: カードを複製してループさせる
+(function(){
+  const track=document.querySelector('.pickup-track');
+  if(!track)return;
+  const clone=track.innerHTML;
+  track.innerHTML+=clone;
+})();
+</script>
 
 <!-- ===== MAIN + SIDEBAR ===== -->
 <div class="content-wrap container">
