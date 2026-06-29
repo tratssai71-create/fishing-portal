@@ -11,21 +11,81 @@
 </head>
 <body>
 
-<!-- ===== FV（記事更新待ち） ===== -->
-<section class="fv-waiting">
+<!-- ===== SITE CATCH ===== -->
+<section class="site-catch">
   <div class="container">
-    <p class="fv-label">TSURI PRESS</p>
-    <h1 class="fv-title">記事更新待ち</h1>
-    <p class="fv-sub">CMSから記事を公開すると、ここに最新記事が表示されます</p>
+    <p class="catch-sub">JAPAN'S LARGEST FISHING MEDIA</p>
+    <h1 class="catch-main">釣りのすべてが、ここにある。</h1>
+    <p class="catch-desc">バス釣り・シーバス・エギング・ジギング・トラウト ── 全ジャンルの最新情報・タックルレビュー・釣り場ガイドを毎日更新</p>
+  </div>
+</section>
+
+<!-- ===== CATEGORY NAV ===== -->
+<section class="cat-nav">
+  <div class="container">
+    <div class="cat-nav-grid">
+      <a href="#" class="cat-nav-item">
+        <img src="img/bass-pro2.jpeg" alt="">
+        <div class="cat-nav-label"><span>BASS</span>バス釣り</div>
+      </a>
+      <a href="#" class="cat-nav-item">
+        <img src="img/boat1.jpg" alt="">
+        <div class="cat-nav-label"><span>SEABASS</span>シーバス</div>
+      </a>
+      <a href="#" class="cat-nav-item">
+        <img src="img/lure1.jpg" alt="">
+        <div class="cat-nav-label"><span>EGING</span>エギング</div>
+      </a>
+      <a href="#" class="cat-nav-item">
+        <img src="img/offshore1.jpg" alt="">
+        <div class="cat-nav-label"><span>OFFSHORE</span>ジギング</div>
+      </a>
+      <a href="#" class="cat-nav-item">
+        <img src="img/fly-fishing1.jpg" alt="">
+        <div class="cat-nav-label"><span>TROUT</span>トラウト</div>
+      </a>
+      <a href="#" class="cat-nav-item">
+        <img src="img/rod-reel1.jpg" alt="">
+        <div class="cat-nav-label"><span>TACKLE</span>タックル</div>
+      </a>
+    </div>
   </div>
 </section>
 
 <!-- ===== HERO（CMS連動） ===== -->
-<section class="hero" id="heroSection" style="display:none">
+<section class="hero">
   <div class="container">
     <div class="hero-grid" id="heroGrid">
-      <article class="hero-main" id="heroMain"></article>
-      <div class="hero-side" id="heroSide"></div>
+      <article class="hero-main" id="heroMain">
+        <a href="#"><figure>
+          <img src="img/bass-pro2.jpeg" alt="">
+          <figcaption>
+            <span class="badge badge-bass">記事更新待ち</span>
+            <h2>記事更新待ち</h2>
+            <p>CMSから記事を公開すると、ここに最新記事が表示されます</p>
+          </figcaption>
+        </figure></a>
+      </article>
+      <div class="hero-side" id="heroSide">
+        <article class="hero-side-card">
+          <a href="#">
+            <img src="img/bass-pro4.jpg" alt="">
+            <div class="hero-side-body">
+              <span class="badge badge-bass">記事更新待ち</span>
+              <h3>記事更新待ち</h3>
+            </div>
+          </a>
+        </article>
+        <article class="hero-side-card">
+          <a href="#">
+            <img src="img/bass-pro3.jpg" alt="">
+            <div class="hero-side-body">
+              <span class="badge badge-lure">記事更新待ち</span>
+              <h3>記事更新待ち</h3>
+            </div>
+          </a>
+        </article>
+      </div>
     </div>
   </div>
 </section>
@@ -47,10 +107,6 @@
   fetch('/api/articles').then(r=>r.json()).then(all=>{
     const pub=all.filter(a=>a.status==='published'&&a.title);
     if(!pub.length)return;
-
-    // FV非表示→HERO表示
-    document.querySelector('.fv-waiting').style.display='none';
-    document.getElementById('heroSection').style.display='block';
 
     // HERO: 1記事目=メイン、2-3記事目=サイド
     if(pub[0]){
