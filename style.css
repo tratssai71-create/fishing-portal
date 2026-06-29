@@ -330,15 +330,17 @@ button{cursor:pointer;border:none;background:none;font-family:var(--ff)}
 .rank-tabs-wrap{display:flex;gap:3px;margin-bottom:10px}
 .rtab{font-size:.65rem;font-weight:700;padding:3px 8px;border-radius:2px;border:1px solid var(--border);color:var(--mid);transition:all .15s}
 .rtab.active{background:var(--black);border-color:var(--black);color:#fff}
-.rank-list{display:flex;flex-direction:column;gap:8px}
-.rank-list li{display:flex;align-items:center;gap:6px}
-.rn{font-family:var(--ff-en);font-size:.8rem;font-weight:900;min-width:16px;text-align:center;color:var(--light);flex-shrink:0}
+.rank-list{display:flex;flex-direction:column;gap:12px}
+.rank-list li{display:flex;align-items:center;gap:8px}
+.rn{font-family:var(--ff-en);font-size:1.1rem;font-weight:900;min-width:22px;text-align:center;color:var(--light);flex-shrink:0}
 .rn1{color:var(--accent)}
 .rn2,.rn3{color:var(--mid)}
-.rank-list li a{display:flex;gap:7px;flex:1}
+.rank-list li a{display:flex;gap:10px;flex:1}
 .rank-list li a:hover{opacity:.7}
-.rank-list li a img{width:44px;height:34px;object-fit:cover;border-radius:3px;flex-shrink:0}
-.rank-list li a p{font-size:.7rem;font-weight:600;line-height:1.35}
+.rank-list li a img{width:72px;height:54px;object-fit:cover;border-radius:4px;flex-shrink:0}
+.rank-list li a div{display:flex;flex-direction:column;gap:2px}
+.rank-list li a p{font-size:.82rem;font-weight:600;line-height:1.4}
+.rank-views{font-size:.68rem;color:var(--light)}
 
 .side-cat-list li a{display:flex;justify-content:space-between;padding:6px 2px;border-bottom:1px solid var(--border);font-size:.78rem}
 .side-cat-list li:last-child a{border-bottom:none}

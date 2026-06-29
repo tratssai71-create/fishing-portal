@@ -656,26 +656,43 @@
   <!-- ===== SIDEBAR ===== -->
   <aside class="sidebar">
 
-    <div class="widget">
+    <div class="widget widget-ranking">
       <h3 class="widget-title">アクセスランキング</h3>
       <div class="rank-tabs-wrap">
-        <button class="rtab active">本日</button>
-        <button class="rtab">週間</button>
-        <button class="rtab">月間</button>
+        <button class="rtab active" data-period="today">本日</button>
+        <button class="rtab" data-period="week">週間</button>
+        <button class="rtab" data-period="month">月間</button>
       </div>
-      <ol class="rank-list">
-        <li><span class="rn rn1">1</span><a href="#"><img src="img/hero-bass1.jpg" alt=""><p>ネコリグの全て ── リグり方・ワーム選び・アクション</p></a></li>
-        <li><span class="rn rn2">2</span><a href="#"><img src="img/rod-reel1.jpg" alt=""><p>2026年版 スピニングリール おすすめTOP15</p></a></li>
-        <li><span class="rn rn3">3</span><a href="#"><img src="img/tackle-box1.jpg" alt=""><p>シーバスルアー ── 本当に釣れるミノー12本</p></a></li>
-        <li><span class="rn">4</span><a href="#"><img src="img/lure1.jpg" alt=""><p>エギの選び方 ── 色・サイズの基本</p></a></li>
-        <li><span class="rn">5</span><a href="#"><img src="img/offshore1.jpg" alt=""><p>ジギングタックルの基礎知識まとめ</p></a></li>
-        <li><span class="rn">6</span><a href="#"><img src="img/fishing-rod2.jpg" alt=""><p>シーバスロッド おすすめ10選</p></a></li>
-        <li><span class="rn">7</span><a href="#"><img src="img/bass-catch1.jpg" alt=""><p>琵琶湖バス釣り おかっぱりポイント</p></a></li>
-        <li><span class="rn">8</span><a href="#"><img src="img/fly-fishing1.jpg" alt=""><p>管釣りスプーン カラーの選び方</p></a></li>
-        <li><span class="rn">9</span><a href="#"><img src="img/boat1.jpg" alt=""><p>バチ抜け後のシーバスパターン</p></a></li>
-        <li><span class="rn">10</span><a href="#"><img src="img/hero-bass1.jpg" alt=""><p>フロロカーボンライン おすすめ5選</p></a></li>
+      <ol class="rank-list" id="rankingList">
+        <li style="text-align:center;padding:20px;color:#999;font-size:.82rem">読み込み中...</li>
       </ol>
     </div>
+    <script>
+    (function(){
+      let currentPeriod='today';
+      function loadRanking(period){
+        currentPeriod=period;
+        fetch('/api/ranking?period='+period).then(r=>r.json()).then(list=>{
+          const el=document.getElementById('rankingList');
+          if(!list.length){el.innerHTML='<li style="text-align:center;padding:24px;color:#999;font-size:.82rem">まだデータがありません</li>';return}
+          el.innerHTML=list.map((a,i)=>{
+            const n=i+1;
+            const cls=n===1?'rn1':n===2?'rn2':n===3?'rn3':'';
+            const thumb=a.thumbnail||'img/hero-bass1.jpg';
+            return `<li><span class="rn ${cls}">${n}</span><a href="/article/${a.slug}"><img src="${thumb}" alt=""><div><p>${a.title}</p><span class="rank-views">${a.views} PV</span></div></a></li>`;
+          }).join('');
+        }).catch(()=>{});
+      }
+      document.querySelectorAll('.rtab[data-period]').forEach(btn=>{
+        btn.addEventListener('click',()=>{
+          document.querySelectorAll('.rtab[data-period]').forEach(b=>b.classList.remove('active'));
+          btn.classList.add('active');
+          loadRanking(btn.dataset.period);
+        });
+      });
+      loadRanking('today');
+    })();
+    </script>
 
     <div class="widget">
       <h3 class="widget-title">カテゴリ</h3>

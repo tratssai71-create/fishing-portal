@@ -59,6 +59,12 @@ async function initDB() {
     updated_at TEXT DEFAULT (datetime('now','localtime'))
   )`);
 
+  db.run(`CREATE TABLE IF NOT EXISTS pageviews (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    article_id INTEGER NOT NULL,
+    viewed_at TEXT DEFAULT (datetime('now','localtime'))
+  )`);
+
   db.run(`CREATE TABLE IF NOT EXISTS users (
     id INTEGER PRIMARY KEY AUTOINCREMENT,
     username TEXT UNIQUE NOT NULL,
@@ -181,6 +187,29 @@ app.delete('/api/articles/:id', requireAuth, (req, res) => {
   db.run("DELETE FROM articles WHERE id = ?", [req.params.id]);
   saveDB(true);
   res.json({ ok: true });
+});
+
+// API: Record pageview
+app.post('/api/pageview/:id', (req, res) => {
+  db.run("INSERT INTO pageviews (article_id) VALUES (?)", [req.params.id]);
+  saveDB();
+  res.json({ ok: true });
+});
+
+// API: Ranking (by views)
+app.get('/api/ranking', (req, res) => {
+  const period = req.query.period || 'all';
+  let where = '';
+  if (period === 'today') where = "AND p.viewed_at >= datetime('now','localtime','-1 day')";
+  else if (period === 'week') where = "AND p.viewed_at >= datetime('now','localtime','-7 day')";
+  else if (period === 'month') where = "AND p.viewed_at >= datetime('now','localtime','-30 day')";
+  const rows = db.exec(`SELECT a.id, a.title, a.slug, a.category, a.thumbnail, COUNT(p.id) as views
+    FROM articles a LEFT JOIN pageviews p ON a.id = p.article_id ${where ? where : ''}
+    WHERE a.status = 'published' AND a.title != ''
+    GROUP BY a.id ORDER BY views DESC LIMIT 10`);
+  if (!rows.length) return res.json([]);
+  const cols = rows[0].columns;
+  res.json(rows[0].values.map(r => Object.fromEntries(cols.map((c, i) => [c, r[i]]))));
 });
 
 // API: Upload image → GitHub repo

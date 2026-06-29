@@ -77,6 +77,8 @@ const slug = location.pathname.replace('/article/', '');
 fetch('/api/article-by-slug/' + slug)
   .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
   .then(a => {
+    // PVカウント
+    if(a.id) fetch('/api/pageview/'+a.id, {method:'POST'}).catch(()=>{});
     document.getElementById('pageTitle').textContent = a.title + ' | TSURI PRESS';
     document.getElementById('bcCategory').textContent = CATEGORIES[a.category] || a.category;
     document.getElementById('bcTitle').textContent = a.title;
