@@ -11,61 +11,20 @@
 </head>
 <body>
 
-<!-- ===== SITE CATCH ===== -->
-<section class="site-catch">
+<!-- ===== FV（記事更新待ち） ===== -->
+<section class="fv-waiting">
   <div class="container">
-    <p class="catch-sub">JAPAN'S LARGEST FISHING MEDIA</p>
-    <h1 class="catch-main">釣りのすべてが、ここにある。</h1>
-    <p class="catch-desc">バス釣り・シーバス・エギング・ジギング・トラウト ── 全ジャンルの最新情報・タックルレビュー・釣り場ガイドを毎日更新</p>
-  </div>
-</section>
-
-<!-- ===== CATEGORY NAV ===== -->
-<section class="cat-nav">
-  <div class="container">
-    <div class="cat-nav-grid">
-      <a href="category-bass.html" class="cat-nav-item">
-        <img src="img/bass-pro2.jpeg" alt="">
-        <div class="cat-nav-label"><span>BASS</span>バス釣り</div>
-      </a>
-      <a href="category-seabass.html" class="cat-nav-item">
-        <img src="img/boat1.jpg" alt="">
-        <div class="cat-nav-label"><span>SEABASS</span>シーバス</div>
-      </a>
-      <a href="lure-zukan.html" class="cat-nav-item">
-        <img src="img/lure1.jpg" alt="">
-        <div class="cat-nav-label"><span>EGING</span>エギング</div>
-      </a>
-      <a href="spots.html" class="cat-nav-item">
-        <img src="img/offshore1.jpg" alt="">
-        <div class="cat-nav-label"><span>OFFSHORE</span>ジギング</div>
-      </a>
-      <a href="uozukan.html" class="cat-nav-item">
-        <img src="img/fly-fishing1.jpg" alt="">
-        <div class="cat-nav-label"><span>TROUT</span>トラウト</div>
-      </a>
-      <a href="knot-guide.html" class="cat-nav-item">
-        <img src="img/rod-reel1.jpg" alt="">
-        <div class="cat-nav-label"><span>TACKLE</span>タックル</div>
-      </a>
-    </div>
+    <p class="fv-label">TSURI PRESS</p>
+    <h1 class="fv-title">記事更新待ち</h1>
+    <p class="fv-sub">CMSから記事を公開すると、ここに最新記事が表示されます</p>
   </div>
 </section>
 
 <!-- ===== HERO（CMS連動） ===== -->
-<section class="hero">
+<section class="hero" id="heroSection" style="display:none">
   <div class="container">
     <div class="hero-grid" id="heroGrid">
-      <article class="hero-main">
-        <a href="#"><figure>
-          <img src="img/bass-pro2.jpeg" alt="">
-          <figcaption>
-            <span class="badge badge-bass">バス釣り</span>
-            <h2>記事を投稿すると、ここに表示されます</h2>
-            <p>CMSの管理画面から記事を書いて公開してください</p>
-          </figcaption>
-        </figure></a>
-      </article>
+      <article class="hero-main" id="heroMain"></article>
       <div class="hero-side" id="heroSide"></div>
     </div>
   </div>
@@ -89,10 +48,14 @@
     const pub=all.filter(a=>a.status==='published'&&a.title);
     if(!pub.length)return;
 
+    // FV非表示→HERO表示
+    document.querySelector('.fv-waiting').style.display='none';
+    document.getElementById('heroSection').style.display='block';
+
     // HERO: 1記事目=メイン、2-3記事目=サイド
     if(pub[0]){
       const a=pub[0];
-      document.querySelector('.hero-main').innerHTML=`<a href="/article/${a.slug}"><figure>
+      document.getElementById('heroMain').innerHTML=`<a href="/article/${a.slug}"><figure>
         <img src="${t(a)}" alt="">
         <figcaption>
           <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
