@@ -101,11 +101,26 @@
 <script>
 (function(){
   const C={bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',offshore:'オフショア',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
-  const d=a=>a.created_at?a.created_at.slice(0,10).replace(/-/g,'.'):'';
   const t=a=>a.thumbnail||'img/hero-bass1.jpg';
 
+  function timeAgo(dateStr){
+    if(!dateStr)return '';
+    const now=new Date();
+    const d=new Date(dateStr.replace(' ','T'));
+    const diff=now-d;
+    const min=Math.floor(diff/60000);
+    const hr=Math.floor(diff/3600000);
+    const day=Math.floor(diff/86400000);
+    if(min<1)return 'たった今';
+    if(min<60)return min+'分前';
+    if(hr<24)return hr+'時間前';
+    if(day<7)return day+'日前';
+    return dateStr.slice(0,10).replace(/-/g,'.');
+  }
+
   fetch('/api/articles').then(r=>r.json()).then(all=>{
-    const pub=all.filter(a=>a.status==='published'&&a.title);
+    const pub=all.filter(a=>a.status==='published'&&a.title)
+      .sort((a,b)=>new Date(b.created_at)-new Date(a.created_at));
     if(!pub.length)return;
 
     // HERO: 1記事目=メイン、2-3記事目=サイド
@@ -117,7 +132,7 @@
           <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
           <h2>${a.title}</h2>
           <p>${a.excerpt||''}</p>
-          <time>${d(a)}</time>
+          <time>${timeAgo(a.created_at)}</time>
         </figcaption>
       </figure></a>`;
     }
@@ -128,7 +143,7 @@
         <div class="hero-side-body">
           <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
           <h3>${a.title}</h3>
-          <time>${d(a)}</time>
+          <time>${timeAgo(a.created_at)}</time>
         </div>
       </a></article>`;
     });
@@ -144,7 +159,7 @@
             <span class="badge badge-${cat}">${C[cat]||cat}</span>
             <h3>${a.title}</h3>
             <p>${a.excerpt||''}</p>
-            <time>${d(a)}</time>
+            <time>${timeAgo(a.created_at)}</time>
           </div>
         </a></article>`;
         return `<article class="cms-card"><a href="/article/${a.slug}">
@@ -152,7 +167,7 @@
           <div class="cms-card-body">
             <span class="badge badge-${cat}">${C[cat]||cat}</span>
             <h3>${a.title}</h3>
-            <time>${d(a)}</time>
+            <time>${timeAgo(a.created_at)}</time>
           </div>
         </a></article>`;
       }).join('');
@@ -169,7 +184,7 @@
           <p>${a.excerpt||''}</p>
           <div class="article-row-meta">
             <span class="meta-author">${a.author||'TSURI PRESS編集部'}</span>
-            <time>${d(a)}</time>
+            <time>${timeAgo(a.created_at)}</time>
           </div>
         </div>
       </article>`).join('');
