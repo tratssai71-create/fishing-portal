@@ -52,50 +52,26 @@
   </div>
 </section>
 
-<!-- ===== HERO ===== -->
+<!-- ===== HERO（CMS連動） ===== -->
 <section class="hero">
   <div class="container">
-    <div class="hero-grid">
+    <div class="hero-grid" id="heroGrid">
       <article class="hero-main">
-        <a href="#">
-          <figure>
-            <img src="img/bass-pro2.jpeg" alt="デカバスを持つプロアングラー">
-            <figcaption>
-              <span class="badge badge-bass">バス釣り</span>
-              <h2>アフタースポーン攻略の全て ── プロ5人が明かす梅雨バスの獲り方</h2>
-              <p>体力が落ちたバスにどうアプローチするか。トーナメンター5名の実釣パターンを完全収録。</p>
-              <time>2026.06.21</time>
-            </figcaption>
-          </figure>
-        </a>
+        <a href="#"><figure>
+          <img src="img/bass-pro2.jpeg" alt="">
+          <figcaption>
+            <span class="badge badge-bass">バス釣り</span>
+            <h2>記事を投稿すると、ここに表示されます</h2>
+            <p>CMSの管理画面から記事を書いて公開してください</p>
+          </figcaption>
+        </figure></a>
       </article>
-      <div class="hero-side">
-        <article class="hero-side-card">
-          <a href="#">
-            <img src="img/bass-pro4.jpg" alt="バスプロのランキング3位">
-            <div class="hero-side-body">
-              <span class="badge badge-bass">バス釣り</span>
-              <h3>玄界灘で82kgのキハダ ── タックルセッティングと当日のパターン</h3>
-              <time>2026.06.20</time>
-            </div>
-          </a>
-        </article>
-        <article class="hero-side-card">
-          <a href="#">
-            <img src="img/bass-pro3.jpg" alt="両手にバスを持つプロアングラー">
-            <div class="hero-side-body">
-              <span class="badge badge-lure">ルアー</span>
-              <h3>エクスセンス AR-C 実釣インプレ ── 飛距離と泳ぎのバランスを検証</h3>
-              <time>2026.06.19</time>
-            </div>
-          </a>
-        </article>
-      </div>
+      <div class="hero-side" id="heroSide"></div>
     </div>
   </div>
 </section>
 
-<!-- ===== CMS最新記事 ===== -->
+<!-- ===== CMS全記事セクション ===== -->
 <section class="cms-latest" id="cmsLatestSection" style="display:none">
   <div class="container">
     <h2 class="sec-title"><span>LATEST</span>最新の投稿記事</h2>
@@ -105,37 +81,80 @@
 
 <script>
 (function(){
-  const CAT={bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',offshore:'オフショア',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
-  fetch('/api/articles').then(r=>r.json()).then(articles=>{
-    const pub=articles.filter(a=>a.status==='published'&&a.title);
+  const C={bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',offshore:'オフショア',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
+  const d=a=>a.created_at?a.created_at.slice(0,10).replace(/-/g,'.'):'';
+  const t=a=>a.thumbnail||'img/hero-bass1.jpg';
+
+  fetch('/api/articles').then(r=>r.json()).then(all=>{
+    const pub=all.filter(a=>a.status==='published'&&a.title);
     if(!pub.length)return;
-    document.getElementById('cmsLatestSection').style.display='block';
-    document.getElementById('cmsLatestGrid').innerHTML=pub.slice(0,6).map((a,i)=>{
-      const cat=a.category||'bass';
-      const date=a.created_at?a.created_at.slice(0,10).replace(/-/g,'.'):'';
-      const thumb=a.thumbnail||'img/hero-bass1.jpg';
-      if(i===0) return `<article class="cms-card cms-card-main">
-        <a href="/article/${a.slug}">
-          <img src="${thumb}" alt="">
+
+    // HERO: 1記事目=メイン、2-3記事目=サイド
+    if(pub[0]){
+      const a=pub[0];
+      document.querySelector('.hero-main').innerHTML=`<a href="/article/${a.slug}"><figure>
+        <img src="${t(a)}" alt="">
+        <figcaption>
+          <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
+          <h2>${a.title}</h2>
+          <p>${a.excerpt||''}</p>
+          <time>${d(a)}</time>
+        </figcaption>
+      </figure></a>`;
+    }
+    const side=document.getElementById('heroSide');
+    pub.slice(1,3).forEach(a=>{
+      side.innerHTML+=`<article class="hero-side-card"><a href="/article/${a.slug}">
+        <img src="${t(a)}" alt="">
+        <div class="hero-side-body">
+          <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
+          <h3>${a.title}</h3>
+          <time>${d(a)}</time>
+        </div>
+      </a></article>`;
+    });
+
+    // CMS LATEST: 4記事目以降
+    if(pub.length>3){
+      document.getElementById('cmsLatestSection').style.display='block';
+      document.getElementById('cmsLatestGrid').innerHTML=pub.slice(3,9).map((a,i)=>{
+        const cat=a.category||'bass';
+        if(i===0) return `<article class="cms-card cms-card-main"><a href="/article/${a.slug}">
+          <img src="${t(a)}" alt="">
           <div class="cms-card-overlay">
-            <span class="badge badge-${cat}">${CAT[cat]||cat}</span>
+            <span class="badge badge-${cat}">${C[cat]||cat}</span>
             <h3>${a.title}</h3>
             <p>${a.excerpt||''}</p>
-            <time>${date}</time>
+            <time>${d(a)}</time>
           </div>
-        </a>
-      </article>`;
-      return `<article class="cms-card">
-        <a href="/article/${a.slug}">
-          <img src="${thumb}" alt="">
+        </a></article>`;
+        return `<article class="cms-card"><a href="/article/${a.slug}">
+          <img src="${t(a)}" alt="">
           <div class="cms-card-body">
-            <span class="badge badge-${cat}">${CAT[cat]||cat}</span>
+            <span class="badge badge-${cat}">${C[cat]||cat}</span>
             <h3>${a.title}</h3>
-            <time>${date}</time>
+            <time>${d(a)}</time>
           </div>
-        </a>
-      </article>`;
-    }).join('');
+        </a></article>`;
+      }).join('');
+    }
+
+    // 新着記事セクションも連動
+    const newSec=document.getElementById('cmsArticles');
+    if(newSec && pub.length>9){
+      newSec.innerHTML=pub.slice(9,19).map(a=>`<article class="article-row">
+        <a href="/article/${a.slug}" class="article-row-img"><img src="${t(a)}" alt=""></a>
+        <div class="article-row-body">
+          <span class="badge badge-${a.category||'bass'}">${C[a.category]||a.category}</span>
+          <h3><a href="/article/${a.slug}">${a.title}</a></h3>
+          <p>${a.excerpt||''}</p>
+          <div class="article-row-meta">
+            <span class="meta-author">${a.author||'TSURI PRESS編集部'}</span>
+            <time>${d(a)}</time>
+          </div>
+        </div>
+      </article>`).join('');
+    }
   }).catch(()=>{});
 })();
 </script>
