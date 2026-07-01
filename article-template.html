@@ -5,11 +5,130 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title id="pageTitle">読み込み中... | TSURI PRESS</title>
 <link rel="stylesheet" href="/style.css">
-<link rel="stylesheet" href="/article.css">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@400;500;600;700;800;900&family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+<style>
+/* ===== PROGRESS BAR ===== */
+#readProgress{position:fixed;top:0;left:0;height:3px;background:#222;z-index:9999;width:0;transition:width .1s linear}
+
+/* ===== BREADCRUMB ===== */
+.breadcrumb{background:#fff;border-bottom:1px solid #e5e5e5;padding:10px 0;font-size:.72rem;color:#999}
+.breadcrumb a{color:#666;transition:color .15s}
+.breadcrumb a:hover{color:#111}
+.breadcrumb span{color:#111;font-weight:600}
+
+/* ===== ARTICLE HERO ===== */
+.art-hero{position:relative;height:480px;background:#111;overflow:hidden}
+.art-hero img{width:100%;height:100%;object-fit:cover;opacity:.75}
+.art-hero-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(0,0,0,.88) 50%,rgba(0,0,0,.2) 100%);display:flex;flex-direction:column;justify-content:flex-end;padding:48px}
+.art-hero-overlay .badge{margin-bottom:14px;font-size:.75rem;padding:5px 14px}
+.art-hero-overlay h1{color:#fff;font-size:2rem;font-weight:800;line-height:1.5;letter-spacing:-.01em;max-width:860px;margin-bottom:20px}
+.art-hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.art-hero-author{color:rgba(255,255,255,.7);font-size:.8rem;font-weight:600}
+.art-hero-date{color:rgba(255,255,255,.5);font-size:.75rem}
+.art-hero-pv{color:rgba(255,255,255,.4);font-size:.72rem}
+.art-no-hero{background:#111;padding:56px 0 40px}
+.art-no-hero .container{max-width:1280px;margin:0 auto;padding:0 24px}
+.art-no-hero .badge{margin-bottom:14px;display:inline-block}
+.art-no-hero h1{color:#fff;font-size:1.8rem;font-weight:800;line-height:1.5;max-width:860px;margin-bottom:16px}
+.art-no-hero-meta{display:flex;align-items:center;gap:20px;flex-wrap:wrap}
+.art-no-hero-meta span{color:rgba(255,255,255,.5);font-size:.78rem}
+
+/* ===== LAYOUT ===== */
+.art-wrap{max-width:1280px;margin:0 auto;padding:0 24px;display:grid;grid-template-columns:1fr 300px;gap:48px;padding-top:40px;padding-bottom:80px}
+
+/* ===== ARTICLE BODY ===== */
+.art-body{min-width:0}
+.art-body h2{font-size:1.15rem;font-weight:800;margin:44px 0 18px;padding:14px 20px;background:#111;color:#fff;border-radius:4px;line-height:1.5}
+.art-body h2:first-child{margin-top:0}
+.art-body h3{font-size:1rem;font-weight:700;margin:32px 0 14px;padding-left:14px;border-left:4px solid #222;line-height:1.5}
+.art-body p{font-size:.93rem;line-height:2;margin-bottom:20px;color:#333}
+.art-body strong{font-weight:700;color:#111}
+.art-body a{color:#222;text-decoration:underline;text-underline-offset:3px}
+.art-body a:hover{color:#000}
+.art-body ul,.art-body ol{padding-left:22px;margin:16px 0 20px}
+.art-body ul li,.art-body ol li{font-size:.92rem;line-height:1.9;margin-bottom:6px;color:#333}
+.art-body blockquote{border-left:4px solid #ddd;padding:14px 20px;margin:20px 0;background:#fafafa;color:#666;font-size:.88rem;line-height:1.8;border-radius:0 4px 4px 0}
+.art-body img{width:100%;border-radius:6px;margin:20px 0}
+.art-body figure{margin:24px 0}
+.art-body figure figcaption{text-align:center;font-size:.72rem;color:#999;margin-top:8px}
+
+/* ===== TOC ===== */
+.toc-box{background:#fafafa;border:1px solid #e5e5e5;border-radius:6px;padding:22px 24px;margin-bottom:36px}
+.toc-box .toc-ttl{font-size:.8rem;font-weight:800;letter-spacing:.06em;margin-bottom:14px;color:#111;border-bottom:2px solid #111;padding-bottom:8px}
+.toc-box ol{counter-reset:toc;padding:0;list-style:none}
+.toc-box ol li{counter-increment:toc;padding:7px 0;border-bottom:1px solid #ebebeb;display:flex;align-items:baseline;gap:8px}
+.toc-box ol li:last-child{border-bottom:none}
+.toc-box ol li::before{content:counter(toc);font-family:'Inter',sans-serif;font-size:.68rem;font-weight:800;color:#999;min-width:18px}
+.toc-box ol li a{font-size:.82rem;color:#444;line-height:1.5;transition:color .15s}
+.toc-box ol li a:hover{color:#111}
+
+/* ===== SHARE ===== */
+.share-box{padding:28px 0;margin-top:40px;border-top:2px solid #111;border-bottom:1px solid #e5e5e5;text-align:center}
+.share-box p{font-size:.78rem;font-weight:700;letter-spacing:.06em;color:#999;margin-bottom:14px}
+.share-btns{display:flex;justify-content:center;gap:10px;flex-wrap:wrap}
+.share-btn{display:inline-flex;align-items:center;gap:6px;font-size:.8rem;font-weight:700;padding:10px 22px;border-radius:4px;color:#fff;transition:opacity .15s;cursor:pointer}
+.share-btn:hover{opacity:.8}
+.s-x{background:#000}
+.s-line{background:#00b900}
+.s-copy{background:#666;cursor:pointer;border:none;font-family:inherit}
+
+/* ===== SIDEBAR ===== */
+.art-sidebar{position:sticky;top:80px;align-self:start;display:flex;flex-direction:column;gap:24px}
+.sidebar-card{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden}
+.sidebar-card .sc-head{padding:14px 16px;background:#111;color:#fff;font-size:.75rem;font-weight:800;letter-spacing:.08em}
+.sidebar-card .sc-body{padding:16px}
+
+/* ranking in sidebar */
+.art-rank-item{display:flex;gap:12px;padding:10px 0;border-bottom:1px solid #f0f0f0;align-items:flex-start}
+.art-rank-item:last-child{border-bottom:none}
+.art-rank-num{font-family:'Inter',sans-serif;font-size:1rem;font-weight:900;color:#ccc;min-width:22px;line-height:1.2}
+.art-rank-num.r1{color:#c9a227}
+.art-rank-num.r2{color:#a0a0a0}
+.art-rank-num.r3{color:#b06e3e}
+.art-rank-img{width:64px;height:48px;object-fit:cover;border-radius:3px;flex-shrink:0;background:#f0f0f0}
+.art-rank-title{font-size:.77rem;font-weight:600;line-height:1.5;color:#222}
+.art-rank-title a{color:inherit}
+.art-rank-title a:hover{color:#000;text-decoration:underline}
+
+/* ===== RELATED ===== */
+.related-section{margin-top:48px;padding-top:36px;border-top:1px solid #e5e5e5}
+.related-ttl{font-size:.82rem;font-weight:800;letter-spacing:.1em;color:#999;margin-bottom:20px;border-bottom:2px solid #111;padding-bottom:8px;display:inline-block}
+.related-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:16px}
+.rel-card{background:#fff;border:1px solid #e5e5e5;border-radius:6px;overflow:hidden;transition:box-shadow .2s,border-color .2s}
+.rel-card:hover{border-color:#999;box-shadow:0 4px 16px rgba(0,0,0,.08)}
+.rel-card a{display:block;color:inherit;text-decoration:none}
+.rel-card img{width:100%;height:130px;object-fit:cover}
+.rel-card-body{padding:12px 14px}
+.rel-card-body .badge{margin-bottom:6px;font-size:.68rem;padding:3px 9px}
+.rel-card-body h3{font-size:.8rem;font-weight:700;line-height:1.5;color:#222;margin-bottom:6px}
+.rel-card-body time{font-size:.68rem;color:#999}
+
+/* ===== 404 ===== */
+.art-404{text-align:center;padding:100px 0}
+.art-404 h2{font-size:3rem;font-weight:900;color:#111;margin-bottom:12px}
+.art-404 p{color:#999;font-size:.9rem;margin-bottom:24px}
+.art-404 a{display:inline-block;background:#111;color:#fff;padding:12px 28px;border-radius:4px;font-weight:700;font-size:.85rem}
+
+/* ===== RESPONSIVE ===== */
+@media(max-width:900px){
+  .art-wrap{grid-template-columns:1fr;gap:32px;padding-top:28px}
+  .art-sidebar{position:static}
+  .related-grid{grid-template-columns:repeat(2,1fr)}
+  .art-hero{height:340px}
+  .art-hero-overlay h1{font-size:1.4rem}
+  .art-hero-overlay{padding:28px}
+}
+@media(max-width:600px){
+  .art-wrap{padding:20px 16px 60px}
+  .art-hero{height:260px}
+  .art-hero-overlay h1{font-size:1.1rem}
+  .related-grid{grid-template-columns:1fr}
+}
+</style>
 </head>
 <body>
+<div id="readProgress"></div>
 
 <header class="site-header">
   <div class="topbar">
@@ -45,14 +164,34 @@
 
 <div class="breadcrumb">
   <div class="container">
-    <a href="/">トップ</a> &gt; <span id="bcCategory">読み込み中</span> &gt; <span id="bcTitle"></span>
+    <a href="/">トップ</a> &gt; <a href="#" id="bcCatLink"><span id="bcCategory">読み込み中</span></a> &gt; <span id="bcTitle"></span>
   </div>
 </div>
 
-<div class="article-wrap container">
-  <article class="article-main" id="articleContent">
+<div id="heroArea"></div>
+
+<div class="art-wrap container">
+  <main class="art-body" id="artBody">
     <div style="text-align:center;padding:80px 0;color:#999">記事を読み込んでいます...</div>
-  </article>
+  </main>
+
+  <aside class="art-sidebar">
+    <div class="sidebar-card">
+      <div class="sc-head">SHARE</div>
+      <div class="sc-body" style="display:flex;flex-direction:column;gap:8px">
+        <button class="share-btn s-x" onclick="shareX()" style="justify-content:center">X でシェア</button>
+        <button class="share-btn s-line" onclick="shareLine()" style="justify-content:center">LINEで送る</button>
+        <button class="share-btn s-copy" onclick="copyURL()" style="justify-content:center" id="copyBtn">URLをコピー</button>
+      </div>
+    </div>
+
+    <div class="sidebar-card">
+      <div class="sc-head">RANKING</div>
+      <div class="sc-body" id="sideRanking">
+        <div style="text-align:center;padding:20px 0;color:#ccc;font-size:.75rem">読み込み中...</div>
+      </div>
+    </div>
+  </aside>
 </div>
 
 <footer class="site-footer">
@@ -71,50 +210,151 @@
 </footer>
 
 <script>
-const CATEGORIES = {bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',column:'コラム',guide:'入門ガイド'};
+const CATS = {bass:'バス釣り',seabass:'シーバス',eging:'エギング',jigging:'ジギング',tackle:'タックル',trout:'トラウト',lure:'ルアー',shore:'ショアソルト',offshore:'オフショア',column:'コラム',guide:'入門ガイド'};
 const slug = location.pathname.replace('/article/', '');
+let artTitle = '', artUrl = location.href;
+
+// 読了プログレスバー
+const prog = document.getElementById('readProgress');
+window.addEventListener('scroll', () => {
+  const doc = document.documentElement;
+  const pct = (doc.scrollTop / (doc.scrollHeight - doc.clientHeight)) * 100;
+  prog.style.width = Math.min(pct, 100) + '%';
+});
 
 fetch('/api/article-by-slug/' + slug)
   .then(r => { if (!r.ok) throw new Error('not found'); return r.json(); })
   .then(a => {
-    // PVカウント
-    if(a.id) fetch('/api/pageview/'+a.id, {method:'POST'}).catch(()=>{});
+    if (a.id) fetch('/api/pageview/' + a.id, {method:'POST'}).catch(()=>{});
+
+    artTitle = a.title;
+    const catName = CATS[a.category] || a.category;
+    const date = a.created_at ? a.created_at.slice(0,10).replace(/-/g,'.') : '';
+
     document.getElementById('pageTitle').textContent = a.title + ' | TSURI PRESS';
-    document.getElementById('bcCategory').textContent = CATEGORIES[a.category] || a.category;
+    document.getElementById('bcCategory').textContent = catName;
     document.getElementById('bcTitle').textContent = a.title;
 
-    const date = a.created_at ? a.created_at.slice(0, 10).replace(/-/g, '.') : '';
-    const catName = CATEGORIES[a.category] || a.category;
-
-    document.getElementById('articleContent').innerHTML = `
-      <div class="article-header">
-        <span class="badge badge-${a.category}">${catName}</span>
-        <h1>${a.title}</h1>
-        <div class="article-info">
-          <div class="article-author-box">
-            <div>
-              <span class="author-nm">${a.author}</span>
+    // Hero area
+    const heroEl = document.getElementById('heroArea');
+    if (a.thumbnail) {
+      heroEl.innerHTML = `
+        <div class="art-hero">
+          <img src="${a.thumbnail}" alt="${a.title}">
+          <div class="art-hero-overlay container">
+            <span class="badge badge-${a.category}">${catName}</span>
+            <h1>${a.title}</h1>
+            <div class="art-hero-meta">
+              <span class="art-hero-author">${a.author || 'TSURI PRESS編集部'}</span>
+              <span class="art-hero-date">${date}</span>
             </div>
           </div>
-          <div class="article-dates">
-            <time>${date}</time>
+        </div>`;
+    } else {
+      heroEl.innerHTML = `
+        <div class="art-no-hero">
+          <div class="art-no-hero .container" style="max-width:1280px;margin:0 auto;padding:0 24px">
+            <span class="badge badge-${a.category}">${catName}</span>
+            <h1 style="color:#fff;font-size:1.8rem;font-weight:800;line-height:1.5;max-width:860px;margin:14px 0 16px">${a.title}</h1>
+            <div class="art-no-hero-meta">
+              <span>${a.author || 'TSURI PRESS編集部'}</span>
+              <span>${date}</span>
+            </div>
           </div>
-        </div>
-      </div>
-      ${a.thumbnail ? '<figure class="article-hero"><img src="'+a.thumbnail+'" alt=""></figure>' : ''}
-      <div class="article-body">${a.body}</div>
+        </div>`;
+    }
+
+    // 本文
+    const bodyEl = document.getElementById('artBody');
+
+    // 目次生成（H2が2つ以上あれば表示）
+    const tmp = document.createElement('div');
+    tmp.innerHTML = a.body || '';
+    const h2s = tmp.querySelectorAll('h2');
+    let tocHtml = '';
+    if (h2s.length >= 2) {
+      tocHtml = '<div class="toc-box"><div class="toc-ttl">目次</div><ol>';
+      h2s.forEach((h, i) => {
+        const id = 'section-' + i;
+        h.id = id;
+        tocHtml += `<li><a href="#${id}">${h.textContent}</a></li>`;
+      });
+      tocHtml += '</ol></div>';
+    }
+
+    bodyEl.innerHTML = tocHtml + tmp.innerHTML + `
       <div class="share-box">
         <p>この記事をシェアする</p>
         <div class="share-btns">
-          <a href="#" class="share-btn s-x">X でシェア</a>
-          <a href="#" class="share-btn s-line">LINEで送る</a>
+          <button class="share-btn s-x" onclick="shareX()">X でシェア</button>
+          <button class="share-btn s-line" onclick="shareLine()">LINEで送る</button>
+          <button class="share-btn s-copy" onclick="copyURL()">URLをコピー</button>
         </div>
-      </div>
-    `;
+      </div>`;
+
+    // 関連記事
+    loadRelated(a.category, a.id);
   })
   .catch(() => {
-    document.getElementById('articleContent').innerHTML = '<div style="text-align:center;padding:80px 0"><h2 style="font-size:1.5rem;margin-bottom:12px">404</h2><p style="color:#999">記事が見つかりませんでした</p><a href="/" style="color:#c8102e;font-weight:700;margin-top:16px;display:inline-block">トップに戻る</a></div>';
+    document.getElementById('artBody').innerHTML = `
+      <div class="art-404">
+        <h2>404</h2>
+        <p>記事が見つかりませんでした</p>
+        <a href="/">トップに戻る</a>
+      </div>`;
   });
+
+// ランキング読み込み
+fetch('/api/ranking?period=week')
+  .then(r => r.json())
+  .then(list => {
+    const el = document.getElementById('sideRanking');
+    if (!list.length) { el.innerHTML = '<p style="font-size:.75rem;color:#999;text-align:center;padding:16px 0">データなし</p>'; return; }
+    el.innerHTML = list.slice(0,7).map((a,i) => `
+      <div class="art-rank-item">
+        <span class="art-rank-num ${i===0?'r1':i===1?'r2':i===2?'r3':''}">${i+1}</span>
+        ${a.thumbnail ? `<img class="art-rank-img" src="${a.thumbnail}" alt="">` : '<div class="art-rank-img"></div>'}
+        <div class="art-rank-title"><a href="/article/${a.slug}">${a.title}</a></div>
+      </div>`).join('');
+  }).catch(()=>{});
+
+// 関連記事
+function loadRelated(category, currentId) {
+  fetch('/api/articles')
+    .then(r => r.json())
+    .then(list => {
+      const related = list.filter(a => a.status === 'published' && a.id != currentId && a.category === category).slice(0, 3);
+      if (!related.length) return;
+      const artBody = document.getElementById('artBody');
+      const div = document.createElement('div');
+      div.className = 'related-section';
+      div.innerHTML = `<div class="related-ttl">関連記事</div>
+        <div class="related-grid">
+          ${related.map(a => `
+            <div class="rel-card">
+              <a href="/article/${a.slug}">
+                ${a.thumbnail ? `<img src="${a.thumbnail}" alt="${a.title}">` : '<div style="height:130px;background:#f0f0f0"></div>'}
+                <div class="rel-card-body">
+                  <span class="badge badge-${a.category}">${CATS[a.category]||a.category}</span>
+                  <h3>${a.title}</h3>
+                  <time>${a.created_at?a.created_at.slice(0,10).replace(/-/g,'.'):''}
+                  </time>
+                </div>
+              </a>
+            </div>`).join('')}
+        </div>`;
+      artBody.appendChild(div);
+    }).catch(()=>{});
+}
+
+// シェア
+function shareX() { window.open('https://twitter.com/intent/tweet?text=' + encodeURIComponent(artTitle) + '&url=' + encodeURIComponent(artUrl), '_blank'); }
+function shareLine() { window.open('https://social-plugins.line.me/lineit/share?url=' + encodeURIComponent(artUrl), '_blank'); }
+function copyURL() {
+  navigator.clipboard.writeText(artUrl).then(() => {
+    document.querySelectorAll('#copyBtn').forEach(b => { b.textContent = 'コピーしました！'; setTimeout(()=>b.textContent='URLをコピー',2000); });
+  });
+}
 </script>
 </body>
 </html>
