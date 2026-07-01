@@ -203,97 +203,8 @@
 <section class="pickup-section">
   <div class="container">
     <h2 class="sec-title"><span>PICK UP</span>今週の注目記事</h2>
-    <div class="pickup-track">
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/lure1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-eging">エギング</span>
-            <p>濁り潮でアオリイカを獲る。カラーローテーションの「正解」を考える</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/rod-reel1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-tackle">タックル</span>
-            <p>23セルテート vs 23ヴァンキッシュ ── 忖度なしのガチンコ比較</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/fishing-rod2.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-seabass">シーバス</span>
-            <p>増水＋濁りの梅雨シーバス。デイゲームで結果を出すための3つの鉄則</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/fly-fishing1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-trout">トラウト</span>
-            <p>十勝川水系 ── 3日間の北海道ニジマス遠征で見えたこと</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/bass-catch1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-bass">バス釣り</span>
-            <p>琵琶湖南湖のウィード攻略。ヘビキャロで探る夏パターンの入口</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/offshore1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-offshore">オフショア</span>
-            <p>玄界灘ジギング釣行レポ。80kgオーバーのキハダをキャッチ</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/boat1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-seabass">シーバス</span>
-            <p>バチ抜け後のシーバス攻略。6月に効くルアー5選</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/bass-catch2.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-bass">バス釣り</span>
-            <p>ネコリグの全て。リグり方からワーム選びまで徹底解説</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/tackle-box1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-tackle">タックル</span>
-            <p>5000番リールのススメ。ショアジギからサーフまで万能</p>
-          </div>
-        </a>
-      </article>
-      <article class="pickup-card">
-        <a href="#">
-          <img src="img/fishing-scene1.jpg" alt="">
-          <div class="pickup-body">
-            <span class="badge badge-trout">トラウト</span>
-            <p>管釣りスプーンの色選び。光量だけで決めるシンプルな法則</p>
-          </div>
-        </a>
-      </article>
+    <div class="pickup-track" id="pickupTrack">
+      <!-- CMS記事公開後に自動表示 -->
     </div>
   </div>
 </section>
@@ -361,281 +272,36 @@
     </script>
 
     <!-- PR帯 -->
-    <section class="pr-banner">
-      <span class="pr-label">PR</span>
-      <a href="#">
-        <img src="img/rod-reel1.jpg" alt="">
-        <div class="pr-text">
-          <p class="pr-brand">タックルベリー</p>
-          <p class="pr-copy">中古タックル最大80%OFF ── 全国120店舗 ＋ オンラインショップ</p>
-        </div>
-      </a>
-    </section>
+    <section class="pr-banner" style="display:none"></section>
 
     <!-- 特集・ガイド -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>FEATURE</span>特集・入門ガイド</h2>
-      <div class="feature-mosaic">
-        <article class="fm-large">
-          <a href="#">
-            <img src="img/tackle-box1.jpg" alt="">
-            <div class="fm-overlay">
-              <span class="fm-tag">入門ガイド</span>
-              <h3>ルアー釣り完全入門 ── 道具選びの基礎からキャストの練習法まで</h3>
-            </div>
-          </a>
-        </article>
-        <article class="fm-small">
-          <a href="#">
-            <img src="img/lure1.jpg" alt="">
-            <div class="fm-overlay">
-              <span class="fm-tag">入門</span>
-              <h3>エギング入門</h3>
-            </div>
-          </a>
-        </article>
-        <article class="fm-small">
-          <a href="#">
-            <img src="img/offshore1.jpg" alt="">
-            <div class="fm-overlay">
-              <span class="fm-tag">テクニック</span>
-              <h3>ジギング基本講座</h3>
-            </div>
-          </a>
-        </article>
-        <article class="fm-small">
-          <a href="#">
-            <img src="img/bass-catch1.jpg" alt="">
-            <div class="fm-overlay">
-              <span class="fm-tag">釣り場</span>
-              <h3>霞ヶ浦ポイントMAP</h3>
-            </div>
-          </a>
-        </article>
-        <article class="fm-small">
-          <a href="#">
-            <img src="img/fly-fishing1.jpg" alt="">
-            <div class="fm-overlay">
-              <span class="fm-tag">入門</span>
-              <h3>フライフィッシング入門</h3>
-            </div>
-          </a>
-        </article>
-      </div>
     </section>
 
     <!-- 人気記事 -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>POPULAR</span>よく読まれている記事</h2>
-      <div class="popular-grid">
-        <article class="pop-card">
-          <a href="#">
-            <div class="pop-rank">1</div>
-            <img src="img/hero-bass1.jpg" alt="">
-            <div class="pop-body">
-              <span class="badge badge-bass">バス釣り</span>
-              <h3>バス釣りルアーおすすめ20選 ── プロが本当に使っているルアーだけを厳選</h3>
-            </div>
-          </a>
-        </article>
-        <article class="pop-card">
-          <a href="#">
-            <div class="pop-rank">2</div>
-            <img src="img/rod-reel1.jpg" alt="">
-            <div class="pop-body">
-              <span class="badge badge-tackle">タックル</span>
-              <h3>2026年版 スピニングリール おすすめランキングTOP15</h3>
-            </div>
-          </a>
-        </article>
-        <article class="pop-card">
-          <a href="#">
-            <div class="pop-rank">3</div>
-            <img src="img/tackle-box1.jpg" alt="">
-            <div class="pop-body">
-              <span class="badge badge-lure">ルアー</span>
-              <h3>シーバス用ミノー ── 本当に釣れるルアー厳選12本</h3>
-            </div>
-          </a>
-        </article>
-        <article class="pop-card">
-          <a href="#">
-            <div class="pop-rank">4</div>
-            <img src="img/lure1.jpg" alt="">
-            <div class="pop-body">
-              <span class="badge badge-eging">エギング</span>
-              <h3>エギの選び方 ── 色・サイズ・重さの基本をプロが解説</h3>
-            </div>
-          </a>
-        </article>
-      </div>
     </section>
 
     <!-- コラム -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>COLUMN</span>コラム・読み物</h2>
-      <div class="column-list">
-        <article class="column-card">
-          <a href="#">
-            <img src="img/boat1.jpg" alt="">
-            <div class="column-body">
-              <h3>釣り人の朝は早い ── 4時起きを20年続けて気づいたこと</h3>
-              <p>山本 大輔</p>
-            </div>
-          </a>
-        </article>
-        <article class="column-card">
-          <a href="#">
-            <img src="img/bass-catch1.jpg" alt="">
-            <div class="column-body">
-              <h3>「釣れなかった日」の話をしよう ── ボウズが教えてくれること</h3>
-              <p>中村 裕子</p>
-            </div>
-          </a>
-        </article>
-        <article class="column-card">
-          <a href="#">
-            <img src="img/fly-fishing1.jpg" alt="">
-            <div class="column-body">
-              <h3>子供と釣りに行く前に読んでほしい ── 安全・道具・心構えの話</h3>
-              <p>渡辺 美咲</p>
-            </div>
-          </a>
-        </article>
-      </div>
     </section>
 
     <!-- 動画 -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>VIDEO</span>動画コンテンツ</h2>
-      <div class="video-grid">
-        <article class="vid-card">
-          <a href="#">
-            <div class="vid-thumb">
-              <img src="img/hero-bass1.jpg" alt="">
-              <span class="vid-play">&#9654;</span>
-              <span class="vid-time">14:32</span>
-            </div>
-            <h3>霞ヶ浦おかっぱり実釣 ── カバー撃ちで50アップを捕獲</h3>
-            <div class="vid-meta">34,200回再生</div>
-          </a>
-        </article>
-        <article class="vid-card">
-          <a href="#">
-            <div class="vid-thumb">
-              <img src="img/lure1.jpg" alt="">
-              <span class="vid-play">&#9654;</span>
-              <span class="vid-time">9:48</span>
-            </div>
-            <h3>エギング実釣解説 ── ボトムステイの間を極める</h3>
-            <div class="vid-meta">21,500回再生</div>
-          </a>
-        </article>
-        <article class="vid-card">
-          <a href="#">
-            <div class="vid-thumb">
-              <img src="img/offshore1.jpg" alt="">
-              <span class="vid-play">&#9654;</span>
-              <span class="vid-time">18:15</span>
-            </div>
-            <h3>ブリジギング ── ワンピッチの基本と応用を船上で解説</h3>
-            <div class="vid-meta">18,900回再生</div>
-          </a>
-        </article>
-        <article class="vid-card">
-          <a href="#">
-            <div class="vid-thumb">
-              <img src="img/fishing-rod2.jpg" alt="">
-              <span class="vid-play">&#9654;</span>
-              <span class="vid-time">11:22</span>
-            </div>
-            <h3>シーバス ナイトゲーム ── 都市河川で80cmオーバー</h3>
-            <div class="vid-meta">15,300回再生</div>
-          </a>
-        </article>
-      </div>
     </section>
 
     <!-- 釣り場ガイド -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>FIELD</span>釣り場ガイド</h2>
-      <div class="field-grid">
-        <a href="#" class="field-card">
-          <img src="img/boat1.jpg" alt="">
-          <div class="field-info"><span>滋賀県</span><h3>琵琶湖</h3><p>バス / ウナギ / ヘラブナ</p></div>
-        </a>
-        <a href="#" class="field-card">
-          <img src="img/bass-catch1.jpg" alt="">
-          <div class="field-info"><span>茨城県</span><h3>霞ヶ浦水系</h3><p>バス / ナマズ / ヘラブナ</p></div>
-        </a>
-        <a href="#" class="field-card">
-          <img src="img/offshore1.jpg" alt="">
-          <div class="field-info"><span>福岡県</span><h3>玄界灘</h3><p>ブリ / ヒラマサ / マダイ</p></div>
-        </a>
-        <a href="#" class="field-card">
-          <img src="img/fly-fishing1.jpg" alt="">
-          <div class="field-info"><span>北海道</span><h3>十勝川水系</h3><p>ニジマス / アメマス / イトウ</p></div>
-        </a>
-        <a href="#" class="field-card">
-          <img src="img/fishing-rod2.jpg" alt="">
-          <div class="field-info"><span>千葉県</span><h3>東京湾奥</h3><p>シーバス / クロダイ / ハゼ</p></div>
-        </a>
-        <a href="#" class="field-card">
-          <img src="img/rod-reel1.jpg" alt="">
-          <div class="field-info"><span>三重県</span><h3>熊野灘</h3><p>マグロ / カツオ / アオリイカ</p></div>
-        </a>
-      </div>
     </section>
 
     <!-- タックルレビュー -->
-    <section class="sec">
+    <section class="sec" style="display:none">
       <h2 class="sec-title"><span>REVIEW</span>タックルレビュー</h2>
-      <div class="review-grid">
-        <article class="review-card">
-          <a href="#">
-            <img src="img/rod-reel1.jpg" alt="">
-            <div class="review-body">
-              <span class="review-cat">リール</span>
-              <h3>シマノ 23ヴァンキッシュ C3000MHG</h3>
-              <div class="review-star">★★★★★ <span>4.8</span></div>
-              <p>軽さと巻き感度の両立。ストッパーレスのダイレクト感がたまらない一台。</p>
-            </div>
-          </a>
-        </article>
-        <article class="review-card">
-          <a href="#">
-            <img src="img/tackle-box1.jpg" alt="">
-            <div class="review-body">
-              <span class="review-cat">ロッド</span>
-              <h3>ダイワ エメラルダス STOIST RT IL 86M</h3>
-              <div class="review-star">★★★★☆ <span>4.5</span></div>
-              <p>インターラインとは思えない飛距離。エギングロッドの概念を変える完成度。</p>
-            </div>
-          </a>
-        </article>
-        <article class="review-card">
-          <a href="#">
-            <img src="img/fishing-rod2.jpg" alt="">
-            <div class="review-body">
-              <span class="review-cat">ルアー</span>
-              <h3>メガバス VISION ONETEN LBO II</h3>
-              <div class="review-star">★★★★★ <span>4.9</span></div>
-              <p>飛距離アップとレスポンスの向上。初代ファンも納得の正統進化。</p>
-            </div>
-          </a>
-        </article>
-        <article class="review-card">
-          <a href="#">
-            <img src="img/hero-bass1.jpg" alt="">
-            <div class="review-body">
-              <span class="review-cat">ライン</span>
-              <h3>VARIVAS アバニ エギング PE マックスパワー X8</h3>
-              <div class="review-star">★★★★☆ <span>4.3</span></div>
-              <p>コスパと性能のバランスが秀逸。エギングだけでなくライトゲーム全般に。</p>
-            </div>
-          </a>
-        </article>
-      </div>
     </section>
 
     <!-- メーカー・ブランド -->
@@ -731,16 +397,7 @@
       </div>
     </div>
 
-    <div class="widget widget-ad-side">
-      <span class="ad-label">PR</span>
-      <a href="#" class="side-ad">
-        <img src="img/tackle-box1.jpg" alt="">
-        <div>
-          <strong>ナチュラム</strong>
-          <p>アウトドア＆フィッシング専門店<br>ポイント10倍キャンペーン中</p>
-        </div>
-      </a>
-    </div>
+    <div class="widget widget-ad-side" style="display:none"></div>
 
     <div class="widget">
       <h3 class="widget-title">SNS</h3>
